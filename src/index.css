@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Animation for hero section */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#home h1, 
+#home h2, 
+#home p, 
+#home .flex {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+#home h1 {
+  animation-delay: 0.2s;
+}
+
+#home h2 {
+  animation-delay: 0.4s;
+}
+
+#home p {
+  animation-delay: 0.6s;
+}
+
+#home .flex {
+  animation-delay: 0.8s;
+}
+
+/* Section transitions */
+section {
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
