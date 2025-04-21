@@ -43,6 +43,22 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
 const Experience = () => {
   const experiences: Experience[] = [
     {
+      title: "Desarrollador Full Stack",
+      period: "Febrero - Actualidad",
+      description: [
+        "Desarrollé y mantuve aplicaciones web utilizando React, Typescript y Supabase.",
+        "Colaboré en la implementación de nuevas funcionalidades y mejoras de rendimiento."
+      ],
+    },
+    {
+      title: "Desarrollador Freelancer",
+      period: "Octubre 2024 - Actualidad",
+      description: [
+        "He desarrollador proyectos para clientes, especialmente en el desarrollo de Landing Pgs y aplicaciones web.",
+        "Realicé trabajos de diseño y desarrollo de aplicaciones web, incluyendo la creación de interfaces de usuario atractivas y funcionales.",
+      ],
+    },
+    {
       title: "Instructor de Fundamentos de Programación",
       period: "Mayo - Noviembre 2023",
       description: [
