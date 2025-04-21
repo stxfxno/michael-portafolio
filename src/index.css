@@ -84,3 +84,71 @@ body {
 section {
   transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
+
+
+/* Mejoras responsivas adicionales */
+
+/* Ajustes para sección Hero */
+@media (max-width: 768px) {
+  #home {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  #home h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  /* Evitar desbordamiento de texto de código */
+  .font-mono {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  
+  /* Ajustar tamaño del terminal */
+  #home .terminal-container {
+    height: auto;
+    max-height: 250px;
+  }
+}
+
+/* Asegurar que las imágenes y contenedores no se desborden */
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mejorar espaciado en dispositivos pequeños */
+@media (max-width: 640px) {
+  section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .grid {
+    gap: 1.5rem;
+  }
+  
+  /* Ajustar botones en línea para que encajen */
+  .flex-wrap {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Asegurar que el texto de encabezado no se desborde */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Mejorar visualización de código */
+pre, code {
+  white-space: pre-wrap;
+  word-break: break-all;
+}

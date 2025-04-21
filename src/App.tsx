@@ -21,7 +21,8 @@ const HomePage = () => {
     <div className={darkMode ? 'dark' : ''}>
       <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className="max-w-6xl mx-auto px-4">
+        {/* Contenedor principal con margen más pequeño en móvil */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Hero />
           <Skills />
           <Projects />

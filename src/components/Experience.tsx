@@ -43,7 +43,7 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
 const Experience = () => {
   const experiences: Experience[] = [
     {
-      title: "Desarrollador Full Stack",
+      title: "Sprinta AI Desarrollador Full Stack",
       period: "Febrero - Actualidad",
       description: [
         "Desarrollé y mantuve aplicaciones web utilizando React, Typescript y Supabase.",
