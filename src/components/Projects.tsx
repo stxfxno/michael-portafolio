@@ -1,5 +1,4 @@
 import { Code, ExternalLink, Github, Terminal, Calendar, Monitor, Cpu, FileCode } from 'lucide-react';
-import GitHubCard from './GitHubCard';
 
 interface Project {
   title: string;
@@ -7,16 +6,13 @@ interface Project {
   period: string;
   technologies: string[];
   primaryLanguage?: string;
+  image: string;
   links: {
     live?: string;
     github?: string;
     figma?: string;
     resources?: string;
   };
-  featured?: boolean;
-  stars?: number;
-  forks?: number;
-  watchCount?: number;
 }
 
 const ProjectCard = ({ project }: { project: Project }) => {
@@ -37,20 +33,29 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
-      <div className="p-6">
-        <div className="flex justify-between items-start">
-          <div className="flex items-center mb-2">
-            {getProjectIcon()}
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white ml-2">{project.title}</h3>
-          </div>
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="relative h-50 overflow-hidden">
+        <img
+          src={project.image}
+          alt={`Captura de ${project.title}`}
+          className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center text-sm text-white">
             <Calendar size={14} className="mr-1" />
             <span>{project.period}</span>
           </div>
         </div>
-        
+      </div>
+
+      <div className="p-6">
+        <div className="flex items-center mb-2">
+          {getProjectIcon()}
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white ml-2">{project.title}</h3>
+        </div>
+
         <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
-        
+
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.map((tech) => (
             <span
@@ -61,7 +66,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </span>
           ))}
         </div>
-        
+
         <div className="flex flex-wrap gap-3">
           {project.links.live && (
             <a
@@ -114,88 +119,53 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 const Projects = () => {
-  const featuredProjects: Project[] = [
+  const projects = [
     {
-      title: "Chat-Platform",
-      description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios registrados.",
+      title: "Chat Platform",
+      description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
       period: "2025 (marzo)",
-      technologies: ["React", "NestJS", "Supabase", "TypeScript"],
+      technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
       primaryLanguage: "TypeScript",
+      image: "/images/chat_app_platform.png",
       links: {
-        live: "https://chat-platform-stefdev.netlify.app/login"
-      },
-      featured: true,
-      stars: 8,
-      forks: 2,
-      watchCount: 5
+        live: "https://chat-platform-stefdev.netlify.app/login",
+        github: "https://github.com/stxfxno/chat-platform"
+      }
     },
     {
-      title: "Una distancia corta",
-      description: "Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global.",
+      title: "Manage Wise",
+      description: "Plataforma para la gestión y optimización de proyectos de desarrollo de software, con funcionalidades para coordinar equipos, visualizar sprints y monitorear el progreso en tiempo real.",
+      period: "2024 (noviembre-diciembre)",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      primaryLanguage: "JavaScript",
+      image: "/images/manage_wise.png",
+      links: {
+        live: "https://managewise-dev.netlify.app",
+        github: "https://github.com/stxfxno/manage-wise"
+      }
+    },
+    {
+      title: "Una Distancia Corta",
+      description: "Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global, facilitando la conexión entre personas en diferentes partes del mundo.",
       period: "2025 (enero-febrero)",
-      technologies: ["HTML", "CSS", "JS", "Firebase", "Figma"],
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mapbox API"],
       primaryLanguage: "JavaScript",
+      image: "/images/una_distancia_corta.png",
       links: {
-        live: "https://unadistanciacorta.netlify.app/"
-      },
-      featured: true,
-      stars: 5,
-      forks: 1,
-      watchCount: 3
-    }
-  ];
-
-  const projects: Project[] = [
-    {
-      title: "App Móvil simulador de ID Cards",
-      description: "Aplicación móvil que simula la generación de ID Cards universitarias para evidenciar vulnerabilidades en sistemas de autenticación.",
-      period: "2024 (octubre-noviembre)",
-      technologies: ["Android Studio", "Kotlin", "XML"],
-      primaryLanguage: "Kotlin",
-      links: {
-        resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
+        live: "https://unadistanciacorta.netlify.app/",
+        github: "https://github.com/stxfxno/una-distancia-corta"
       }
     },
     {
-      title: "Generador de Horarios Falsos",
-      description: "Herramienta para evidenciar fallos de seguridad en el sistema de acceso universitario, donde se pueden generar horarios falsos.",
-      period: "2024 (julio)",
-      technologies: ["HTML", "CSS", "JS"],
+      title: "Sistema de Matrícula UPC",
+      description: "Clon del sistema de matrícula universitaria con funcionalidades para visualización de horarios, selección de cursos y gestión de créditos académicos, desarrollado como proyecto educativo.",
+      period: "2024 (agosto-septiembre)",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
       primaryLanguage: "JavaScript",
+      image: "/images/matricula_upc.png",
       links: {
-        live: "https://stefware-upc-horarios.netlify.app/"
-      }
-    },
-    {
-      title: "Backend para página web de eventos",
-      description: "Backend con endpoints RESTful para una página web de eventos. Proyecto universitario donde fui coordinador de equipo.",
-      period: "2024 (abril-junio)",
-      technologies: ["Java", "Postman", "MySQL", "IntelliJ IDEA"],
-      primaryLanguage: "Java",
-      links: {
-        github: "https://github.com/stxfxno/BackendOS_user/tree/main/MyEvent",
-        live: "https://michael-carmelino-web.netlify.app/proyectos/myevent/"
-      }
-    },
-    {
-      title: "Listify MP3 Downloader",
-      description: "Programa en Python que automatiza la búsqueda y descarga de canciones desde YouTube a partir de una lista en formato TXT.",
-      period: "2024 (febrero)",
-      technologies: ["Python", "Visual Studio Code"],
-      primaryLanguage: "Python",
-      links: {
-        github: "https://github.com/stxfxno/Listify"
-      }
-    },
-    {
-      title: "Make Money Rain",
-      description: "Interfaz visual para una aplicación web de administración de gastos y tarjetas. Primer proyecto universitario con HTML/CSS.",
-      period: "2023 (octubre-noviembre)",
-      technologies: ["HTML", "CSS", "Visual Studio Code", "Figma"],
-      primaryLanguage: "HTML",
-      links: {
-        figma: "https://www.figma.com/design/UuJgjYxl8iLIb3NZphUiHk/Make-Money-Earn?node-id=0-1&t=cQ4lCNcJgLLotLxT-1",
-        live: "https://michael-carmelino-web.netlify.app/proyectos/ihc-lading-pagemain/web3/infogeneral/infogeneral"
+        live: "https://matricula-upc-clone.netlify.app",
+        github: "https://github.com/stxfxno/matricula-upc-clone"
       }
     }
   ];
@@ -213,50 +183,30 @@ const Projects = () => {
             <span className="text-green-600 dark:text-green-400">portfolio-projects</span>
           </span>
         </p>
-        
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-            <Terminal size={24} className="mr-2 text-blue-600 dark:text-blue-400" />
-            Proyectos Destacados
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredProjects.map((project) => (
-              <GitHubCard 
-                key={project.title} 
-                project={{
-                  title: project.title,
-                  description: project.description,
-                  language: project.primaryLanguage,
-                  stars: project.stars,
-                  forks: project.forks,
-                  watchCount: project.watchCount,
-                  lastUpdated: project.period,
-                  repoUrl: project.links.github || project.links.live
-                }}
-              />
-            ))}
-          </div>
-        </div>
-        
-        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-          <Code size={24} className="mr-2 text-blue-600 dark:text-blue-400" />
-          Otros Proyectos
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
         </div>
-        
-        <div className="text-center mt-10">
-          <a 
-            href="https://github.com/stxfxno" 
-            target="_blank" 
+
+        <div className="text-center mt-12 flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="https://github.com/stxfxno"
+            target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200 shadow-md"
+            className="inline-flex items-center justify-center px-6 py-3 bg-[#1a1f2e] text-white rounded-lg hover:bg-[#242a3d] transition-colors duration-200 shadow-md"
           >
             <Github size={20} className="mr-2" />
             Ver más en GitHub
+          </a>
+
+          <a
+            href="/more-projects" // Puedes cambiar esto a la ruta que prefieras
+            className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md"
+          >
+            <Code size={20} className="mr-2" />
+            Ver otros proyectos
           </a>
         </div>
       </div>
