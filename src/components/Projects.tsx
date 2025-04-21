@@ -123,7 +123,7 @@ const Projects = () => {
     {
       title: "Chat Platform",
       description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
-      period: "2025 (marzo)",
+      period: "2025 (febrero)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
       primaryLanguage: "TypeScript",
       image: "/images/chat_app_platform.png",
@@ -135,20 +135,20 @@ const Projects = () => {
     {
       title: "Manage Wise",
       description: "Plataforma para la gestión y optimización de proyectos de desarrollo de software, con funcionalidades para coordinar equipos, visualizar sprints y monitorear el progreso en tiempo real.",
-      period: "2024 (noviembre-diciembre)",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      period: "2024 (septiembre)",
+      technologies: ["HTML", "CSS", "JavaScript", "Figma"],
       primaryLanguage: "JavaScript",
       image: "/images/manage_wise.png",
       links: {
-        live: "https://managewise-dev.netlify.app",
-        github: "https://github.com/stxfxno/manage-wise"
+        live: "https://manage-wise.netlify.app/",
+        github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
       }
     },
     {
       title: "Una Distancia Corta",
-      description: "Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global, facilitando la conexión entre personas en diferentes partes del mundo.",
+      description: "Actualmente en desarrollo para V2. Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global, facilitando la conexión entre personas en diferentes partes del mundo.",
       period: "2025 (enero-febrero)",
-      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mapbox API"],
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase"],
       primaryLanguage: "JavaScript",
       image: "/images/una_distancia_corta.png",
       links: {
@@ -158,14 +158,14 @@ const Projects = () => {
     },
     {
       title: "Sistema de Matrícula UPC",
-      description: "Clon del sistema de matrícula universitaria con funcionalidades para visualización de horarios, selección de cursos y gestión de créditos académicos, desarrollado como proyecto educativo.",
+      description: "Una nueva versión que simula la matrícula de la Universidad Peruana de Ciencias Aplicadas, con un diseño moderno y una interfaz intuitiva para facilitar el proceso de inscripción.",
       period: "2024 (agosto-septiembre)",
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+      technologies: ["React", "Tailwind", "Typescript", "Vite"],
       primaryLanguage: "JavaScript",
       image: "/images/matricula_upc.png",
       links: {
-        live: "https://matricula-upc-clone.netlify.app",
-        github: "https://github.com/stxfxno/matricula-upc-clone"
+        live: "https://matricula-upc-stefdev.netlify.app/",
+        github: "https://github.com/stxfxno/matricula_upc"
       }
     }
   ];

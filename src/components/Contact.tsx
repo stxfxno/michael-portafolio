@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, Send, Github, Linkedin, ExternalLink, Terminal, MapPin, Calendar } from 'lucide-react';
+import { Send} from 'lucide-react';
 import CodeBlock from './CodeBlox';
 
 const Contact = () => {

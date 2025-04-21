@@ -16,6 +16,9 @@ interface Project {
 }
 
 const MoreProjects = () => {
+
+    
+
   const additionalProjects: Project[] = [
     {
       title: "Listify MP3 Downloader",
@@ -53,7 +56,7 @@ const MoreProjects = () => {
   ];
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-gray-50 dark:bg-gray-900 min-h-screen">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Otros Proyectos</h2>
@@ -78,23 +81,21 @@ const MoreProjects = () => {
               className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700"
             >
               <div className="flex flex-col md:flex-row">
-                {/* Imagen a la izquierda */}
-                <div className="relative md:w-1/3">
+                {/* Imagen a la izquierda - ahora más grande (2/5 del ancho) */}
+                <div className="relative md:w-2/5">
                   <img
                     src={project.image}
                     alt={`Captura de ${project.title}`}
-                    className="w-full h-64 object-cover object-top"
+                    className="w-full h-72 md:h-80 object-cover object-center"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                    <div className="flex items-center text-sm text-white">
-                      <Calendar size={14} className="mr-2" />
-                      {project.period}
-                    </div>
+                  <div className="absolute left-4 bottom-4 bg-black/50 text-white px-3 py-1 rounded-full flex items-center text-sm">
+                    <Calendar size={14} className="mr-2" />
+                    {project.period}
                   </div>
                 </div>
                 
                 {/* Contenido a la derecha */}
-                <div className="p-6 md:w-2/3">
+                <div className="p-6 md:w-3/5">
                   <div className="flex items-center mb-3">
                     {project.icon}
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{project.title}</h3>
@@ -106,22 +107,22 @@ const MoreProjects = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-xs"
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-xs"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                   
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 mt-6">
                     {project.links.live && (
                       <a
                         href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-sm px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-md hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                        className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors"
                       >
-                        <ExternalLink size={14} />
+                        <ExternalLink size={16} />
                         Demo
                       </a>
                     )}
@@ -130,9 +131,9 @@ const MoreProjects = () => {
                         href={project.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-sm px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        className="flex items-center gap-2 bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
                       >
-                        <Github size={14} />
+                        <Github size={16} />
                         Repositorio
                       </a>
                     )}
@@ -141,9 +142,9 @@ const MoreProjects = () => {
                         href={project.links.resources}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-sm px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md hover:bg-green-200 dark:hover:bg-green-800 transition-colors"
+                        className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors"
                       >
-                        <ExternalLink size={14} />
+                        <ExternalLink size={16} />
                         Recursos
                       </a>
                     )}
