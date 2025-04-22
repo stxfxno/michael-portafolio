@@ -1,4 +1,4 @@
-import { Code, Database, Wrench, Terminal, Code2, ChartBarDecreasingIcon, Brush } from 'lucide-react';
+import { Code, Database, Wrench, Terminal, Code2, Brush } from 'lucide-react';
 
 interface SkillCategory {
   name: string;

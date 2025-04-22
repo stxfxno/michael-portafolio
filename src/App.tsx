@@ -15,7 +15,33 @@ const HomePage = () => {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+    // Actualizar la clase en el documento para mantener consistencia
+    if (darkMode) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('darkMode', 'false');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('darkMode', 'true');
+    }
   };
+  
+  // Inicializar el tema al cargar la página
+  useState(() => {
+    // Intentar leer la preferencia guardada
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode !== null) {
+      setDarkMode(savedDarkMode === 'true');
+      if (savedDarkMode === 'true') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      // Si no hay preferencia guardada, usar el tema predeterminado (dark: true)
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('darkMode', 'true');
+    }
+  });
 
   return (
     <div className={darkMode ? 'dark' : ''}>
@@ -36,6 +62,7 @@ const HomePage = () => {
   );
 };
 
+// La ruta MoreProjects ahora hereda el tema oscuro del componente MoreProjects
 const App = () => {
   return (
     <Routes>

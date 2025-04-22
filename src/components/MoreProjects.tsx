@@ -1,5 +1,8 @@
 import { Code, ExternalLink, Github, Calendar, Terminal } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 interface Project {
   title: string;
@@ -16,8 +19,37 @@ interface Project {
 }
 
 const MoreProjects = () => {
+  const [darkMode, setDarkMode] = useState(true);
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // Actualizar la clase en el documento para mantener consistencia
+    if (darkMode) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  };
+
+  // Efecto para sincronizar el modo oscuro con el cuerpo del documento al cargar
+  useEffect(() => {
+    // Intentar obtener el modo oscuro guardado en localStorage si existe
+    const savedDarkMode = localStorage.getItem('darkMode');
     
+    if (savedDarkMode !== null) {
+      const isDark = savedDarkMode === 'true';
+      setDarkMode(isDark);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      // Si no hay preferencia guardada, verificar la clase actual
+      const isDark = document.documentElement.classList.contains('dark');
+      setDarkMode(isDark);
+    }
+  }, []);
 
   const additionalProjects: Project[] = [
     {
@@ -56,106 +88,112 @@ const MoreProjects = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Otros Proyectos</h2>
-          
-          <Link 
-            to="/" 
-            className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          >
-            <span className="mr-2">←</span>
-            Volver al inicio
-          </Link>
-        </div>
-        
-        <p className="text-gray-600 dark:text-gray-400 mb-12 max-w-3xl">
-          Además de mis proyectos principales, he desarrollado varias soluciones para responder a necesidades específicas y explorar diferentes tecnologías. Cada uno de estos proyectos representa un desafío diferente que me ha ayudado a crecer como desarrollador.
-        </p>
-        
-        <div className="space-y-8">
-          {additionalProjects.map((project, index) => (
-            <div 
-              key={index}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700"
-            >
-              <div className="flex flex-col md:flex-row">
-                {/* Imagen a la izquierda - ahora más grande (2/5 del ancho) */}
-                <div className="relative md:w-2/5">
-                  <img
-                    src={project.image}
-                    alt={`Captura de ${project.title}`}
-                    className="w-full h-72 md:h-80 object-cover object-center"
-                  />
-                  <div className="absolute left-4 bottom-4 bg-black/50 text-white px-3 py-1 rounded-full flex items-center text-sm">
-                    <Calendar size={14} className="mr-2" />
-                    {project.period}
-                  </div>
-                </div>
-                
-                {/* Contenido a la derecha */}
-                <div className="p-6 md:w-3/5">
-                  <div className="flex items-center mb-3">
-                    {project.icon}
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{project.title}</h3>
-                  </div>
-                  
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-3 mt-6">
-                    {project.links.live && (
-                      <a
-                        href={project.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors"
-                      >
-                        <ExternalLink size={16} />
-                        Demo
-                      </a>
-                    )}
-                    {project.links.github && (
-                      <a
-                        href={project.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
-                      >
-                        <Github size={16} />
-                        Repositorio
-                      </a>
-                    )}
-                    {project.links.resources && (
-                      <a
-                        href={project.links.resources}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors"
-                      >
-                        <ExternalLink size={16} />
-                        Recursos
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+    <div className={darkMode ? 'dark' : ''}>
+      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Otros Proyectos</h2>
+              
+              <Link 
+                to="/" 
+                className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                <span className="mr-2">←</span>
+                Volver al inicio
+              </Link>
             </div>
-          ))}
-        </div>
+            
+            <p className="text-gray-600 dark:text-gray-400 mb-12 max-w-3xl">
+              Además de mis proyectos principales, he desarrollado varias soluciones para responder a necesidades específicas y explorar diferentes tecnologías. Cada uno de estos proyectos representa un desafío diferente que me ha ayudado a crecer como desarrollador.
+            </p>
+            
+            <div className="space-y-8">
+              {additionalProjects.map((project, index) => (
+                <div 
+                  key={index}
+                  className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700"
+                >
+                  <div className="flex flex-col md:flex-row">
+                    {/* Imagen a la izquierda - ahora más grande (2/5 del ancho) */}
+                    <div className="relative md:w-2/5">
+                      <img
+                        src={project.image}
+                        alt={`Captura de ${project.title}`}
+                        className="w-full h-72 md:h-80 object-cover object-center"
+                      />
+                      <div className="absolute left-4 bottom-4 bg-black/50 text-white px-3 py-1 rounded-full flex items-center text-sm">
+                        <Calendar size={14} className="mr-2" />
+                        {project.period}
+                      </div>
+                    </div>
+                    
+                    {/* Contenido a la derecha */}
+                    <div className="p-6 md:w-3/5">
+                      <div className="flex items-center mb-3">
+                        {project.icon}
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{project.title}</h3>
+                      </div>
+                      
+                      <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-xs"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-3 mt-6">
+                        {project.links.live && (
+                          <a
+                            href={project.links.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors"
+                          >
+                            <ExternalLink size={16} />
+                            Demo
+                          </a>
+                        )}
+                        {project.links.github && (
+                          <a
+                            href={project.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+                          >
+                            <Github size={16} />
+                            Repositorio
+                          </a>
+                        )}
+                        {project.links.resources && (
+                          <a
+                            href={project.links.resources}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors"
+                          >
+                            <ExternalLink size={16} />
+                            Recursos
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <Footer />
       </div>
-    </section>
+    </div>
   );
 };
 
