@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send} from 'lucide-react';
+import { Send } from 'lucide-react';
 import CodeBlock from './CodeBlox';
 
 const Contact = () => {
@@ -20,7 +20,10 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simular envío de formulario
+    // Con Netlify Forms, el formulario se enviará automáticamente
+    // Este código solo maneja la UI y experiencia del usuario
+    
+    // Simulación del tiempo de envío (Netlify lo manejará realmente)
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus({
@@ -39,7 +42,7 @@ const Contact = () => {
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
-    }, 1500);
+    }, 1000);
   };
 
   const contactCode = `const contact = {
@@ -94,7 +97,25 @@ const Contact = () => {
               Envíame un Mensaje
             </h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Formulario configurado para Netlify Forms */}
+            <form 
+              name="contact" 
+              method="POST" 
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+            >
+              {/* Campo oculto necesario para Netlify Forms */}
+              <input type="hidden" name="form-name" value="contact" />
+              
+              {/* Campo honeypot para prevenir spam */}
+              <p className="hidden">
+                <label>
+                  No llenes esto si eres humano: <input name="bot-field" />
+                </label>
+              </p>
+              
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
