@@ -1,3 +1,4 @@
+// En Terminal.tsx
 import { useState, useEffect } from 'react';
 
 interface TerminalProps {
@@ -20,7 +21,7 @@ const Terminal = ({ commands, typingSpeed = 80, initialDelay = 800 }: TerminalPr
     return () => clearInterval(cursorInterval);
   }, []);
 
-  // Efecto simplificado para mostrar comandos
+  // Efecto para mostrar comandos
   useEffect(() => {
     if (currentIndex >= commands.length) return;
     
@@ -40,7 +41,8 @@ const Terminal = ({ commands, typingSpeed = 80, initialDelay = 800 }: TerminalPr
   }, [commands, currentIndex, initialDelay, typingSpeed]);
 
   return (
-    <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 font-mono text-sm w-full h-full">
+    // Ajusta los estilos para que tenga un tamaño fijo desde el inicio
+    <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 font-mono text-sm w-full h-80 min-w-[400px] md:min-w-[500px]">
       <div className="bg-gray-800 px-4 py-2 flex items-center">
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -50,8 +52,8 @@ const Terminal = ({ commands, typingSpeed = 80, initialDelay = 800 }: TerminalPr
         <div className="ml-4 text-gray-400 text-xs truncate">michael@dev-terminal</div>
       </div>
       
-      {/* Altura adaptativa con mínimo y máximo */}
-      <div className="p-4 min-h-[180px] h-full max-h-60 md:max-h-none overflow-y-auto bg-opacity-95 text-green-400 bg-gradient-to-b from-gray-900 to-gray-950">
+      {/* Contenido del terminal con altura fija */}
+      <div className="p-4 h-full overflow-y-auto bg-opacity-95 text-green-400 bg-gradient-to-b from-gray-900 to-gray-950">
         {output.map((line, index) => (
           <div key={index} className="mb-2 break-words whitespace-pre-wrap">
             {line}

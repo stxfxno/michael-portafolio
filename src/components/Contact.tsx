@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import CodeBlock from './CodeBlox';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,31 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
+  const [codeExample, setCodeExample] = useState('');
+
+  // Actualizar el código de ejemplo cuando cambian los datos del formulario
+  useEffect(() => {
+    const updatedCode = `const contact = {
+  name: "Michael Carmelino Dueñas",
+  email: "carmelino0213@gmail.com",
+  social: {
+    github: "https://github.com/stxfxno",
+    linkedin: "https://www.linkedin.com/in/michael-carmelino-dueñas"
+  },
+  
+  // Método para enviar un mensaje
+  sendMessage: async function(message) {
+    const response = await emailjs.send(
+      ${formData.name ? `"${formData.name}"` : 'name'},
+      ${formData.email ? `"${formData.email}"` : 'email'},
+      ${formData.message ? `"${formData.message}"` : 'message'},
+    );
+    return response;
+  }
+};`;
+    
+    setCodeExample(updatedCode);
+  }, [formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -20,50 +46,50 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Con Netlify Forms, el formulario se enviará automáticamente
-    // Este código solo maneja la UI y experiencia del usuario
+    // Configuración de EmailJS - REEMPLAZA ESTOS VALORES con los tuyos de EmailJS
+    const serviceId = 'service_defewdk'; 
+    const templateId = 'template_jpc17rm';
+    const publicKey = 'Etjtn-jh53u61Ef-L'; 
     
-    // Simulación del tiempo de envío (Netlify lo manejará realmente)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus({
-        success: true,
-        message: '¡Mensaje enviado con éxito! Te responderé lo antes posible.'
-      });
-      
-      // Resetear formulario
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-      
-      // Limpiar mensaje después de 5 segundos
-      setTimeout(() => {
-        setSubmitStatus(null);
-      }, 5000);
-    }, 1000);
-  };
+    // Preparar parámetros para la plantilla
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+      current_year: new Date().getFullYear()
+    };
 
-  const contactCode = `const contact = {
-  name: "Michael Carmelino Dueñas",
-  email: "carmelino0213@gmail.com",
-  phone: "+51 959271160",
-  social: {
-    github: "https://github.com/stxfxno",
-    linkedin: "https://www.linkedin.com/in/michael-carmelino-dueñas"
-  },
-  
-  // Método para enviar un mensaje
-  sendMessage: async function(message) {
-    const response = await fetch('/api/contact', {
-    method: 'POST',
-    body: JSON.stringify(message),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-  });
-};`;
+    // Enviar el correo usando EmailJS
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        setIsSubmitting(false);
+        setSubmitStatus({
+          success: true,
+          message: '¡Mensaje enviado con éxito! Te responderé lo antes posible.'
+        });
+        
+        // Resetear formulario
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        
+        // Limpiar mensaje después de 5 segundos
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 5000);
+      })
+      .catch((err) => {
+        console.error('FAILED...', err);
+        setIsSubmitting(false);
+        setSubmitStatus({
+          success: false,
+          message: 'Error al enviar el mensaje. Por favor intenta nuevamente o contáctame directamente por correo.'
+        });
+      });
+  };
 
   return (
     <section id="contact" className="py-16 scroll-mt-20">
@@ -87,7 +113,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
             <div className="space-y-6">
-              <CodeBlock code={contactCode} fileName="contact.js" />
+              <CodeBlock code={codeExample} fileName="contact.js" />
             </div>
           </div>
           
@@ -97,25 +123,7 @@ const Contact = () => {
               Envíame un Mensaje
             </h3>
             
-            {/* Formulario configurado para Netlify Forms */}
-            <form 
-              name="contact" 
-              method="POST" 
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={handleSubmit} 
-              className="space-y-6"
-            >
-              {/* Campo oculto necesario para Netlify Forms */}
-              <input type="hidden" name="form-name" value="contact" />
-              
-              {/* Campo honeypot para prevenir spam */}
-              <p className="hidden">
-                <label>
-                  No llenes esto si eres humano: <input name="bot-field" />
-                </label>
-              </p>
-              
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

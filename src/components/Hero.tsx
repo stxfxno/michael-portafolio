@@ -23,21 +23,21 @@ const Hero = () => {
               <Code size={16} className="mr-2" />
               <span>Software Engineer</span>
             </div>
-            
+
             <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               Michael Carmelino <span className="text-blue-600 dark:text-blue-400">Dueñas</span>
             </h1>
-            
+
             <div className="flex items-center mb-6 text-gray-700 dark:text-gray-300">
               <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm mr-2 overflow-x-auto max-w-full">
                 <span className="text-green-600 dark:text-green-400">function</span> <span className="text-blue-600 dark:text-blue-400">createSolution</span>(<span className="text-orange-600 dark:text-orange-400">problem</span>) &#123; ... &#125;
               </span>
             </div>
-            
+
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-lg border-l-4 border-blue-500 dark:border-blue-400 pl-4">
               Estudiante de séptimo ciclo, me gusta aprender sobre nuevas tecnologías y adaptarme a ellas.
             </p>
-            
+
             <div className="flex flex-wrap gap-4 mb-8">
               <div className="flex items-center bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg">
                 <FileCode size={18} className="text-blue-600 dark:text-blue-400 mr-2" />
@@ -48,7 +48,7 @@ const Hero = () => {
                 <span className="text-gray-700 dark:text-gray-300">Desarrollo Full-Stack</span>
               </div>
             </div>
-            
+
             {/* Botones apilados en móvil, en línea en tablets y desktop */}
             <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
               <a
@@ -78,12 +78,14 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          
+
           {/* Terminal (primera en desktop, segunda en móvil) */}
           <div className="order-1 lg:order-2 max-w-full mx-auto lg:ml-auto">
             {/* Altura adaptativa para mejor responsive */}
-            <div className="h-full max-h-72 md:max-h-none w-full max-w-xl mx-auto">
-              <Terminal commands={terminalCommands} />
+            <div className="order-1 lg:order-2 w-full max-w-xl mx-auto">
+              <div className="w-full min-w-[400px] md:min-w-[500px]"> {/* Contenedor con ancho fijo */}
+                <Terminal commands={terminalCommands} />
+              </div>
             </div>
           </div>
         </div>

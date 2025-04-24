@@ -148,7 +148,7 @@ const Projects = () => {
       title: "Una Distancia Corta",
       description: "Actualmente en desarrollo para V2. Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global, facilitando la conexión entre personas en diferentes partes del mundo.",
       period: "2025 (enero-febrero)",
-      technologies: ["HTML", "CSS", "JavaScript", "Firebase"],
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mi novia"],
       primaryLanguage: "JavaScript",
       image: "/images/una_distancia_corta.png",
       links: {
