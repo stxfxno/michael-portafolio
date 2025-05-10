@@ -42,7 +42,7 @@ const Terminal = ({ commands, typingSpeed = 80, initialDelay = 800 }: TerminalPr
 
   return (
     // Ajusta los estilos para que tenga un tamaño fijo desde el inicio
-    <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 font-mono text-sm w-full h-80 min-w-[400px] md:min-w-[500px]">
+    <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 font-mono text-sm w-full h-100 min-w-[300px] md:min-w-[400px]">
       <div className="bg-gray-800 px-4 py-2 flex items-center">
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>

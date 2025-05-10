@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -8,18 +9,19 @@ interface NavbarProps {
 
 const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const navItems = [
-    { name: 'Inicio', href: '#home' },
-    { name: 'Habilidades', href: '#skills' },
-    { name: 'Proyectos', href: '#projects' },
-    { name: 'Experiencia', href: '#experience' },
-    { name: 'Educación', href: '#education' },
-    { name: 'Contacto', href: '#contact' },
+    { name: t('nav.home'), href: '#home' },
+    { name: t('nav.skills'), href: '#skills' },
+    { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.experience'), href: '#experience' },
+    { name: t('nav.education'), href: '#education' },
+    { name: t('nav.contact'), href: '#contact' },
   ];
 
   return (
@@ -41,6 +43,18 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
                 {item.name}
               </a>
             ))}
+            
+            {/* Botón de idioma */}
+            <button
+              onClick={toggleLanguage}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center"
+              aria-label="Toggle language"
+            >
+              <Globe size={20} className="mr-1" />
+              <span className="text-xs font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
+            </button>
+            
+            {/* Botón de tema */}
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -52,6 +66,15 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
           
           {/* Mobile Navigation Button */}
           <div className="md:hidden flex items-center">
+            {/* Botón de idioma (móvil) */}
+            <button
+              onClick={toggleLanguage}
+              className="p-2 mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Toggle language"
+            >
+              <Globe size={20} />
+            </button>
+            
             <button
               onClick={toggleDarkMode}
               className="p-2 mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -59,6 +82,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
+            
             <button
               onClick={toggleMenu}
               className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"

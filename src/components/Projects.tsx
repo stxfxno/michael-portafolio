@@ -1,4 +1,5 @@
 import { Code, ExternalLink, Github, Terminal, Calendar, Monitor, Cpu, FileCode } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface Project {
   title: string;
@@ -16,6 +17,8 @@ interface Project {
 }
 
 const ProjectCard = ({ project }: { project: Project }) => {
+  const { t } = useLanguage();
+
   // Get icon based on technologies
   const getProjectIcon = () => {
     if (project.technologies.includes('Android Studio') || project.technologies.includes('Kotlin')) {
@@ -76,7 +79,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               className="flex items-center gap-1 text-sm px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-md hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors duration-200"
             >
               <ExternalLink size={14} />
-              Demo
+              {t('projects.demo')}
             </a>
           )}
           {project.links.github && (
@@ -87,7 +90,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               className="flex items-center gap-1 text-sm px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
             >
               <Github size={14} />
-              Repositorio
+              {t('projects.repository')}
             </a>
           )}
           {project.links.figma && (
@@ -98,7 +101,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               className="flex items-center gap-1 text-sm px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-md hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors duration-200"
             >
               <Code size={14} />
-              Figma
+              {t('projects.figma')}
             </a>
           )}
           {project.links.resources && (
@@ -109,7 +112,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               className="flex items-center gap-1 text-sm px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md hover:bg-green-200 dark:hover:bg-green-800 transition-colors duration-200"
             >
               <ExternalLink size={14} />
-              Recursos
+              {t('projects.resources')}
             </a>
           )}
         </div>
@@ -119,7 +122,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 const Projects = () => {
-  const projects = [
+  const { t, language } = useLanguage();
+  
+  // Datos de proyectos con traducción condicional
+  const projects = language === 'es' ? [
     {
       title: "Chat Platform",
       description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
@@ -168,13 +174,62 @@ const Projects = () => {
         github: "https://github.com/stxfxno/matricula_upc"
       }
     }
+  ] : [
+    {
+      title: "Chat Platform",
+      description: "Full-stack web application with a complete real-time messaging system between users, supporting intuitive interfaces for instant communication and contact management.",
+      period: "2025 (February)",
+      technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
+      primaryLanguage: "TypeScript",
+      image: "/images/chat_app_platform.png",
+      links: {
+        live: "https://chat-platform-stefdev.netlify.app/login",
+        github: "https://github.com/stxfxno/chat-platform"
+      }
+    },
+    {
+      title: "Manage Wise",
+      description: "Platform for managing and optimizing software development projects, with features for team coordination, sprint visualization, and real-time progress monitoring.",
+      period: "2024 (September)",
+      technologies: ["HTML", "CSS", "JavaScript", "Figma"],
+      primaryLanguage: "JavaScript",
+      image: "/images/manage_wise.png",
+      links: {
+        live: "https://manage-wise.netlify.app/",
+        github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
+      }
+    },
+    {
+      title: "A Short Distance",
+      description: "Currently under development for V2. Web application for long-distance couples or friends that allows sharing images with location and date on a global map, facilitating connection between people in different parts of the world.",
+      period: "2025 (January-February)",
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "My girlfriend"],
+      primaryLanguage: "JavaScript",
+      image: "/images/una_distancia_corta.png",
+      links: {
+        live: "https://unadistanciacorta.netlify.app/",
+        github: "https://github.com/stxfxno/una-distancia-corta"
+      }
+    },
+    {
+      title: "UPC Enrollment System",
+      description: "A new version that simulates the enrollment of Universidad Peruana de Ciencias Aplicadas, with a modern design and an intuitive interface to facilitate the registration process.",
+      period: "2024 (August-September)",
+      technologies: ["React", "Tailwind", "Typescript", "Vite"],
+      primaryLanguage: "JavaScript",
+      image: "/images/matricula_upc.png",
+      links: {
+        live: "https://matricula-upc-stefdev.netlify.app/",
+        github: "https://github.com/stxfxno/matricula_upc"
+      }
+    }
   ];
 
   return (
     <section id="projects" className="py-16 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-2">
-          Proyectos
+          {t('projects.title')}
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
           <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">
@@ -198,15 +253,15 @@ const Projects = () => {
             className="inline-flex items-center justify-center px-6 py-3 bg-[#1a1f2e] text-white rounded-lg hover:bg-[#242a3d] transition-colors duration-200 shadow-md"
           >
             <Github size={20} className="mr-2" />
-            Ver más en GitHub
+            {t('projects.see.github')}
           </a>
 
           <a
-            href="/more-projects" // Puedes cambiar esto a la ruta que prefieras
+            href="/more-projects"
             className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md"
           >
             <Code size={20} className="mr-2" />
-            Ver otros proyectos
+            {t('projects.see.more')}
           </a>
         </div>
       </div>

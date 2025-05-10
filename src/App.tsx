@@ -9,6 +9,7 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MoreProjects from './components/MoreProjects';
+import { LanguageProvider } from './context/LanguageContext';
 
 const HomePage = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -50,8 +51,8 @@ const HomePage = () => {
         {/* Contenedor principal con margen más pequeño en móvil */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Hero />
-          <Skills />
           <Projects />
+          <Skills />
           <Experience />
           <Education />
           <Contact />
@@ -65,10 +66,12 @@ const HomePage = () => {
 // La ruta MoreProjects ahora hereda el tema oscuro del componente MoreProjects
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/more-projects" element={<MoreProjects />} />
-    </Routes>
+    <LanguageProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/more-projects" element={<MoreProjects />} />
+      </Routes>
+    </LanguageProvider>
   );
 };
 
