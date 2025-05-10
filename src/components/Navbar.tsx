@@ -17,8 +17,8 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
 
   const navItems = [
     { name: t('nav.home'), href: '#home' },
-    { name: t('nav.skills'), href: '#skills' },
     { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.skills'), href: '#skills' },
     { name: t('nav.experience'), href: '#experience' },
     { name: t('nav.education'), href: '#education' },
     { name: t('nav.contact'), href: '#contact' },

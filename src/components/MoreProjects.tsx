@@ -44,11 +44,23 @@ const MoreProjects = () => {
   // Proyectos con contenido condicional según el idioma
   const additionalProjects = language === 'es' ? [
     {
+      title: "AquaConecta",
+      description: "Landing page para una empresa de servcios de control de uso del agua. Incluye un diseño atractivo y funcional, optimizado para SEO y con integración de formularios de contacto.",
+      period: "2025 (abril)",
+      technologies: ["HTML", "CSS", "JS", "Figma"],
+      image: "/images/aqua_conecta.png", // Usa una imagen existente como fallback
+      icon: <Code className="text-yellow-500 mr-2" size={18} />,
+      links: {
+        live:"https://aquaconecta.netlify.app/",
+        github: "https://github.com/stxfxno/Listify"
+      }
+    },
+    {
       title: "Listify MP3 Downloader",
-      description: "Programa en Python que automatiza la búsqueda y descarga de canciones desde YouTube a partir de una lista en formato TXT. Utiliza APIs para la búsqueda eficiente y herramientas de conversión para obtener archivos MP3 de alta calidad.",
+      description: "Listify es un programa en Python que te permite descargar las cancioens de quieras de tus playlist de Spotify, incluso todo un album o playlist completa. Solo necesitas el enlace o buscarlo entre las opciones de búsqueda.",
       period: "2024 (febrero)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
-      image: "/images/chat_app_platform.png", // Usa una imagen existente como fallback
+      image: "/images/listify.png", // Usa una imagen existente como fallback
       icon: <Terminal className="text-yellow-500 mr-2" size={18} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
@@ -59,7 +71,7 @@ const MoreProjects = () => {
       description: "Aplicación móvil que simula la generación de ID Cards universitarias para evidenciar vulnerabilidades en sistemas de autenticación. Permite personalizar datos, códigos QR y fotografías para crear credenciales virtuales con fines educativos sobre seguridad.",
       period: "2024 (octubre-noviembre)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
-      image: "/images/manage_wise.png", // Usa una imagen existente como fallback
+      image: "/images/tiu_fake_v1.png", // Usa una imagen existente como fallback
       icon: <Code className="text-green-500 mr-2" size={18} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
@@ -70,7 +82,7 @@ const MoreProjects = () => {
       description: "Herramienta para evidenciar fallos de seguridad en el sistema de acceso universitario. Incluye opciones para configurar cursos, profesores, aulas y horarios, exportando el resultado final en un formato visual idéntico al oficial.",
       period: "2024 (julio)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
-      image: "/images/matricula_upc.png", // Usa una imagen existente como fallback
+      image: "/images/generador_horarios.png", // Usa una imagen existente como fallback
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
@@ -78,11 +90,23 @@ const MoreProjects = () => {
     }
   ] : [
     {
+      title: "AquaConecta",
+      description: "Landing page for a water usage control services company. It features an attractive and functional design, optimized for SEO and integrated contact forms.",
+      period: "2025 (abril)",
+      technologies: ["HTML", "CSS", "JS", "Figma"],
+      image: "/images/aqua_conecta.png", // Usa una imagen existente como fallback
+      icon: <Code className="text-yellow-500 mr-2" size={18} />,
+      links: {
+        live:"https://aquaconecta.netlify.app/",
+        github: "https://github.com/stxfxno/Listify"
+      }
+    },
+    {
       title: "Listify MP3 Downloader",
       description: "Python program that automates the search and download of songs from YouTube based on a list in TXT format. It uses APIs for efficient searching and conversion tools to obtain high-quality MP3 files.",
       period: "2024 (February)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
-      image: "/images/chat_app_platform.png",
+      image: "/images/listify.png",
       icon: <Terminal className="text-yellow-500 mr-2" size={18} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
@@ -93,7 +117,7 @@ const MoreProjects = () => {
       description: "Mobile application that simulates the generation of university ID Cards to demonstrate vulnerabilities in authentication systems. It allows customization of data, QR codes, and photographs to create virtual credentials for educational purposes on security.",
       period: "2024 (October-November)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
-      image: "/images/manage_wise.png",
+      image: "/images/tiu_fake_v1.png",
       icon: <Code className="text-green-500 mr-2" size={18} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
@@ -104,7 +128,7 @@ const MoreProjects = () => {
       description: "Tool to demonstrate security flaws in the university access system. Includes options to configure courses, professors, classrooms, and schedules, exporting the final result in a visual format identical to the official one.",
       period: "2024 (July)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
-      image: "/images/matricula_upc.png",
+      image: "/images/generador_horarios.png",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
