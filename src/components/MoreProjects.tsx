@@ -56,6 +56,18 @@ const MoreProjects = () => {
       }
     },
     {
+      title: "Manage Wise",
+      description: "Plataforma para la gestión y optimización de proyectos de desarrollo de software, con funcionalidades para coordinar equipos, visualizar sprints y monitorear el progreso en tiempo real.",
+      period: "2024 (septiembre)",
+      technologies: ["HTML", "CSS", "JavaScript", "Figma"],
+      primaryLanguage: "JavaScript",
+      image: "/images/manage_wise.png",
+      links: {
+        live: "https://manage-wise.netlify.app/",
+        github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
+      }
+    },
+    {
       title: "Listify MP3 Downloader",
       description: "Listify es un programa en Python que te permite descargar las cancioens de quieras de tus playlist de Spotify, incluso todo un album o playlist completa. Solo necesitas el enlace o buscarlo entre las opciones de búsqueda.",
       period: "2024 (febrero)",

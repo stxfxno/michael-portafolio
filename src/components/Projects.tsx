@@ -139,16 +139,16 @@ const Projects = () => {
       }
     },
     {
-      title: "Manage Wise",
-      description: "Plataforma para la gestión y optimización de proyectos de desarrollo de software, con funcionalidades para coordinar equipos, visualizar sprints y monitorear el progreso en tiempo real.",
-      period: "2024 (septiembre)",
-      technologies: ["HTML", "CSS", "JavaScript", "Figma"],
-      primaryLanguage: "JavaScript",
-      image: "/images/manage_wise.png",
+      title: "Simulador de Bonos Financieros",
+      description: "Plataforma para gestionar bonos coorporativos. Usuario de prueba: 20123456789, Contraseña: demo123, Admin: 20100123456, Contraseña: admin123",
+      period: "2025 (marzo)",
+      technologies: ["React", "Typescript", "Tailwind"],
+      primaryLanguage: "React",
+      image: "/images/grupo6.jpeg",
       links: {
-        live: "https://manage-wise.netlify.app/",
-        github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
-      }
+        live: "https://metodo-frances-grupo6.netlify.app/login",
+        github: "https://github.com/stxfxno/grupo-6-finanzas"
+      },
     },
     {
       title: "Una Distancia Corta",
