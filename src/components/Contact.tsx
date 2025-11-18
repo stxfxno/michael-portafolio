@@ -94,19 +94,19 @@ const Contact = () => {
   return (
     <section id="contact" className="py-16 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-2">
+        <h2 className="text-3xl font-bold text-center text-light-text dark:text-white mb-2">
           Contacto
         </h2>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">
-            <span className="text-green-600 dark:text-green-400">await</span> 
-            <span className="text-gray-800 dark:text-gray-200"> </span>
+        <p className="text-center text-light-text-secondary dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          <span className="font-mono bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded text-sm border border-light-border dark:border-gray-700">
+            <span className="text-green-600 dark:text-green-400">await</span>
+            <span className="text-light-text dark:text-gray-200"> </span>
             <span className="text-blue-600 dark:text-blue-400">developer</span>
-            <span className="text-gray-600 dark:text-gray-400">.</span>
+            <span className="text-light-text-secondary dark:text-gray-400">.</span>
             <span className="text-purple-600 dark:text-purple-400">sendMessage</span>
-            <span className="text-gray-600 dark:text-gray-400">(</span>
+            <span className="text-light-text-secondary dark:text-gray-400">(</span>
             <span className="text-orange-600 dark:text-orange-400">yourMessage</span>
-            <span className="text-gray-600 dark:text-gray-400">);</span>
+            <span className="text-light-text-secondary dark:text-gray-400">);</span>
           </span>
         </p>
         
@@ -117,16 +117,16 @@ const Contact = () => {
             </div>
           </div>
           
-          <div className="lg:col-span-3 bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+          <div className="lg:col-span-3 bg-light-card dark:bg-gray-800 rounded-xl shadow-md p-6 border border-light-border dark:border-gray-700">
+            <h3 className="text-xl font-semibold text-light-text dark:text-white mb-6 flex items-center">
               <Send size={20} className="mr-2 text-blue-600 dark:text-blue-400" />
               Envíame un Mensaje
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-light-text-secondary dark:text-gray-300 mb-1">
                     Nombre <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -137,17 +137,17 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white pl-10"
+                      className="w-full px-4 py-2 border border-light-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-light-surface dark:bg-gray-700 text-light-text dark:text-white pl-10"
                       placeholder="Tu nombre"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                      <span className="text-gray-500 dark:text-gray-400">&gt;</span>
+                      <span className="text-light-text-secondary dark:text-gray-400">&gt;</span>
                     </div>
                   </div>
                 </div>
-                
+
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-light-text-secondary dark:text-gray-300 mb-1">
                     Email <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -158,18 +158,18 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white pl-10"
+                      className="w-full px-4 py-2 border border-light-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-light-surface dark:bg-gray-700 text-light-text dark:text-white pl-10"
                       placeholder="tu@email.com"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                      <span className="text-gray-500 dark:text-gray-400">@</span>
+                      <span className="text-light-text-secondary dark:text-gray-400">@</span>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="message" className="block text-sm font-medium text-light-text-secondary dark:text-gray-300 mb-1">
                   Mensaje <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
@@ -180,21 +180,21 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white pl-10"
+                    className="w-full px-4 py-2 border border-light-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-light-surface dark:bg-gray-700 text-light-text dark:text-white pl-10"
                     placeholder="Escribe tu mensaje aquí..."
                   ></textarea>
                   <div className="absolute left-3 top-6">
-                    <span className="text-gray-500 dark:text-gray-400">&gt;</span>
+                    <span className="text-light-text-secondary dark:text-gray-400">&gt;</span>
                   </div>
                 </div>
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 font-mono">* message.length &gt; 0</p>
+                <p className="mt-1 text-xs text-light-text-secondary dark:text-gray-400 font-mono">* message.length &gt; 0</p>
               </div>
               
               {submitStatus && (
                 <div className={`p-4 rounded-lg ${
-                  submitStatus.success 
-                    ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-700' 
-                    : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-700'
+                  submitStatus.success
+                    ? 'bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 border border-green-200 dark:border-green-700'
+                    : 'bg-red-50 dark:bg-red-900 text-red-700 dark:text-red-200 border border-red-200 dark:border-red-700'
                 }`}>
                   <div className="flex items-start">
                     <div className="flex-shrink-0">
@@ -237,7 +237,7 @@ const Contact = () => {
                   )}
                 </button>
                 
-                <span className="ml-4 text-sm text-gray-500 dark:text-gray-400 font-mono">
+                <span className="ml-4 text-sm text-light-text-secondary dark:text-gray-400 font-mono">
                   // Espero tu mensaje!
                 </span>
               </div>

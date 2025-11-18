@@ -30,7 +30,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
   ];
 
   return (
-    <nav className={`sticky top-0 z-50 ${darkMode ? 'dark bg-gray-800 text-white' : 'bg-white text-gray-800'} shadow-md py-4 transition-all duration-300`}>
+    <nav className={`sticky top-0 z-50 ${darkMode ? 'dark bg-gray-800 text-white' : 'bg-light-card text-light-text border-b border-light-border'} shadow-md py-4 transition-all duration-300`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">

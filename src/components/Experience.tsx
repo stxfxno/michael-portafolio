@@ -13,17 +13,17 @@ const ExperienceCard = ({ experience }: { experience: ExperienceItem }) => {
   
   return (
     <div className="relative pl-8 pb-8 border-l-2 border-blue-500 dark:border-blue-400 last:border-transparent last:pb-0">
-      <div className="absolute left-0 top-0 transform -translate-x-1/2 bg-white dark:bg-gray-800 rounded-full p-1 border-2 border-blue-500 dark:border-blue-400">
+      <div className="absolute left-0 top-0 transform -translate-x-1/2 bg-light-card dark:bg-gray-800 rounded-full p-1 border-2 border-blue-500 dark:border-blue-400">
         <Briefcase size={18} className="text-blue-600 dark:text-blue-400" />
       </div>
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 ml-2">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+      <div className="bg-light-card dark:bg-gray-800 rounded-xl shadow-sm p-4 ml-2 border border-light-border dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-light-text dark:text-white">
           {t(experience.titleKey)}
         </h3>
         <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-3">
           {t(experience.periodKey)}
         </p>
-        <ul className="text-gray-700 dark:text-gray-300 space-y-2 mb-3">
+        <ul className="text-light-text-secondary dark:text-gray-300 space-y-2 mb-3">
           {experience.descriptionKeys.map((key, index) => (
             <li key={index} className="flex">
               <span className="mr-2">•</span>
@@ -81,10 +81,10 @@ const Experience = () => {
   return (
     <section id="experience" className="py-16 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+        <h2 className="text-3xl font-bold text-center text-light-text dark:text-white mb-8">
           {t('experience.title')}
         </h2>
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6">
+        <div className="bg-light-surface dark:bg-gray-900 rounded-xl p-6 border border-light-border dark:border-gray-800">
           {experiences.map((exp, index) => (
             <ExperienceCard key={index} experience={exp} />
           ))}

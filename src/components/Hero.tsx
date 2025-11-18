@@ -28,33 +28,33 @@ const Hero = () => {
       <div className="max-w-6xl mx-auto px-4 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="order-1">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full mb-4 font-mono text-sm">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 rounded-full mb-4 font-mono text-sm border border-blue-100 dark:border-blue-800">
               <Code size={16} className="mr-2" />
               <span>{t('software.engineer')}</span>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-light-text dark:text-white mb-4 leading-tight">
               Michael Carmelino <span className="text-blue-600 dark:text-blue-400">Dueñas</span>
             </h1>
 
-            <div className="flex items-center mb-6 text-gray-700 dark:text-gray-300">
-              <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm mr-2 overflow-x-auto max-w-full">
+            <div className="flex items-center mb-6 text-light-text-secondary dark:text-gray-300">
+              <span className="font-mono bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded text-sm mr-2 overflow-x-auto max-w-full border border-gray-200 dark:border-gray-700">
                 <span className="text-green-600 dark:text-green-400">function</span> <span className="text-blue-600 dark:text-blue-400">createSolution</span>(<span className="text-orange-600 dark:text-orange-400">problem</span>) &#123; ... &#125;
               </span>
             </div>
 
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-lg border-l-4 border-blue-500 dark:border-blue-400 pl-4">
+            <p className="text-lg text-light-text-secondary dark:text-gray-300 mb-8 max-w-lg border-l-4 border-blue-500 dark:border-blue-400 pl-4">
               {t('hero.intro')}
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg">
+              <div className="flex items-center bg-blue-50 dark:bg-gray-800 px-3 py-2 rounded-lg border border-blue-100 dark:border-gray-700">
                 <FileCode size={18} className="text-blue-600 dark:text-blue-400 mr-2" />
-                <span className="text-gray-700 dark:text-gray-300">{t('hero.projects')}</span>
+                <span className="text-light-text-secondary dark:text-gray-300">{t('hero.projects')}</span>
               </div>
-              <div className="flex items-center bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg">
+              <div className="flex items-center bg-purple-50 dark:bg-gray-800 px-3 py-2 rounded-lg border border-purple-100 dark:border-gray-700">
                 <Cpu size={18} className="text-purple-600 dark:text-purple-400 mr-2" />
-                <span className="text-gray-700 dark:text-gray-300">{t('hero.fullstack')}</span>
+                <span className="text-light-text-secondary dark:text-gray-300">{t('hero.fullstack')}</span>
               </div>
             </div>
 
@@ -70,7 +70,7 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/michael-carmelino-due%C3%B1as-a5117a264/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 shadow-md"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-light-text dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 shadow-md border border-gray-200 dark:border-gray-600"
               >
                 <Linkedin size={18} />
                 LinkedIn
@@ -79,7 +79,7 @@ const Hero = () => {
                 href="https://github.com/stxfxno"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 shadow-md"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-light-text dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 shadow-md border border-gray-200 dark:border-gray-600"
               >
                 <Github size={18} />
                 GitHub

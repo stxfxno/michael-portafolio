@@ -163,31 +163,31 @@ const MoreProjects = () => {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+      <div className="bg-light-bg dark:bg-gray-900 text-light-text dark:text-white min-h-screen">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{t('moreprojects.title')}</h2>
-              
-              <Link 
-                to="/" 
-                className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              <h2 className="text-3xl font-bold text-light-text dark:text-white">{t('moreprojects.title')}</h2>
+
+              <Link
+                to="/"
+                className="flex items-center text-light-text-secondary dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 <span className="mr-2">←</span>
                 {t('back.to.home')}
               </Link>
             </div>
-            
-            <p className="text-gray-600 dark:text-gray-400 mb-12 max-w-3xl">
+
+            <p className="text-light-text-secondary dark:text-gray-400 mb-12 max-w-3xl">
               {t('moreprojects.description')}
             </p>
             
             <div className="space-y-8">
               {additionalProjects.map((project, index) => (
-                <div 
+                <div
                   key={index}
-                  className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700"
+                  className="bg-light-card dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-light-border dark:border-gray-700"
                 >
                   <div className="flex flex-col md:flex-row">
                     {/* Imagen a la izquierda - ahora más grande (2/5 del ancho) */}
@@ -202,21 +202,21 @@ const MoreProjects = () => {
                         {project.period}
                       </div>
                     </div>
-                    
+
                     {/* Contenido a la derecha */}
                     <div className="p-6 md:w-3/5">
                       <div className="flex items-center mb-3">
                         {project.icon}
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{project.title}</h3>
+                        <h3 className="text-xl font-semibold text-light-text dark:text-white">{project.title}</h3>
                       </div>
-                      
-                      <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
-                      
+
+                      <p className="text-light-text-secondary dark:text-gray-300 mb-4">{project.description}</p>
+
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
-                            className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-xs"
+                            className="px-3 py-1 bg-gray-50 dark:bg-gray-700 text-light-text-secondary dark:text-gray-200 rounded-full text-xs border border-gray-200 dark:border-gray-600"
                           >
                             {tech}
                           </span>
@@ -229,7 +229,7 @@ const MoreProjects = () => {
                             href={project.links.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors"
+                            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors shadow-sm"
                           >
                             <ExternalLink size={16} />
                             {t('projects.demo')}
@@ -240,7 +240,7 @@ const MoreProjects = () => {
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+                            className="flex items-center gap-2 bg-gray-700 dark:bg-gray-700 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors shadow-sm"
                           >
                             <Github size={16} />
                             {t('projects.repository')}
@@ -251,7 +251,7 @@ const MoreProjects = () => {
                             href={project.links.resources}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors"
+                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors shadow-sm"
                           >
                             <ExternalLink size={16} />
                             {t('projects.resources')}

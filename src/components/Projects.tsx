@@ -35,7 +35,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
+    <div className="bg-light-card dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-light-border dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
       <div className="relative h-50 overflow-hidden">
         <img
           src={project.image}
@@ -54,16 +54,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="p-6">
         <div className="flex items-center mb-2">
           {getProjectIcon()}
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white ml-2">{project.title}</h3>
+          <h3 className="text-xl font-semibold text-light-text dark:text-white ml-2">{project.title}</h3>
         </div>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
+        <p className="text-light-text-secondary dark:text-gray-300 mb-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-xs border border-gray-200 dark:border-gray-600"
+              className="px-2 py-1 bg-gray-50 dark:bg-gray-700 text-light-text-secondary dark:text-gray-200 rounded text-xs border border-light-border dark:border-gray-600"
             >
               {tech}
             </span>
@@ -76,7 +76,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-md hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors duration-200"
+              className="flex items-center gap-1 text-sm px-3 py-1 bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 border border-blue-100 dark:border-blue-800"
             >
               <ExternalLink size={14} />
               {t('projects.demo')}
@@ -87,7 +87,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="flex items-center gap-1 text-sm px-3 py-1 bg-gray-50 dark:bg-gray-700 text-light-text-secondary dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 border border-light-border dark:border-gray-600"
             >
               <Github size={14} />
               {t('projects.repository')}
@@ -98,7 +98,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               href={project.links.figma}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-md hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors duration-200"
+              className="flex items-center gap-1 text-sm px-3 py-1 bg-purple-50 dark:bg-purple-900 text-purple-700 dark:text-purple-200 rounded-md hover:bg-purple-100 dark:hover:bg-purple-800 transition-colors duration-200 border border-purple-100 dark:border-purple-800"
             >
               <Code size={14} />
               {t('projects.figma')}
@@ -109,7 +109,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               href={project.links.resources}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md hover:bg-green-200 dark:hover:bg-green-800 transition-colors duration-200"
+              className="flex items-center gap-1 text-sm px-3 py-1 bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 rounded-md hover:bg-green-100 dark:hover:bg-green-800 transition-colors duration-200 border border-green-100 dark:border-green-800"
             >
               <ExternalLink size={14} />
               {t('projects.resources')}
@@ -228,13 +228,13 @@ const Projects = () => {
   return (
     <section id="projects" className="py-16 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-2">
+        <h2 className="text-3xl font-bold text-center text-light-text dark:text-white mb-2">
           {t('projects.title')}
         </h2>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">
+        <p className="text-center text-light-text-secondary dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          <span className="font-mono bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded text-sm border border-light-border dark:border-gray-700">
             <span className="text-blue-600 dark:text-blue-400">git push</span>
-            <span className="text-gray-800 dark:text-gray-200"> origin </span>
+            <span className="text-light-text dark:text-gray-200"> origin </span>
             <span className="text-green-600 dark:text-green-400">portfolio-projects</span>
           </span>
         </p>
