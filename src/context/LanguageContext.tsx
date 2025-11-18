@@ -13,7 +13,7 @@ const translations: Record<Language, Record<string, string>> = {
   es: {
     // Hero Section
     'software.engineer': 'Ingeniero de Software',
-    'hero.intro': 'Estudiante de séptimo ciclo, me gusta aprender sobre nuevas tecnologías y adaptarme a ellas.',
+    'hero.intro': 'Estudiante de 5to año de Ingeniería de Software, me gusta aprender sobre nuevas tecnologías y adaptarme a ellas.',
     'hero.projects': '8+ Proyectos',
     'hero.fullstack': 'Desarrollo Full-Stack',
     'hero.contact': 'Contacto',
@@ -124,7 +124,7 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Hero Section
     'software.engineer': 'Software Engineer',
-    'hero.intro': 'Software Engineering student in the 7th semester. I enjoy learning about new technologies and adapting to them.',
+    'hero.intro': '5th year Software Engineering student. I enjoy learning about new technologies and adapting to them.',
     'hero.projects': '8+ Projects',
     'hero.fullstack': 'Full-Stack Development',
     'hero.contact': 'Contact',
