@@ -92,15 +92,6 @@ const Footer = () => {
             <p className="text-gray-600 dark:text-gray-400 flex items-center">
               &copy; {currentYear} Michael Carmelino Dueñas. Todos los derechos reservados.
             </p>
-            
-            <div className="mt-4 md:mt-0 flex items-center">
-              <span className="text-gray-600 dark:text-gray-400 flex items-center">
-                Hecho con 
-                <Heart size={16} className="mx-1 text-red-500" fill="currentColor" />
-                y
-                <Coffee size={16} className="mx-1 text-amber-700 dark:text-amber-500" />
-              </span>
-            </div>
           </div>
         </div>
       </div>

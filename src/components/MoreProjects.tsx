@@ -104,13 +104,26 @@ const MoreProjects = () => {
     {
       title: "AquaConecta",
       description: "Landing page for a water usage control services company. It features an attractive and functional design, optimized for SEO and integrated contact forms.",
-      period: "2025 (abril)",
+      period: "2025 (April)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
       image: "/images/aqua_conecta.png", // Usa una imagen existente como fallback
       icon: <Code className="text-yellow-500 mr-2" size={18} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
         github: "https://github.com/stxfxno/Listify"
+      }
+    },
+    {
+      title: "Manage Wise",
+      description: "Platform for managing and optimizing software development projects, with features for team coordination, sprint visualization, and real-time progress monitoring.",
+      period: "2024 (September)",
+      technologies: ["HTML", "CSS", "JavaScript", "Figma"],
+      primaryLanguage: "JavaScript",
+      image: "/images/manage_wise.png",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      links: {
+        live: "https://manage-wise.netlify.app/",
+        github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
       }
     },
     {

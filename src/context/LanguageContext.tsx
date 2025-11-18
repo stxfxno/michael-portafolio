@@ -53,11 +53,11 @@ const translations: Record<Language, Record<string, string>> = {
     'experience.title': 'Experiencia Laboral',
     'experience.resources': 'Ver recursos',
     'experience.job1.title': 'Sprinta AI Desarrollador Full Stack',
-    'experience.job1.period': 'Febrero - Actualidad',
+    'experience.job1.period': 'Febrero - Septiembre',
     'experience.job1.desc1': 'Desarrollé y mantuve aplicaciones web utilizando React, Typescript y Supabase.',
     'experience.job1.desc2': 'Colaboré en la implementación de nuevas funcionalidades y mejoras de rendimiento.',
     'experience.job2.title': 'Desarrollador Freelancer',
-    'experience.job2.period': 'Octubre 2024 - Actualidad',
+    'experience.job2.period': 'Octubre 2024 - Agosto 2025',
     'experience.job2.desc1': 'He desarrollador proyectos para clientes, especialmente en el desarrollo de Landing Pgs y aplicaciones web.',
     'experience.job2.desc2': 'Realicé trabajos de diseño y desarrollo de aplicaciones web, incluyendo la creación de interfaces de usuario atractivas y funcionales.',
     'experience.job3.title': 'Instructor de Fundamentos de Programación',
@@ -117,8 +117,6 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.links': 'Enlaces Rápidos',
     'footer.tech': 'Tecnologías Utilizadas',
     'footer.rights': 'Todos los derechos reservados.',
-    'footer.made': 'Hecho con',
-    'footer.and': 'y',
     
     // Common
     'back.to.home': 'Volver al inicio',

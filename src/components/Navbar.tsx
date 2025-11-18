@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Sun, Moon, Menu, X, Globe } from 'lucide-react';
+import { Sun, Moon, Menu, X, Globe, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useLocation, Link } from 'react-router-dom';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -10,10 +11,14 @@ interface NavbarProps {
 const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Detectar si estamos en la página de más proyectos
+  const isMoreProjectsPage = location.pathname === '/more-projects';
 
   const navItems = [
     { name: t('nav.home'), href: '#home' },
@@ -31,19 +36,31 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
           <div className="flex items-center">
             <span className="text-xl font-bold">Michael Carmelino</span>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`${darkMode ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors duration-200`}
+            {isMoreProjectsPage ? (
+              // Mostrar botón de volver cuando estamos en More Projects
+              <Link
+                to="/"
+                className={`flex items-center ${darkMode ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors duration-200`}
               >
-                {item.name}
-              </a>
-            ))}
-            
+                <ArrowLeft size={18} className="mr-2" />
+                {t('back.to.home')}
+              </Link>
+            ) : (
+              // Mostrar navegación normal en la página principal
+              navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`${darkMode ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors duration-200`}
+                >
+                  {item.name}
+                </a>
+              ))
+            )}
+
             {/* Botón de idioma */}
             <button
               onClick={toggleLanguage}
@@ -53,7 +70,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
               <Globe size={20} className="mr-1" />
               <span className="text-xs font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
             </button>
-            
+
             {/* Botón de tema */}
             <button
               onClick={toggleDarkMode}
@@ -96,16 +113,27 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+            {isMoreProjectsPage ? (
+              <Link
+                to="/"
+                className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.name}
-              </a>
-            ))}
+                <ArrowLeft size={18} className="mr-2" />
+                {t('back.to.home')}
+              </Link>
+            ) : (
+              navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))
+            )}
           </div>
         )}
       </div>
