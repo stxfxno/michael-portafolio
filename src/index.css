@@ -51,9 +51,9 @@ body {
 }
 
 /* Todo el contenido queda sobre los orbes */
-.light-bg-wrapper > * {
-  position: relative;
-  z-index: 1;
+.light-bg-wrapper > nav {
+  position: sticky;
+  z-index: 50;
 }
 
 /* En dark mode, anulamos todo lo anterior */
