@@ -107,7 +107,15 @@ const translations: Record<Language, Record<string, string>> = {
     'cert.mongo.issuer': 'Udemy',
     'cert.mongo.date': '2023',
     'cert.mongo.desc': 'Curso complementario para la materia de Diseño de Base de Datos, enfocado en el manejo de bases de datos no relacionales.',
-    
+    'cert.itsupport.title': 'Google IT Support',
+    'cert.itsupport.issuer': 'Google / Coursera',
+    'cert.itsupport.date': 'Abril 2026',
+    'cert.itsupport.desc': 'Certificado profesional de 6 cursos enfocado en soporte técnico, redes informáticas, sistemas operativos, administración de sistemas e infraestructura TI.',
+    'cert.excel.title': 'Excel Skills for Business',
+    'cert.excel.issuer': 'Macquarie University / Coursera',
+    'cert.excel.date': 'Diciembre 2025',
+    'cert.excel.desc': 'Especialización de 4 cursos sobre habilidades avanzadas de Excel para negocios, incluyendo dashboards profesionales, automatización y análisis de datos.',
+
     // Contact
     'contact.title': 'Contacto',
     'contact.subtitle': 'Envíame un Mensaje',
@@ -229,7 +237,15 @@ const translations: Record<Language, Record<string, string>> = {
     'cert.mongo.issuer': 'Udemy',
     'cert.mongo.date': '2023',
     'cert.mongo.desc': 'Complementary course for the Database Design subject, focused on managing non-relational databases.',
-    
+    'cert.itsupport.title': 'Google IT Support',
+    'cert.itsupport.issuer': 'Google / Coursera',
+    'cert.itsupport.date': 'April 2026',
+    'cert.itsupport.desc': '6-course professional certificate focused on technical support, computer networking, operating systems, system administration, and IT infrastructure.',
+    'cert.excel.title': 'Excel Skills for Business',
+    'cert.excel.issuer': 'Macquarie University / Coursera',
+    'cert.excel.date': 'December 2025',
+    'cert.excel.desc': '4-course specialization covering advanced Excel skills for business, including professional dashboards, automation, and data analysis.',
+
     // Contact
     'contact.title': 'Contact',
     'contact.subtitle': 'Send me a Message',

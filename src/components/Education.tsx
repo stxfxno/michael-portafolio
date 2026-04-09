@@ -146,6 +146,24 @@ const Education = () => {
       category: "Databases",
       link: "https://drive.google.com/file/d/1uOvAU_K1BUbb4kjdzaGnTu3x4kvizwbP/view?usp=sharing",
       icon: <Code className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+    },
+    {
+      titleKey: "cert.itsupport.title",
+      issuerKey: "cert.itsupport.issuer",
+      dateKey: "cert.itsupport.date",
+      descriptionKey: "cert.itsupport.desc",
+      category: "DevOps",
+      link: "https://drive.google.com/file/d/1tuCiewG9Lzu72-w3OQTy-DITM1x5SFp8/view?usp=drive_link",
+      icon: <Monitor className="w-6 h-6 text-red-600 dark:text-red-400" />
+    },
+    {
+      titleKey: "cert.excel.title",
+      issuerKey: "cert.excel.issuer",
+      dateKey: "cert.excel.date",
+      descriptionKey: "cert.excel.desc",
+      category: "Business",
+      link: "https://coursera.org/verify/specialization/FCVJCETTL30V",
+      icon: <Briefcase className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
     }
   ];
 
