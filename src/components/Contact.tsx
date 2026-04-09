@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import CodeBlock from './CodeBlox';
 import emailjs from '@emailjs/browser';
+import SectionTitle from './SectionTitle';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -94,21 +95,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-16 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-light-text dark:text-white mb-2">
-          Contacto
-        </h2>
-        <p className="text-center text-light-text-secondary dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          <span className="font-mono bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded text-sm border border-light-border dark:border-gray-700">
-            <span className="text-green-600 dark:text-green-400">await</span>
-            <span className="text-light-text dark:text-gray-200"> </span>
-            <span className="text-blue-600 dark:text-blue-400">developer</span>
-            <span className="text-light-text-secondary dark:text-gray-400">.</span>
-            <span className="text-purple-600 dark:text-purple-400">sendMessage</span>
-            <span className="text-light-text-secondary dark:text-gray-400">(</span>
-            <span className="text-orange-600 dark:text-orange-400">yourMessage</span>
-            <span className="text-light-text-secondary dark:text-gray-400">);</span>
-          </span>
-        </p>
+        <SectionTitle title="Contacto" />
         
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">

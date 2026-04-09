@@ -1,4 +1,5 @@
 import { Code, Database, Wrench, Terminal, Code2, Brush } from 'lucide-react';
+import SectionTitle from './SectionTitle';
 import { useLanguage } from '../context/LanguageContext';
 
 interface SkillCategory {
@@ -64,9 +65,7 @@ const Skills = () => {
   return (
     <section id="skills" className="py-8 scroll-mt-16">
       <div className="max-w-4xl mx-auto px-4">
-        <h2 className="text-2xl font-bold text-center text-light-text dark:text-white mb-6">
-          {t('skills.title')}
-        </h2>
+        <SectionTitle title={t('skills.title')} />
 
         <div className="text-center mb-6">
           <span

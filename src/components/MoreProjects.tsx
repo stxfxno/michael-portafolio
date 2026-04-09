@@ -1,5 +1,6 @@
-import { Code, ExternalLink, Github, Calendar, Terminal } from 'lucide-react';
+import { Code, ExternalLink, Github, Calendar, Terminal, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SectionTitle from './SectionTitle';
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -43,6 +44,57 @@ const MoreProjects = () => {
 
   // Proyectos con contenido condicional según el idioma
   const additionalProjects = language === 'es' ? [
+    {
+      title: "Chat Platform",
+      description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
+      period: "2025 (febrero)",
+      technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
+      image: "/images/chat_app_platform.png",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      inactive: true,
+      links: {
+        live: "https://chat-platform-stefdev.netlify.app/login",
+        github: "https://github.com/stxfxno/chat-platform"
+      }
+    },
+    {
+      title: "Simulador de Bonos Financieros",
+      description: "Plataforma para gestionar bonos corporativos. Usuario de prueba: 20123456789, Contraseña: demo123, Admin: 20100123456, Contraseña: admin123",
+      period: "2025 (marzo)",
+      technologies: ["React", "Typescript", "Tailwind"],
+      image: "/images/grupo6.jpeg",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      links: {
+        live: "https://metodo-frances-grupo6.netlify.app/login",
+        github: "https://github.com/stxfxno/grupo-6-finanzas"
+      }
+    },
+    {
+      title: "Una Distancia Corta",
+      description: "Actualmente en desarrollo para V2. Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global, facilitando la conexión entre personas en diferentes partes del mundo.",
+      period: "2025 (enero-febrero)",
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mi novia"],
+      inactive: true,
+      image: "/images/una_distancia_corta.png",
+      icon: <Code className="text-purple-500 mr-2" size={18} />,
+      links: {
+        live: "https://unadistanciacorta.netlify.app/",
+        github: "https://github.com/stxfxno/una-distancia-corta"
+      }
+    },
+    {
+      title: "Sistema de Matrícula UPC",
+      description: "Una nueva versión que simula la matrícula de la Universidad Peruana de Ciencias Aplicadas, con un diseño moderno y una interfaz intuitiva para facilitar el proceso de inscripción.",
+      period: "2024 (agosto-septiembre)",
+      technologies: ["React", "Tailwind", "Typescript", "Vite"],
+      image: "/images/matricula_upc.png",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      viewnow: true,
+      links: {
+        live: "https://matricula-upc-stefdev.netlify.app/",
+        github: "https://github.com/stxfxno/matricula_upc"
+      }
+    },
     {
       title: "AquaConecta",
       description: "Landing page para una empresa de servcios de control de uso del agua. Incluye un diseño atractivo y funcional, optimizado para SEO y con integración de formularios de contacto.",
@@ -94,13 +146,65 @@ const MoreProjects = () => {
       description: "Herramienta para evidenciar fallos de seguridad en el sistema de acceso universitario. Incluye opciones para configurar cursos, profesores, aulas y horarios, exportando el resultado final en un formato visual idéntico al oficial.",
       period: "2024 (julio)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
-      image: "/images/generador_horarios.png", // Usa una imagen existente como fallback
+      image: "/images/generador_horarios.png",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
+      viewnow: true,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
       }
     }
   ] : [
+    {
+      title: "Chat Platform",
+      description: "Full-stack web application with a complete real-time messaging system between users, supporting intuitive interfaces for instant communication and contact management.",
+      period: "2025 (February)",
+      technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
+      image: "/images/chat_app_platform.png",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      inactive: true,
+      links: {
+        live: "https://chat-platform-stefdev.netlify.app/login",
+        github: "https://github.com/stxfxno/chat-platform"
+      }
+    },
+    {
+      title: "Financial Bonds Simulator",
+      description: "Platform for managing corporate bonds. Test user: 20123456789, Password: demo123, Admin: 20100123456, Password: admin123",
+      period: "2025 (March)",
+      technologies: ["React", "Typescript", "Tailwind"],
+      image: "/images/grupo6.jpeg",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      links: {
+        live: "https://metodo-frances-grupo6.netlify.app/login",
+        github: "https://github.com/stxfxno/grupo-6-finanzas"
+      }
+    },
+    {
+      title: "A Short Distance",
+      description: "Currently under development for V2. Web application for long-distance couples or friends that allows sharing images with location and date on a global map, facilitating connection between people in different parts of the world.",
+      period: "2025 (January-February)",
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "My girlfriend"],
+      inactive: true,
+      image: "/images/una_distancia_corta.png",
+      icon: <Code className="text-purple-500 mr-2" size={18} />,
+      links: {
+        live: "https://unadistanciacorta.netlify.app/",
+        github: "https://github.com/stxfxno/una-distancia-corta"
+      }
+    },
+    {
+      title: "UPC Enrollment System",
+      description: "A new version that simulates the enrollment of Universidad Peruana de Ciencias Aplicadas, with a modern design and an intuitive interface to facilitate the registration process.",
+      period: "2024 (August-September)",
+      technologies: ["React", "Tailwind", "Typescript", "Vite"],
+      image: "/images/matricula_upc.png",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      viewnow: true,
+      links: {
+        live: "https://matricula-upc-stefdev.netlify.app/",
+        github: "https://github.com/stxfxno/matricula_upc"
+      }
+    },
     {
       title: "AquaConecta",
       description: "Landing page for a water usage control services company. It features an attractive and functional design, optimized for SEO and integrated contact forms.",
@@ -155,6 +259,7 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
       image: "/images/generador_horarios.png",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
+      viewnow: true,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
       }
@@ -167,21 +272,20 @@ const MoreProjects = () => {
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold text-light-text dark:text-white">{t('moreprojects.title')}</h2>
-
+            <div className="flex items-center justify-end mb-2">
               <Link
                 to="/"
-                className="flex items-center text-light-text-secondary dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="flex items-center text-light-text-secondary dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
               >
                 <span className="mr-2">←</span>
                 {t('back.to.home')}
               </Link>
             </div>
 
-            <p className="text-light-text-secondary dark:text-gray-400 mb-12 max-w-3xl">
-              {t('moreprojects.description')}
-            </p>
+            <SectionTitle
+              title={t('moreprojects.title')}
+              subtitle={t('moreprojects.description')}
+            />
             
             <div className="space-y-8">
               {additionalProjects.map((project, index) => (
@@ -205,9 +309,17 @@ const MoreProjects = () => {
 
                     {/* Contenido a la derecha */}
                     <div className="p-6 md:w-3/5">
-                      <div className="flex items-center mb-3">
-                        {project.icon}
-                        <h3 className="text-xl font-semibold text-light-text dark:text-white">{project.title}</h3>
+                      <div className="flex items-start justify-between mb-3 gap-3">
+                        <div className="flex items-center">
+                          {project.icon}
+                          <h3 className="text-xl font-semibold text-light-text dark:text-white">{project.title}</h3>
+                        </div>
+                        {project.inactive && (
+                          <span className="inline-flex items-center gap-1.5 shrink-0 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-700">
+                            <AlertCircle size={12} />
+                            {language === 'es' ? 'Inactivo · Costos de producción' : 'Inactive · Production costs'}
+                          </span>
+                        )}
                       </div>
 
                       <p className="text-light-text-secondary dark:text-gray-300 mb-4">{project.description}</p>
@@ -232,7 +344,7 @@ const MoreProjects = () => {
                             className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors shadow-sm"
                           >
                             <ExternalLink size={16} />
-                            {t('projects.demo')}
+                            {project.viewnow ? t('projects.viewnow') : t('projects.demo')}
                           </a>
                         )}
                         {project.links.github && (

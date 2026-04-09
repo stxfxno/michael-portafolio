@@ -1,4 +1,5 @@
 import { Code, ExternalLink, Github, Terminal, Calendar, Monitor, Cpu, FileCode } from 'lucide-react';
+import SectionTitle from './SectionTitle';
 import { useLanguage } from '../context/LanguageContext';
 
 interface Project {
@@ -8,6 +9,7 @@ interface Project {
   technologies: string[];
   primaryLanguage?: string;
   image: string;
+  viewnow?: boolean;
   links: {
     live?: string;
     github?: string;
@@ -79,7 +81,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               className="flex items-center gap-1 text-sm px-3 py-1 bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 border border-blue-100 dark:border-blue-800"
             >
               <ExternalLink size={14} />
-              {t('projects.demo')}
+              {project.viewnow ? t('projects.viewnow') : t('projects.demo')}
             </a>
           )}
           {project.links.github && (
@@ -127,100 +129,124 @@ const Projects = () => {
   // Datos de proyectos con traducción condicional
   const projects = language === 'es' ? [
     {
-      title: "Chat Platform",
-      description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
-      period: "2025 (febrero)",
-      technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
-      primaryLanguage: "TypeScript",
-      image: "/images/chat_app_platform.png",
+      title: "Sprinta AI",
+      description: "Plataforma web con agente de IA para ventas por WhatsApp. Permite a emprendedores y negocios automatizar respuestas a leads, gestionarlos desde un CRM integrado y optimizar su proceso de ventas de forma inteligente.",
+      period: "Marzo 2026",
+      technologies: ["React", "TypeScript", "Tailwind", "Supabase"],
+      image: "/images/sprinta.png",
+      viewnow: true,
       links: {
-        live: "https://chat-platform-stefdev.netlify.app/login",
-        github: "https://github.com/stxfxno/chat-platform"
+        live: "https://sprinta.ai/landing"
       }
     },
     {
-      title: "Simulador de Bonos Financieros",
-      description: "Plataforma para gestionar bonos coorporativos. Usuario de prueba: 20123456789, Contraseña: demo123, Admin: 20100123456, Contraseña: admin123",
-      period: "2025 (marzo)",
-      technologies: ["React", "Typescript", "Tailwind"],
-      primaryLanguage: "React",
-      image: "/images/grupo6.jpeg",
+      title: "Eemerson Sac Web",
+      description: "Página web corporativa para Eemerson SAC, empresa de transporte especializada en el traslado de todo tipo de contenedores, con más de 15 años de trayectoria en el sector logístico peruano.",
+      period: "Octubre 2025",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/eemersonsac_web.png",
+      viewnow: true,
       links: {
-        live: "https://metodo-frances-grupo6.netlify.app/login",
-        github: "https://github.com/stxfxno/grupo-6-finanzas"
-      },
-    },
-    {
-      title: "Una Distancia Corta",
-      description: "Actualmente en desarrollo para V2. Aplicación web para parejas o amigos a distancia que permite compartir imágenes con ubicación y fecha en un mapa global, facilitando la conexión entre personas en diferentes partes del mundo.",
-      period: "2025 (enero-febrero)",
-      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mi novia"],
-      primaryLanguage: "JavaScript",
-      image: "/images/una_distancia_corta.png",
-      links: {
-        live: "https://unadistanciacorta.netlify.app/",
-        github: "https://github.com/stxfxno/una-distancia-corta"
+        live: "https://eemersonsac.com/"
       }
     },
     {
-      title: "Sistema de Matrícula UPC",
-      description: "Una nueva versión que simula la matrícula de la Universidad Peruana de Ciencias Aplicadas, con un diseño moderno y una interfaz intuitiva para facilitar el proceso de inscripción.",
-      period: "2024 (agosto-septiembre)",
-      technologies: ["React", "Tailwind", "Typescript", "Vite"],
-      primaryLanguage: "JavaScript",
-      image: "/images/matricula_upc.png",
+      title: "Eemerson Sac Plataforma",
+      description: "Plataforma integral para Eemerson SAC que centraliza el monitoreo de trailers vía GPS, gestión financiera, calendario de pagos y control operativo de la flota en tiempo real.",
+      period: "Nov 2025 - Feb 2026",
+      technologies: ["Next.js", "NestJS", "TypeScript", "Tailwind", "Supabase"],
+      image: "/images/eemersonsac_plataforma.png",
+      links: {}
+    },
+    {
+      title: "Renaceris Web",
+      description: "Página web para una clínica de estética y salud con 3 sedes en Perú (Lima, Huánuco y Pucallpa). Presenta tratamientos especializados como rinoplastia, lipoescultura y más, con un diseño moderno y elegante.",
+      period: "Febrero 2026",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/renaceris_web.png",
+      viewnow: true,
       links: {
-        live: "https://matricula-upc-stefdev.netlify.app/",
-        github: "https://github.com/stxfxno/matricula_upc"
+        live: "https://www.renaceris.com/"
+      }
+    },
+    {
+      title: "Renaceris Plataforma",
+      description: "Plataforma para la gestión de citas médicas de Renaceris, con roles diferenciados para recepcionistas y médicos, facilitando el control y seguimiento de pacientes en las 3 sedes.",
+      period: "Ene - Abr 2026",
+      technologies: ["React", "NestJS", "TypeScript", "Tailwind", "Supabase"],
+      image: "/images/renaceris_plataforma.png",
+      links: {}
+    },
+    {
+      title: "Wko Negocios",
+      description: "Landing page para WKO Negocios, empresa peruana que conecta a sus clientes con las mejores soluciones de conectividad: planes de internet de alta velocidad y dispositivos móviles de última generación.",
+      period: "Mar 2026 - Presente",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/wkonegocios_web.png",
+      viewnow: true,
+      links: {
+        live: "https://wko-negocios-landing.vercel.app/"
       }
     }
   ] : [
     {
-      title: "Chat Platform",
-      description: "Full-stack web application with a complete real-time messaging system between users, supporting intuitive interfaces for instant communication and contact management.",
-      period: "2025 (February)",
-      technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
-      primaryLanguage: "TypeScript",
-      image: "/images/chat_app_platform.png",
+      title: "Sprinta AI",
+      description: "Web platform featuring an AI sales agent for WhatsApp. Enables entrepreneurs and businesses to automate lead responses, manage them through an integrated CRM, and streamline their sales process intelligently.",
+      period: "March 2026",
+      technologies: ["React", "TypeScript", "Tailwind", "Supabase"],
+      image: "/images/sprinta.png",
+      viewnow: true,
       links: {
-        live: "https://chat-platform-stefdev.netlify.app/login",
-        github: "https://github.com/stxfxno/chat-platform"
+        live: "https://sprinta.ai/landing"
       }
     },
     {
-      title: "Financial Bonds Simulator",
-      description: "Platform for managing corporate bonds. Test user: 20123456789, Password: demo123, Admin: 20100123456, Password: admin123",
-      period: "2025 (March)",
-      technologies: ["React", "Typescript", "Tailwind"],
-      primaryLanguage: "React",
-      image: "/images/grupo6.jpeg",
+      title: "Eemerson Sac Web",
+      description: "Corporate website for Eemerson SAC, a transport company specializing in handling all types of containers, with over 15 years of experience in the Peruvian logistics sector.",
+      period: "October 2025",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/eemersonsac_web.png",
+      viewnow: true,
       links: {
-        live: "https://metodo-frances-grupo6.netlify.app/login",
-        github: "https://github.com/stxfxno/grupo-6-finanzas"
-      },
-    },
-    {
-      title: "A Short Distance",
-      description: "Currently under development for V2. Web application for long-distance couples or friends that allows sharing images with location and date on a global map, facilitating connection between people in different parts of the world.",
-      period: "2025 (January-February)",
-      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "My girlfriend"],
-      primaryLanguage: "JavaScript",
-      image: "/images/una_distancia_corta.png",
-      links: {
-        live: "https://unadistanciacorta.netlify.app/",
-        github: "https://github.com/stxfxno/una-distancia-corta"
+        live: "https://eemersonsac.com/"
       }
     },
     {
-      title: "UPC Enrollment System",
-      description: "A new version that simulates the enrollment of Universidad Peruana de Ciencias Aplicadas, with a modern design and an intuitive interface to facilitate the registration process.",
-      period: "2024 (August-September)",
-      technologies: ["React", "Tailwind", "Typescript", "Vite"],
-      primaryLanguage: "JavaScript",
-      image: "/images/matricula_upc.png",
+      title: "Eemerson Sac Plataforma",
+      description: "Comprehensive platform for Eemerson SAC that centralizes trailer GPS monitoring, financial management, payment scheduling, and real-time fleet operational control.",
+      period: "Nov 2025 - Feb 2026",
+      technologies: ["Next.js", "NestJS", "TypeScript", "Tailwind", "Supabase"],
+      image: "/images/eemersonsac_plataforma.png",
+      links: {}
+    },
+    {
+      title: "Renaceris Web",
+      description: "Website for an aesthetic and health clinic with 3 locations across Peru (Lima, Huánuco, and Pucallpa). Showcases specialized treatments such as rhinoplasty, liposculpture, and more, with a modern and elegant design.",
+      period: "February 2026",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/renaceris_web.png",
+      viewnow: true,
       links: {
-        live: "https://matricula-upc-stefdev.netlify.app/",
-        github: "https://github.com/stxfxno/matricula_upc"
+        live: "https://www.renaceris.com/"
+      }
+    },
+    {
+      title: "Renaceris Plataforma",
+      description: "Platform for managing Renaceris medical appointments, with distinct roles for receptionists and doctors, streamlining patient control and follow-up across all 3 locations.",
+      period: "Jan - Apr 2026",
+      technologies: ["React", "NestJS", "TypeScript", "Tailwind", "Supabase"],
+      image: "/images/renaceris_plataforma.png",
+      links: {}
+    },
+    {
+      title: "Wko Negocios",
+      description: "Landing page for WKO Negocios, a Peruvian company connecting customers with the best connectivity solutions: high-speed internet plans and the latest mobile devices.",
+      period: "Mar 2026 - Present",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/wkonegocios_web.png",
+      viewnow: true,
+      links: {
+        live: "https://wko-negocios-landing.vercel.app/"
       }
     }
   ];
@@ -228,16 +254,10 @@ const Projects = () => {
   return (
     <section id="projects" className="py-16 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-light-text dark:text-white mb-2">
-          {t('projects.title')}
-        </h2>
-        <p className="text-center text-light-text-secondary dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          <span className="font-mono bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded text-sm border border-light-border dark:border-gray-700">
-            <span className="text-blue-600 dark:text-blue-400">git push</span>
-            <span className="text-light-text dark:text-gray-200"> origin </span>
-            <span className="text-green-600 dark:text-green-400">portfolio-projects</span>
-          </span>
-        </p>
+        <SectionTitle
+          title={t('projects.title')}
+          subtitle={t('projects.description')}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (

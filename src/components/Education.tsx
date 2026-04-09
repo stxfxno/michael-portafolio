@@ -1,4 +1,5 @@
 import { BookOpen, Award, ExternalLink, Code, Briefcase, GraduationCap, Monitor } from 'lucide-react';
+import SectionTitle from './SectionTitle';
 import { useLanguage } from '../context/LanguageContext';
 
 interface Education {
@@ -151,20 +152,10 @@ const Education = () => {
   return (
     <section id="education" className="py-16 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-light-text dark:text-white mb-2">
-          {t('education.title')}
-        </h2>
-        <p className="text-center text-light-text-secondary dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          <span className="font-mono bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded text-sm border border-light-border dark:border-gray-700">
-            <span className="text-green-600 dark:text-green-400">class</span>
-            <span className="text-light-text dark:text-gray-200"> </span>
-            <span className="text-blue-600 dark:text-blue-400">Developer</span>
-            <span className="text-light-text dark:text-gray-200"> </span>
-            <span className="text-purple-600 dark:text-purple-400">extends</span>
-            <span className="text-light-text dark:text-gray-200"> </span>
-            <span className="text-orange-600 dark:text-orange-400">LifelongLearner</span>
-          </span>
-        </p>
+        <SectionTitle
+          title={t('education.title')}
+          subtitle={t('education.subtitle')}
+        />
 
         <h3 className="text-2xl font-semibold text-light-text dark:text-white mb-6 flex items-center">
           <GraduationCap size={24} className="mr-2 text-blue-600 dark:text-blue-400" />
