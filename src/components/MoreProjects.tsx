@@ -49,7 +49,7 @@ const MoreProjects = () => {
       description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
       period: "2025 (febrero)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
-      image: "/images/chat_app_platform.png",
+      image: "/images/chat_app_platform.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       inactive: true,
       links: {
@@ -62,7 +62,7 @@ const MoreProjects = () => {
       description: "Plataforma para gestionar bonos corporativos. Usuario de prueba: 20123456789, Contraseña: demo123, Admin: 20100123456, Contraseña: admin123",
       period: "2025 (marzo)",
       technologies: ["React", "Typescript", "Tailwind"],
-      image: "/images/grupo6.jpeg",
+      image: "/images/grupo6.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       links: {
         live: "https://metodo-frances-grupo6.netlify.app/login",
@@ -75,7 +75,7 @@ const MoreProjects = () => {
       period: "2025 (enero-febrero)",
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mi novia"],
       inactive: true,
-      image: "/images/una_distancia_corta.png",
+      image: "/images/una_distancia_corta.webp",
       icon: <Code className="text-purple-500 mr-2" size={18} />,
       links: {
         live: "https://unadistanciacorta.netlify.app/",
@@ -87,7 +87,7 @@ const MoreProjects = () => {
       description: "Una nueva versión que simula la matrícula de la Universidad Peruana de Ciencias Aplicadas, con un diseño moderno y una interfaz intuitiva para facilitar el proceso de inscripción.",
       period: "2024 (agosto-septiembre)",
       technologies: ["React", "Tailwind", "Typescript", "Vite"],
-      image: "/images/matricula_upc.png",
+      image: "/images/matricula_upc.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       viewnow: true,
       links: {
@@ -100,7 +100,7 @@ const MoreProjects = () => {
       description: "Landing page para una empresa de servcios de control de uso del agua. Incluye un diseño atractivo y funcional, optimizado para SEO y con integración de formularios de contacto.",
       period: "2025 (abril)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
-      image: "/images/aqua_conecta.png", // Usa una imagen existente como fallback
+      image: "/images/aqua_conecta.webp", // Usa una imagen existente como fallback
       icon: <Code className="text-yellow-500 mr-2" size={18} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
@@ -113,7 +113,7 @@ const MoreProjects = () => {
       period: "2024 (septiembre)",
       technologies: ["HTML", "CSS", "JavaScript", "Figma"],
       primaryLanguage: "JavaScript",
-      image: "/images/manage_wise.png",
+      image: "/images/manage_wise.webp",
       links: {
         live: "https://manage-wise.netlify.app/",
         github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
@@ -124,7 +124,7 @@ const MoreProjects = () => {
       description: "Listify es un programa en Python que te permite descargar las cancioens de quieras de tus playlist de Spotify, incluso todo un album o playlist completa. Solo necesitas el enlace o buscarlo entre las opciones de búsqueda.",
       period: "2024 (febrero)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
-      image: "/images/listify.png", // Usa una imagen existente como fallback
+      image: "/images/listify.webp", // Usa una imagen existente como fallback
       icon: <Terminal className="text-yellow-500 mr-2" size={18} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
@@ -135,7 +135,7 @@ const MoreProjects = () => {
       description: "Aplicación móvil que simula la generación de ID Cards universitarias para evidenciar vulnerabilidades en sistemas de autenticación. Permite personalizar datos, códigos QR y fotografías para crear credenciales virtuales con fines educativos sobre seguridad.",
       period: "2024 (octubre-noviembre)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
-      image: "/images/tiu_fake_v1.png", // Usa una imagen existente como fallback
+      image: "/images/tiu_fake_v1.webp", // Usa una imagen existente como fallback
       icon: <Code className="text-green-500 mr-2" size={18} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
@@ -146,7 +146,7 @@ const MoreProjects = () => {
       description: "Herramienta para evidenciar fallos de seguridad en el sistema de acceso universitario. Incluye opciones para configurar cursos, profesores, aulas y horarios, exportando el resultado final en un formato visual idéntico al oficial.",
       period: "2024 (julio)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
-      image: "/images/generador_horarios.png",
+      image: "/images/generador_horarios.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       viewnow: true,
       links: {
@@ -159,7 +159,7 @@ const MoreProjects = () => {
       description: "Full-stack web application with a complete real-time messaging system between users, supporting intuitive interfaces for instant communication and contact management.",
       period: "2025 (February)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
-      image: "/images/chat_app_platform.png",
+      image: "/images/chat_app_platform.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       inactive: true,
       links: {
@@ -172,7 +172,7 @@ const MoreProjects = () => {
       description: "Platform for managing corporate bonds. Test user: 20123456789, Password: demo123, Admin: 20100123456, Password: admin123",
       period: "2025 (March)",
       technologies: ["React", "Typescript", "Tailwind"],
-      image: "/images/grupo6.jpeg",
+      image: "/images/grupo6.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       links: {
         live: "https://metodo-frances-grupo6.netlify.app/login",
@@ -185,7 +185,7 @@ const MoreProjects = () => {
       period: "2025 (January-February)",
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "My girlfriend"],
       inactive: true,
-      image: "/images/una_distancia_corta.png",
+      image: "/images/una_distancia_corta.webp",
       icon: <Code className="text-purple-500 mr-2" size={18} />,
       links: {
         live: "https://unadistanciacorta.netlify.app/",
@@ -197,7 +197,7 @@ const MoreProjects = () => {
       description: "A new version that simulates the enrollment of Universidad Peruana de Ciencias Aplicadas, with a modern design and an intuitive interface to facilitate the registration process.",
       period: "2024 (August-September)",
       technologies: ["React", "Tailwind", "Typescript", "Vite"],
-      image: "/images/matricula_upc.png",
+      image: "/images/matricula_upc.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       viewnow: true,
       links: {
@@ -210,7 +210,7 @@ const MoreProjects = () => {
       description: "Landing page for a water usage control services company. It features an attractive and functional design, optimized for SEO and integrated contact forms.",
       period: "2025 (April)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
-      image: "/images/aqua_conecta.png", // Usa una imagen existente como fallback
+      image: "/images/aqua_conecta.webp", // Usa una imagen existente como fallback
       icon: <Code className="text-yellow-500 mr-2" size={18} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
@@ -223,7 +223,7 @@ const MoreProjects = () => {
       period: "2024 (September)",
       technologies: ["HTML", "CSS", "JavaScript", "Figma"],
       primaryLanguage: "JavaScript",
-      image: "/images/manage_wise.png",
+      image: "/images/manage_wise.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       links: {
         live: "https://manage-wise.netlify.app/",
@@ -235,7 +235,7 @@ const MoreProjects = () => {
       description: "Python program that automates the search and download of songs from YouTube based on a list in TXT format. It uses APIs for efficient searching and conversion tools to obtain high-quality MP3 files.",
       period: "2024 (February)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
-      image: "/images/listify.png",
+      image: "/images/listify.webp",
       icon: <Terminal className="text-yellow-500 mr-2" size={18} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
@@ -246,7 +246,7 @@ const MoreProjects = () => {
       description: "Mobile application that simulates the generation of university ID Cards to demonstrate vulnerabilities in authentication systems. It allows customization of data, QR codes, and photographs to create virtual credentials for educational purposes on security.",
       period: "2024 (October-November)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
-      image: "/images/tiu_fake_v1.png",
+      image: "/images/tiu_fake_v1.webp",
       icon: <Code className="text-green-500 mr-2" size={18} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
@@ -257,7 +257,7 @@ const MoreProjects = () => {
       description: "Tool to demonstrate security flaws in the university access system. Includes options to configure courses, professors, classrooms, and schedules, exporting the final result in a visual format identical to the official one.",
       period: "2024 (July)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
-      image: "/images/generador_horarios.png",
+      image: "/images/generador_horarios.webp",
       icon: <Code className="text-blue-500 mr-2" size={18} />,
       viewnow: true,
       links: {

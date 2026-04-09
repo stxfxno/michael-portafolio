@@ -144,7 +144,7 @@ const Projects = () => {
       description: "Página web corporativa para Eemerson SAC, empresa de transporte especializada en el traslado de todo tipo de contenedores, con más de 15 años de trayectoria en el sector logístico peruano.",
       period: "Octubre 2025",
       technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/images/eemersonsac_web.png",
+      image: "/images/eemersonsac_web.webp",
       viewnow: true,
       links: {
         live: "https://eemersonsac.com/"
@@ -155,7 +155,7 @@ const Projects = () => {
       description: "Plataforma integral para Eemerson SAC que centraliza el monitoreo de trailers vía GPS, gestión financiera, calendario de pagos y control operativo de la flota en tiempo real.",
       period: "Nov 2025 - Feb 2026",
       technologies: ["Next.js", "NestJS", "TypeScript", "Tailwind", "Supabase"],
-      image: "/images/eemersonsac_plataforma.png",
+      image: "/images/eemersonsac_plataforma.webp",
       links: {}
     },
     {
@@ -174,7 +174,7 @@ const Projects = () => {
       description: "Plataforma para la gestión de citas médicas de Renaceris, con roles diferenciados para recepcionistas y médicos, facilitando el control y seguimiento de pacientes en las 3 sedes.",
       period: "Ene - Abr 2026",
       technologies: ["React", "NestJS", "TypeScript", "Tailwind", "Supabase"],
-      image: "/images/renaceris_plataforma.png",
+      image: "/images/renaceris_plataforma.webp",
       links: {}
     },
     {
@@ -182,7 +182,7 @@ const Projects = () => {
       description: "Landing page para WKO Negocios, empresa peruana que conecta a sus clientes con las mejores soluciones de conectividad: planes de internet de alta velocidad y dispositivos móviles de última generación.",
       period: "Mar 2026 - Presente",
       technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/images/wkonegocios_web.png",
+      image: "/images/wkonegocios_web.webp",
       viewnow: true,
       links: {
         live: "https://wko-negocios-landing.vercel.app/"
@@ -205,7 +205,7 @@ const Projects = () => {
       description: "Corporate website for Eemerson SAC, a transport company specializing in handling all types of containers, with over 15 years of experience in the Peruvian logistics sector.",
       period: "October 2025",
       technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/images/eemersonsac_web.png",
+      image: "/images/eemersonsac_web.webp",
       viewnow: true,
       links: {
         live: "https://eemersonsac.com/"
@@ -216,7 +216,7 @@ const Projects = () => {
       description: "Comprehensive platform for Eemerson SAC that centralizes trailer GPS monitoring, financial management, payment scheduling, and real-time fleet operational control.",
       period: "Nov 2025 - Feb 2026",
       technologies: ["Next.js", "NestJS", "TypeScript", "Tailwind", "Supabase"],
-      image: "/images/eemersonsac_plataforma.png",
+      image: "/images/eemersonsac_plataforma.webp",
       links: {}
     },
     {
@@ -235,7 +235,7 @@ const Projects = () => {
       description: "Platform for managing Renaceris medical appointments, with distinct roles for receptionists and doctors, streamlining patient control and follow-up across all 3 locations.",
       period: "Jan - Apr 2026",
       technologies: ["React", "NestJS", "TypeScript", "Tailwind", "Supabase"],
-      image: "/images/renaceris_plataforma.png",
+      image: "/images/renaceris_plataforma.webp",
       links: {}
     },
     {
@@ -243,7 +243,7 @@ const Projects = () => {
       description: "Landing page for WKO Negocios, a Peruvian company connecting customers with the best connectivity solutions: high-speed internet plans and the latest mobile devices.",
       period: "Mar 2026 - Present",
       technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/images/wkonegocios_web.png",
+      image: "/images/wkonegocios_web.webp",
       viewnow: true,
       links: {
         live: "https://wko-negocios-landing.vercel.app/"
