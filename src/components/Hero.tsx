@@ -12,15 +12,15 @@ const Hero = () => {
     "skills.json  projects/  education.txt  current_status.txt",
     "cat current_status.txt",
     "Estudiando actualmente en UPC", 
-    "7mo ciclo de Ingeniería de Software"
+    "9no ciclo de Ingeniería de Software"
   ] : [
     "who am i?",
     "Michael Carmelino Dueñas - Software Engineer",
     "ls -la",
     "skills.json  projects/  education.txt  current_status.txt",
     "cat current_status.txt",
-    "Currently studying at UPC", 
-    "7th semester of Software Engineering"
+    "Currently studying at UPC",
+    "9th semester of Software Engineering"
   ];
 
   return (

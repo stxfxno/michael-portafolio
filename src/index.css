@@ -10,6 +10,90 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* ── Light mode: fondo vivo ───────────────────────────────── */
+
+/* Gradiente base del wrapper principal */
+.light-bg-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, #d6e4f7 0%, #e8ecf6 45%, #ddeedd 100%) !important;
+}
+
+/* Orbe azul — esquina superior derecha */
+.light-bg-wrapper::before {
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
+  top: -140px;
+  right: -120px;
+  pointer-events: none;
+  filter: blur(70px);
+  opacity: 0.45;
+  z-index: 0;
+}
+
+/* Orbe verde — esquina inferior izquierda */
+.light-bg-wrapper::after {
+  content: '';
+  position: fixed;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #6ee7b7 0%, transparent 70%);
+  bottom: -80px;
+  left: -100px;
+  pointer-events: none;
+  filter: blur(70px);
+  opacity: 0.38;
+  z-index: 0;
+}
+
+/* Todo el contenido queda sobre los orbes */
+.light-bg-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* En dark mode, anulamos todo lo anterior */
+.dark.light-bg-wrapper,
+.dark .light-bg-wrapper {
+  background: unset !important;
+}
+.dark .light-bg-wrapper::before,
+.dark .light-bg-wrapper::after {
+  display: none;
+}
+
+/* Secciones con micro-acento de color en light mode */
+html:not(.dark) #skills {
+  background: linear-gradient(180deg, transparent, rgba(147, 197, 253, 0.10) 50%, transparent);
+  border-radius: 2rem;
+}
+html:not(.dark) #experience {
+  background: linear-gradient(180deg, transparent, rgba(110, 231, 183, 0.10) 50%, transparent);
+  border-radius: 2rem;
+}
+html:not(.dark) #education {
+  background: linear-gradient(180deg, transparent, rgba(196, 181, 253, 0.12) 50%, transparent);
+  border-radius: 2rem;
+}
+html:not(.dark) #projects {
+  background: linear-gradient(180deg, transparent, rgba(251, 191, 36, 0.07) 50%, transparent);
+  border-radius: 2rem;
+}
+
+/* Cards con sombra suave en light mode */
+html:not(.dark) .bg-light-card {
+  box-shadow: 0 2px 14px rgba(80, 110, 180, 0.12);
+}
+
+/* Scrollbar en light mode */
+::-webkit-scrollbar-track {
+  background: #d6e4f7;
+}
+
 /* Dark mode styles */
 .dark {
   color-scheme: dark;

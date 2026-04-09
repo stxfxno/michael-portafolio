@@ -11,12 +11,12 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        'light-bg': '#f5f5f0',
-        'light-surface': '#fafaf8',
-        'light-card': '#ffffff',
-        'light-border': '#e8e8e0',
-        'light-text': '#2c2c2c',
-        'light-text-secondary': '#5a5a52',
+        'light-bg': '#dde8f8',
+        'light-surface': '#e4edf6',
+        'light-card': '#f0f4fb',
+        'light-border': '#c8d5e8',
+        'light-text': '#1a2235',
+        'light-text-secondary': '#445069',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
