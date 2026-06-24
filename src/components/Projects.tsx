@@ -185,17 +185,6 @@ const Projects = () => {
       image: "/images/renaceris_plataforma.webp",
       links: {}
     },
-    {
-      title: "Wko Negocios",
-      description: "Landing page para WKO Negocios, empresa peruana que conecta a sus clientes con las mejores soluciones de conectividad: planes de internet de alta velocidad y dispositivos móviles de última generación.",
-      period: "Mar 2026 - Presente",
-      technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/images/wkonegocios_web.webp",
-      viewnow: true,
-      links: {
-        live: "https://wko-negocios-landing.vercel.app/"
-      }
-    }
   ] : [
     {
       title: "BIM Document Management",
@@ -254,17 +243,6 @@ const Projects = () => {
       image: "/images/renaceris_plataforma.webp",
       links: {}
     },
-    {
-      title: "Wko Negocios",
-      description: "Landing page for WKO Negocios, a Peruvian company connecting customers with the best connectivity solutions: high-speed internet plans and the latest mobile devices.",
-      period: "Mar 2026 - Present",
-      technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/images/wkonegocios_web.webp",
-      viewnow: true,
-      links: {
-        live: "https://wko-negocios-landing.vercel.app/"
-      }
-    }
   ];
 
   return (

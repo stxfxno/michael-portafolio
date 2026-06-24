@@ -45,6 +45,18 @@ const MoreProjects = () => {
   // Proyectos con contenido condicional según el idioma
   const additionalProjects = language === 'es' ? [
     {
+      title: "Wko Negocios",
+      description: "Landing page para WKO Negocios, empresa peruana que conecta a sus clientes con las mejores soluciones de conectividad: planes de internet de alta velocidad y dispositivos móviles de última generación.",
+      period: "2026 (marzo)",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/wkonegocios_web.webp",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      viewnow: true,
+      links: {
+        live: "https://wko-negocios-landing.vercel.app/"
+      }
+    },
+    {
       title: "Chat Platform",
       description: "Aplicación web full-stack con sistema completo de mensajería en tiempo real entre usuarios, soportando interfaces intuitivas para la comunicación instantánea y gestión de contactos.",
       period: "2025 (febrero)",
@@ -154,6 +166,18 @@ const MoreProjects = () => {
       }
     }
   ] : [
+    {
+      title: "Wko Negocios",
+      description: "Landing page for WKO Negocios, a Peruvian company connecting customers with the best connectivity solutions: high-speed internet plans and the latest mobile devices.",
+      period: "2026 (March)",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/images/wkonegocios_web.webp",
+      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      viewnow: true,
+      links: {
+        live: "https://wko-negocios-landing.vercel.app/"
+      }
+    },
     {
       title: "Chat Platform",
       description: "Full-stack web application with a complete real-time messaging system between users, supporting intuitive interfaces for instant communication and contact management.",
