@@ -76,14 +76,6 @@ const Footer = () => {
               ))}
             </div>
 
-            <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-light-border dark:border-gray-600">
-              <div className="font-mono text-sm text-light-text-secondary dark:text-gray-400">
-                <div className="flex items-center">
-                  <span className="text-green-600 dark:text-green-400">$</span>
-                  <span className="ml-2 text-light-text dark:text-gray-200">npx create-awesome-portfolio</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 

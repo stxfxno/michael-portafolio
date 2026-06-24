@@ -124,14 +124,14 @@ const Experience = () => {
       periodKey: "experience.job1.period",
       descriptionKeys: ["experience.job1.desc1", "experience.job1.desc2"],
       type: 'fulltime',
-      current: true,
+      current: false,
     },
     {
       titleKey: "experience.job4.title",
       companyKey: "experience.job4.company",
       periodKey: "experience.job4.period",
       descriptionKeys: ["experience.job4.desc1", "experience.job4.desc2"],
-      type: 'fulltime',
+      type: 'freelance',
       current: false,
     },
     {

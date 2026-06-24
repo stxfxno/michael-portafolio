@@ -10,6 +10,14 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+.font-mono, code, pre, kbd {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 /* ── Light mode: fondo vivo ───────────────────────────────── */
 
 /* Gradiente base del wrapper principal */
@@ -133,35 +141,35 @@ html:not(.dark) .bg-light-card {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(22px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-#home h1, 
-#home h2, 
-#home p, 
+#home h1,
+#home h2,
+#home p,
 #home .flex {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 #home h1 {
-  animation-delay: 0.2s;
+  animation-delay: 0.1s;
 }
 
 #home h2 {
-  animation-delay: 0.4s;
+  animation-delay: 0.2s;
 }
 
 #home p {
-  animation-delay: 0.6s;
+  animation-delay: 0.3s;
 }
 
 #home .flex {
-  animation-delay: 0.8s;
+  animation-delay: 0.45s;
 }
 
 /* Section transitions */

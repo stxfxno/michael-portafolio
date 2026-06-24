@@ -26,7 +26,7 @@ const Skills = () => {
         name: "skills.frameworks",
         icon: <Code2 size={18} />,
         iconColorClass: "text-purple-600 dark:text-purple-400",
-        skills: ["React", "Angular", "Bootstrap", "Tailwind CSS"]
+        skills: ["React", "Next.js", "NestJS", "React Native", "Expo Go", "Bootstrap", "Tailwind CSS"]
       },
       {
         name: "skills.databases",
@@ -50,7 +50,7 @@ const Skills = () => {
         name: "skills.others",
         icon: <Terminal size={18} />,
         iconColorClass: "text-gray-600 dark:text-gray-400",
-        skills: ["API RESTful", "Netlify", "MS Office", "OBS Studio"]
+        skills: ["API RESTful", "Vercel", "Netlify", "Render", "Railway", "Hostinger", "MS Office", "OBS Studio"]
       }
     ];
   };

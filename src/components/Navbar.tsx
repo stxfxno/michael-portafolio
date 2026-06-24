@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sun, Moon, Menu, X, Globe, ArrowLeft } from 'lucide-react';
+import { Menu, X, Globe, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <span className="text-xl font-bold">Michael Carmelino</span>
+            <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Michael Carmelino</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -71,14 +71,6 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
               <span className="text-xs font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
             </button>
 
-            {/* Botón de tema */}
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
           </div>
           
           {/* Mobile Navigation Button */}
@@ -90,14 +82,6 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
               aria-label="Toggle language"
             >
               <Globe size={20} />
-            </button>
-            
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             
             <button

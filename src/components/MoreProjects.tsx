@@ -59,7 +59,7 @@ const MoreProjects = () => {
     },
     {
       title: "Simulador de Bonos Financieros",
-      description: "Plataforma para gestionar bonos corporativos. Usuario de prueba: 20123456789, Contraseña: demo123, Admin: 20100123456, Contraseña: admin123",
+      description: "Plataforma para gestionar bonos corporativos.\n\nAcceso de prueba:\n  · Usuario:  20123456789   ·  Contraseña: demo123\n  · Admin:    20100123456   ·  Contraseña: admin123",
       period: "2025 (marzo)",
       technologies: ["React", "Typescript", "Tailwind"],
       image: "/images/grupo6.webp",
@@ -169,7 +169,7 @@ const MoreProjects = () => {
     },
     {
       title: "Financial Bonds Simulator",
-      description: "Platform for managing corporate bonds. Test user: 20123456789, Password: demo123, Admin: 20100123456, Password: admin123",
+      description: "Platform for managing corporate bonds.\n\nTest credentials:\n  · User:   20123456789   ·  Password: demo123\n  · Admin:  20100123456   ·  Password: admin123",
       period: "2025 (March)",
       technologies: ["React", "Typescript", "Tailwind"],
       image: "/images/grupo6.webp",
@@ -322,7 +322,7 @@ const MoreProjects = () => {
                         )}
                       </div>
 
-                      <p className="text-light-text-secondary dark:text-gray-300 mb-4">{project.description}</p>
+                      <p className="text-light-text-secondary dark:text-gray-300 mb-4 whitespace-pre-line">{project.description}</p>
 
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.map((tech, techIndex) => (

@@ -129,6 +129,14 @@ const Projects = () => {
   // Datos de proyectos con traducción condicional
   const projects = language === 'es' ? [
     {
+      title: "Gestión Documental BIM",
+      description: "Plataforma web para equipos de construcción que centraliza el flujo de aprobación de archivos técnicos (planos, modelos, documentos). Ciclo de vida de 5 etapas con control de acceso por roles especializados (Coordinador BIM, Aprobador, Residente de obra). Modo offline-first con sincronización automática vía IndexedDB.",
+      period: "Abril 2026",
+      technologies: ["React", "TypeScript", "Tailwind", "Supabase", "IndexedDB"],
+      image: "/images/gestion_documental.webp",
+      links: {}
+    },
+    {
       title: "Sprinta AI",
       description: "Plataforma web con agente de IA para ventas por WhatsApp. Permite a emprendedores y negocios automatizar respuestas a leads, gestionarlos desde un CRM integrado y optimizar su proceso de ventas de forma inteligente.",
       period: "Marzo 2026",
@@ -189,6 +197,14 @@ const Projects = () => {
       }
     }
   ] : [
+    {
+      title: "BIM Document Management",
+      description: "Web platform for construction teams that centralizes the approval workflow for technical files (plans, models, documents). 5-stage lifecycle with role-based access control (BIM Coordinator, Approver, Site Resident). Offline-first mode with automatic sync via IndexedDB.",
+      period: "April 2026",
+      technologies: ["React", "TypeScript", "Tailwind", "Supabase", "IndexedDB"],
+      image: "/images/gestion_documental.webp",
+      links: {}
+    },
     {
       title: "Sprinta AI",
       description: "Web platform featuring an AI sales agent for WhatsApp. Enables entrepreneurs and businesses to automate lead responses, manage them through an integrated CRM, and streamline their sales process intelligently.",
