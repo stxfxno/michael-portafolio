@@ -1,171 +1,100 @@
-import { BookOpen, Award, ExternalLink, Code, Briefcase, GraduationCap, Monitor } from 'lucide-react';
+import { ExternalLink, GraduationCap, Award } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import { useLanguage } from '../context/LanguageContext';
 
-interface Education {
+interface EducationItem {
   institution: string;
   degreeKey: string;
   periodKey: string;
-  descriptionKey?: string;
-  icon?: React.ReactNode;
+  link?: string;
+  delegates?: string[];
 }
 
-interface Certification {
+interface CertificationItem {
   titleKey: string;
   issuerKey: string;
   dateKey: string;
-  descriptionKey: string;
   link?: string;
   category: string;
-  icon?: React.ReactNode;
 }
 
-const EducationCard = ({ education }: { education: Education }) => {
-  const { t } = useLanguage();
-  
-  return (
-    <div className="bg-light-card dark:bg-gray-800 rounded-xl shadow-md p-6 border-l-4 border-blue-500 dark:border-blue-400">
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-blue-50 dark:bg-blue-900 rounded-lg border border-blue-100 dark:border-blue-800">
-          {education.icon || <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />}
-        </div>
-        <div>
-          <h3 className="text-xl font-semibold text-light-text dark:text-white">{education.institution}</h3>
-          <p className="text-blue-600 dark:text-blue-400">{t(education.degreeKey)}</p>
-          <p className="text-sm text-light-text-secondary dark:text-gray-400 mt-1">{t(education.periodKey)}</p>
-          {education.descriptionKey && (
-            <p className="text-light-text-secondary dark:text-gray-300 mt-2">{t(education.descriptionKey)}</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const CertificationCard = ({ certification }: { certification: Certification }) => {
-  const { t } = useLanguage();
-  
-  // Get background color based on category
-  const getCategoryColor = (category: string) => {
-    const colors: Record<string, string> = {
-      'Data': 'border-green-500 dark:border-green-400',
-      'Programming': 'border-blue-500 dark:border-blue-400',
-      'DevOps': 'border-red-500 dark:border-red-400',
-      'Databases': 'border-purple-500 dark:border-purple-400',
-      'Language': 'border-yellow-500 dark:border-yellow-400',
-      'Business': 'border-indigo-500 dark:border-indigo-400'
-    };
-    
-    return colors[category] || 'border-gray-500 dark:border-gray-400';
-  };
-  
-  return (
-    <div className={`bg-light-card dark:bg-gray-800 rounded-xl shadow-md p-6 border-l-4 ${getCategoryColor(certification.category)}`}>
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-light-border dark:border-gray-600">
-          {certification.icon || <Award className="w-6 h-6 text-gray-600 dark:text-gray-400" />}
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold text-light-text dark:text-white">{t(certification.titleKey)}</h3>
-          <div className="flex items-center mt-1">
-            <span className="text-light-text-secondary dark:text-gray-300">{t(certification.issuerKey)}</span>
-            <span className="mx-2 text-gray-400">•</span>
-            <span className="text-sm text-light-text-secondary dark:text-gray-400">{t(certification.dateKey)}</span>
-          </div>
-          <p className="text-light-text-secondary dark:text-gray-300 mt-2">{t(certification.descriptionKey)}</p>
-          {certification.link && (
-            <a
-              href={certification.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center mt-3 px-3 py-1 bg-gray-50 dark:bg-gray-700 text-light-text-secondary dark:text-gray-200 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 border border-light-border dark:border-gray-600"
-            >
-              <ExternalLink size={14} className="mr-1" />
-              {t('education.viewcert')}
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Education = () => {
-  const { t } = useLanguage();
-  
-  const educations: Education[] = [
+  const { t, language } = useLanguage();
+
+  const educations: EducationItem[] = [
     {
       institution: "Universidad Peruana de Ciencias Aplicadas",
       degreeKey: "education.upc.degree",
       periodKey: "education.upc.period",
-      descriptionKey: "education.upc.desc",
-      icon: <GraduationCap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+      delegates: [
+        language === 'es' ? 'Org. y Dirección de Empresas (2022-2)' : 'Org. & Business Management (2022-2)',
+        language === 'es' ? 'Algoritmos y Estructura de Datos (2023-1)' : 'Algorithms & Data Structures (2023-1)',
+        language === 'es' ? 'Aplicaciones Web (2024-1)' : 'Web Applications (2024-1)',
+        language === 'es' ? 'Aplicaciones Móviles (2024-2)' : 'Mobile Applications (2024-2)',
+        language === 'es' ? 'Fundamentos de Arquitectura de Software (2025-1)' : 'Software Architecture Fundamentals (2025-1)',
+      ],
     },
     {
       institution: "Centro de Idiomas Británico",
       degreeKey: "education.britanico.degree",
       periodKey: "education.britanico.period",
-      descriptionKey: "education.britanico.desc",
-      icon: <Monitor className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-    }
+      link: "/certificados/Constancia de Fase Avanzada Culminada.pdf",
+    },
   ];
 
-  const certifications: Certification[] = [
-    {
-      titleKey: "cert.data.title",
-      issuerKey: "cert.data.issuer",
-      dateKey: "cert.data.date",
-      descriptionKey: "cert.data.desc",
-      category: "Data",
-      link: "https://drive.google.com/file/d/1UNBRdo9Et2b50iiPXl_89RlgfCoH4FGf/view?usp=drive_link",
-      icon: <Code className="w-6 h-6 text-green-600 dark:text-green-400" />
-    },
-    {
-      titleKey: "cert.python.title",
-      issuerKey: "cert.python.issuer",
-      dateKey: "cert.python.date",
-      descriptionKey: "cert.python.desc",
-      category: "Programming",
-      link: "https://drive.google.com/file/d/18fSNPxgCvmAqcP7LJNJCzJJcO3pgibMh/view?usp=drive_link",
-      icon: <Code className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-    },
-    {
-      titleKey: "cert.scrum.title",
-      issuerKey: "cert.scrum.issuer",
-      dateKey: "cert.scrum.date",
-      descriptionKey: "cert.scrum.desc",
-      category: "Business",
-      link: "https://drive.google.com/file/d/14pjxqFO5Zq_tcrqk64DNbiyiu2MjSUL0/view?usp=drive_link",
-      icon: <Briefcase className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-    },
-    {
-      titleKey: "cert.mongo.title",
-      issuerKey: "cert.mongo.issuer",
-      dateKey: "cert.mongo.date",
-      descriptionKey: "cert.mongo.desc",
-      category: "Databases",
-      link: "https://drive.google.com/file/d/1uOvAU_K1BUbb4kjdzaGnTu3x4kvizwbP/view?usp=sharing",
-      icon: <Code className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-    },
+  const certifications: CertificationItem[] = [
     {
       titleKey: "cert.itsupport.title",
       issuerKey: "cert.itsupport.issuer",
       dateKey: "cert.itsupport.date",
-      descriptionKey: "cert.itsupport.desc",
-      category: "DevOps",
       link: "https://drive.google.com/file/d/1tuCiewG9Lzu72-w3OQTy-DITM1x5SFp8/view?usp=drive_link",
-      icon: <Monitor className="w-6 h-6 text-red-600 dark:text-red-400" />
+      category: "DevOps",
     },
     {
       titleKey: "cert.excel.title",
       issuerKey: "cert.excel.issuer",
       dateKey: "cert.excel.date",
-      descriptionKey: "cert.excel.desc",
-      category: "Business",
       link: "https://coursera.org/verify/specialization/FCVJCETTL30V",
-      icon: <Briefcase className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-    }
+      category: "Business",
+    },
+    {
+      titleKey: "cert.data.title",
+      issuerKey: "cert.data.issuer",
+      dateKey: "cert.data.date",
+      link: "https://drive.google.com/file/d/1UNBRdo9Et2b50iiPXl_89RlgfCoH4FGf/view?usp=drive_link",
+      category: "Data",
+    },
+    {
+      titleKey: "cert.python.title",
+      issuerKey: "cert.python.issuer",
+      dateKey: "cert.python.date",
+      link: "https://drive.google.com/file/d/18fSNPxgCvmAqcP7LJNJCzJJcO3pgibMh/view?usp=drive_link",
+      category: "Programming",
+    },
+    {
+      titleKey: "cert.scrum.title",
+      issuerKey: "cert.scrum.issuer",
+      dateKey: "cert.scrum.date",
+      link: "https://drive.google.com/file/d/14pjxqFO5Zq_tcrqk64DNbiyiu2MjSUL0/view?usp=drive_link",
+      category: "Business",
+    },
+    {
+      titleKey: "cert.mongo.title",
+      issuerKey: "cert.mongo.issuer",
+      dateKey: "cert.mongo.date",
+      link: "https://drive.google.com/file/d/1uOvAU_K1BUbb4kjdzaGnTu3x4kvizwbP/view?usp=sharing",
+      category: "Databases",
+    },
   ];
+
+  const categoryDot: Record<string, string> = {
+    DevOps: 'bg-red-400',
+    Business: 'bg-indigo-400',
+    Data: 'bg-green-400',
+    Programming: 'bg-blue-400',
+    Databases: 'bg-purple-400',
+    Language: 'bg-yellow-400',
+  };
 
   return (
     <section id="education" className="py-16 scroll-mt-20">
@@ -175,35 +104,116 @@ const Education = () => {
           subtitle={t('education.subtitle')}
         />
 
-        <h3 className="text-2xl font-semibold text-light-text dark:text-white mb-6 flex items-center">
-          <GraduationCap size={24} className="mr-2 text-blue-600 dark:text-blue-400" />
-          {t('education.subtitle1')}
-        </h3>
-        <div className="grid grid-cols-1 gap-6 mb-12">
-          {educations.map((edu, index) => (
-            <EducationCard key={index} education={edu} />
-          ))}
-        </div>
-        
-        <h3 className="text-2xl font-semibold text-light-text dark:text-white mb-6 flex items-center">
-          <Award size={24} className="mr-2 text-blue-600 dark:text-blue-400" />
-          {t('education.subtitle2')}
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {certifications.map((cert, index) => (
-            <CertificationCard key={index} certification={cert} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+          {/* ── Educación ─────────────────────────────── */}
+          <div>
+            <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-500 dark:text-gray-500 mb-6">
+              <GraduationCap size={13} />
+              {t('education.subtitle1')}
+            </p>
+
+            <div className="relative pl-5">
+              <span className="absolute left-[5px] top-2 bottom-2 w-px bg-gray-700/60" />
+
+              <div className="space-y-7">
+                {educations.map((edu, i) => (
+                  <div key={i} className="relative">
+                    <span className="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-blue-500/10" />
+
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-sm font-semibold text-light-text dark:text-white leading-snug">
+                        {edu.institution}
+                      </p>
+                      {edu.link && (
+                        <a
+                          href={edu.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t('education.viewcert')}
+                          className="shrink-0 text-gray-600 hover:text-blue-400 transition-colors duration-200 cursor-pointer mt-0.5"
+                        >
+                          <ExternalLink size={13} />
+                        </a>
+                      )}
+                    </div>
+
+                    <p className="text-sm text-blue-400 mt-0.5">{t(edu.degreeKey)}</p>
+                    <p className="text-xs text-gray-500 font-mono mt-1">{t(edu.periodKey)}</p>
+
+                    {edu.delegates && edu.delegates.length > 0 && (
+                      <div className="mt-2.5">
+                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-1.5">
+                          {language === 'es' ? 'Representante académico' : 'Academic representative'}
+                        </p>
+                        <ul className="space-y-1">
+                          {edu.delegates.map((course, j) => (
+                            <li key={j} className="flex items-start gap-1.5 text-xs text-gray-500">
+                              <span className="mt-1.5 w-1 h-1 rounded-full bg-gray-600 shrink-0" />
+                              {course}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── Certificaciones ───────────────────────── */}
+          <div>
+            <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-500 dark:text-gray-500 mb-6">
+              <Award size={13} />
+              {t('education.subtitle2')}
+            </p>
+
+            <div className="space-y-2">
+              {certifications.map((cert, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-gray-800/40 border border-gray-700/40 hover:border-gray-600/60 hover:bg-gray-800/60 transition-all duration-200 group"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${categoryDot[cert.category] ?? 'bg-gray-500'}`} />
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-light-text dark:text-gray-100 truncate leading-snug">
+                        {t(cert.titleKey)}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        {t(cert.issuerKey)} · {t(cert.dateKey)}
+                      </p>
+                    </div>
+                  </div>
+
+                  {cert.link && (
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={t('education.viewcert')}
+                      className="shrink-0 text-gray-600 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+                    >
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="text-center mt-8 p-6 bg-light-surface dark:bg-gray-900 rounded-xl shadow-sm border border-light-border dark:border-gray-800">
-          <p className="text-light-text-secondary dark:text-gray-300 mb-4">{t('education.note')}</p>
+        {/* ── Ver todos ─────────────────────────────── */}
+        <div className="mt-10 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-gray-500">{t('education.note')}</p>
           <a
             href="https://drive.google.com/drive/folders/1rdfTpHMpEJJAMXlq31EaugK2AkUwROxQ?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 text-sm text-gray-300 hover:border-blue-500 hover:text-blue-400 transition-all duration-200 group cursor-pointer"
           >
-            <ExternalLink size={18} className="mr-2" />
+            <ExternalLink size={14} />
             {t('education.viewall')}
           </a>
         </div>
