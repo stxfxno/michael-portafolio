@@ -159,10 +159,10 @@ const Projects = () => {
       }
     },
     {
-      title: "Eemerson Sac Plataforma",
-      description: "Plataforma integral para Eemerson SAC que centraliza el monitoreo de trailers vía GPS, gestión financiera, calendario de pagos y control operativo de la flota en tiempo real.",
+      title: "PayBox — Eemerson SAC",
+      description: "Plataforma web de gestión operativa para empresa de transporte de carga. Centraliza pagos a conductores (exportable a Excel), flota GPS vía Navitel, integración SUNAT OAuth para GRE, alertas de vencimientos sincronizadas con Odoo ERP, y un portal móvil-first para conductores con OCR y registro de gastos.",
       period: "Nov 2025 - Feb 2026",
-      technologies: ["Next.js", "NestJS", "TypeScript", "Tailwind", "Supabase"],
+      technologies: ["Next.js 14", "TypeScript", "Supabase", "Tailwind", "shadcn/ui"],
       image: "/images/eemersonsac_plataforma.webp",
       links: {}
     },
@@ -228,10 +228,10 @@ const Projects = () => {
       }
     },
     {
-      title: "Eemerson Sac Plataforma",
-      description: "Comprehensive platform for Eemerson SAC that centralizes trailer GPS monitoring, financial management, payment scheduling, and real-time fleet operational control.",
+      title: "PayBox — Eemerson SAC",
+      description: "Operational management web platform for a freight transport company. Centralizes driver payments (exportable to Excel), GPS fleet tracking via Navitel, SUNAT OAuth integration for e-invoices, document expiry alerts synced with Odoo ERP, and a mobile-first driver portal with OCR and expense tracking.",
       period: "Nov 2025 - Feb 2026",
-      technologies: ["Next.js", "NestJS", "TypeScript", "Tailwind", "Supabase"],
+      technologies: ["Next.js 14", "TypeScript", "Supabase", "Tailwind", "shadcn/ui"],
       image: "/images/eemersonsac_plataforma.webp",
       links: {}
     },

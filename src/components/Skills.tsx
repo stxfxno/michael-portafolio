@@ -38,7 +38,7 @@ const Skills = () => {
         name: "skills.tools",
         icon: <Wrench size={18} />,
         iconColorClass: "text-orange-600 dark:text-orange-400",
-        skills: ["Git", "GitHub Desktop", "Android Studio", "Postman", "Swagger", "Trello"]
+        skills: ["Git", "GitHub Desktop", "Android Studio", "Postman", "Swagger", "Trello", "Linear", "Odoo ERP"]
       },
       {
         name: "skills.design",
@@ -50,7 +50,7 @@ const Skills = () => {
         name: "skills.others",
         icon: <Terminal size={18} />,
         iconColorClass: "text-gray-600 dark:text-gray-400",
-        skills: ["API RESTful", "Vercel", "Netlify", "Render", "Railway", "Hostinger", "MS Office", "OBS Studio"]
+        skills: ["API RESTful", "SUNAT API", "Cron Jobs", "Vercel", "Netlify", "Render", "Railway", "Hostinger", "MS Office", "OBS Studio"]
       }
     ];
   };
