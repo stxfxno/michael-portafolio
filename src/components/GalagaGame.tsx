@@ -15,6 +15,18 @@ const MAX_LIVES = 5;
 const DROP_CHANCE = 0.035;
 
 type Status = 'idle' | 'playing' | 'paused' | 'over';
+type Difficulty = 'easy' | 'normal' | 'hard' | 'extreme';
+
+// Multiplicadores por dificultad: disparos enemigos, picadas, velocidad de balas,
+// vida de los mini jefes, probabilidad de power-ups y puntaje
+const DIFFICULTY: Record<Difficulty, { fire: number; dive: number; bullet: number; bossHp: number; drop: number; score: number }> = {
+  easy: { fire: 0.5, dive: 0.6, bullet: 0.8, bossHp: 0.7, drop: 1.6, score: 0.5 },
+  normal: { fire: 1, dive: 1, bullet: 1, bossHp: 1, drop: 1, score: 1 },
+  hard: { fire: 1.5, dive: 1.4, bullet: 1.15, bossHp: 1.3, drop: 0.8, score: 1.5 },
+  extreme: { fire: 2.2, dive: 1.9, bullet: 1.3, bossHp: 1.7, drop: 0.6, score: 2.5 },
+};
+const DIFFICULTIES: Difficulty[] = ['easy', 'normal', 'hard', 'extreme'];
+const START_LIVES = 5;
 type EnemyKind = 'boss' | 'butterfly' | 'bee' | 'sniper';
 type Weapon = 'normal' | 'double' | 'spread' | 'heavy' | 'laser';
 type DropKind = 'life' | 'shield' | 'double' | 'spread' | 'heavy' | 'laser';
@@ -96,6 +108,7 @@ interface Announce {
 }
 
 interface GameState {
+  diff: Difficulty;
   playerX: number;
   bullets: Bullet[];
   enemyBullets: Bullet[];
@@ -236,9 +249,9 @@ const createWave = (level: number): Enemy[] => {
   return enemies;
 };
 
-const createBoss = (level: number): MiniBoss => {
+const createBoss = (level: number, diff: Difficulty): MiniBoss => {
   const tier = level / BOSS_EVERY;
-  const maxHp = 40 + 30 * (tier - 1);
+  const maxHp = Math.round((40 + 30 * (tier - 1)) * DIFFICULTY[diff].bossHp);
   return {
     name: BOSS_NAMES[(tier - 1) % BOSS_NAMES.length],
     tier,
@@ -254,7 +267,8 @@ const createBoss = (level: number): MiniBoss => {
   };
 };
 
-const newGame = (): GameState => ({
+const newGame = (diff: Difficulty = 'normal'): GameState => ({
+  diff,
   playerX: W / 2,
   bullets: [],
   enemyBullets: [],
@@ -264,7 +278,7 @@ const newGame = (): GameState => ({
   drops: [],
   boss: null,
   score: 0,
-  lives: 3,
+  lives: START_LIVES,
   level: 1,
   lastShot: 0,
   invulnerable: 120,
@@ -468,6 +482,23 @@ const pickDrop = (): DropKind => {
   return 'double';
 };
 
+const readBest = (d: Difficulty) => {
+  try {
+    return Number(localStorage.getItem(`galaga-best-${d}`) || 0);
+  } catch {
+    return 0;
+  }
+};
+
+const readDifficulty = (): Difficulty => {
+  try {
+    const saved = localStorage.getItem('galaga-difficulty') as Difficulty | null;
+    return saved && DIFFICULTIES.includes(saved) ? saved : 'normal';
+  } catch {
+    return 'normal';
+  }
+};
+
 // ── Componente ──────────────────────────────────────────────
 const GalagaGame = () => {
   const { t, language } = useLanguage();
@@ -478,30 +509,41 @@ const GalagaGame = () => {
   const keysRef = useRef<{ left: boolean; right: boolean; fire: boolean }>({ left: false, right: false, fire: false });
   const statusRef = useRef<Status>('idle');
   const [status, setStatus] = useState<Status>('idle');
-  const [hud, setHud] = useState({ score: 0, lives: 3, level: 1 });
-  const [best, setBest] = useState(() => {
-    try {
-      return Number(localStorage.getItem('galaga-best') || 0);
-    } catch {
-      return 0;
-    }
-  });
+  const [hud, setHud] = useState({ score: 0, lives: START_LIVES, level: 1 });
+  const [difficulty, setDifficulty] = useState<Difficulty>(readDifficulty);
+  const diffRef = useRef(difficulty);
+  // El récord se guarda por separado para cada dificultad
+  const [best, setBest] = useState(() => readBest(diffRef.current));
   const bestRef = useRef(best);
+
+  const selectDifficulty = useCallback((d: Difficulty) => {
+    diffRef.current = d;
+    setDifficulty(d);
+    const b = readBest(d);
+    bestRef.current = b;
+    setBest(b);
+    try {
+      localStorage.setItem('galaga-difficulty', d);
+    } catch {
+      /* almacenamiento no disponible */
+    }
+  }, []);
 
   const changeStatus = useCallback((s: Status) => {
     statusRef.current = s;
     setStatus(s);
   }, []);
 
-  const start = useCallback(() => {
+  const start = useCallback((d?: Difficulty) => {
     if (statusRef.current === 'playing') return;
     if (statusRef.current !== 'paused') {
-      stateRef.current = newGame();
-      setHud({ score: 0, lives: 3, level: 1 });
+      if (d) selectDifficulty(d);
+      stateRef.current = newGame(diffRef.current);
+      setHud({ score: 0, lives: START_LIVES, level: 1 });
     }
     changeStatus('playing');
     wrapperRef.current?.focus({ preventScroll: true });
-  }, [changeStatus]);
+  }, [changeStatus, selectDifficulty]);
 
   const togglePause = useCallback(() => {
     if (statusRef.current === 'playing') changeStatus('paused');
@@ -514,6 +556,13 @@ const GalagaGame = () => {
     if (!el) return;
     const down = (e: KeyboardEvent) => {
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'a', 'd', 'A', 'D'].includes(e.key)) e.preventDefault();
+      // Fuera de partida: flechas o 1-4 para elegir dificultad
+      if (statusRef.current === 'idle' || statusRef.current === 'over') {
+        const i = DIFFICULTIES.indexOf(diffRef.current);
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') selectDifficulty(DIFFICULTIES[Math.max(0, i - 1)]);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') selectDifficulty(DIFFICULTIES[Math.min(DIFFICULTIES.length - 1, i + 1)]);
+        if (['1', '2', '3', '4'].includes(e.key)) selectDifficulty(DIFFICULTIES[Number(e.key) - 1]);
+      }
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysRef.current.left = true;
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysRef.current.right = true;
       if (e.key === ' ') {
@@ -533,7 +582,7 @@ const GalagaGame = () => {
       el.removeEventListener('keydown', down);
       el.removeEventListener('keyup', up);
     };
-  }, [start, togglePause]);
+  }, [start, togglePause, selectDifficulty]);
 
   // Pausar automáticamente si el juego sale de la pantalla
   useEffect(() => {
@@ -571,7 +620,7 @@ const GalagaGame = () => {
       s.waveBanner = 140;
       if (isBossLevel(s.level)) {
         s.enemies = [];
-        s.boss = createBoss(s.level);
+        s.boss = createBoss(s.level, s.diff);
       } else {
         s.enemies = createWave(s.level);
       }
@@ -583,9 +632,9 @@ const GalagaGame = () => {
 
     const killEnemy = (s: GameState, e: Enemy) => {
       const c = COLORS[e.kind];
-      if (!e.summoned) s.score += e.state === 'diving' ? c.divePoints : c.points;
+      if (!e.summoned) s.score += Math.round((e.state === 'diving' ? c.divePoints : c.points) * DIFFICULTY[s.diff].score);
       explode(s, e.x, e.y, c.main);
-      maybeDrop(s, e.x, e.y, e.kind === 'boss' || e.kind === 'sniper' ? DROP_CHANCE * 2 : DROP_CHANCE);
+      maybeDrop(s, e.x, e.y, (e.kind === 'boss' || e.kind === 'sniper' ? DROP_CHANCE * 2 : DROP_CHANCE) * DIFFICULTY[s.diff].drop);
     };
 
     const damageEnemy = (s: GameState, e: Enemy, dmg: number) => {
@@ -601,7 +650,7 @@ const GalagaGame = () => {
       b.hit = 5;
       if (b.hp <= 0) {
         for (let i = 0; i < 4; i++) explode(s, b.x + (Math.random() - 0.5) * 80, b.y + (Math.random() - 0.5) * 40, i % 2 ? '#9b4dff' : '#3d5afe', 40);
-        s.score += 2000 * b.tier;
+        s.score += Math.round(2000 * b.tier * DIFFICULTY[s.diff].score);
         // Recompensa garantizada: una vida y un arma
         s.drops.push({ x: b.x - 30, y: b.y, kind: 'life', t: 0 });
         const weapons: DropKind[] = ['double', 'spread', 'heavy', 'laser'];
@@ -635,7 +684,7 @@ const GalagaGame = () => {
           bestRef.current = s.score;
           setBest(s.score);
           try {
-            localStorage.setItem('galaga-best', String(s.score));
+            localStorage.setItem(`galaga-best-${s.diff}`, String(s.score));
           } catch {
             /* almacenamiento no disponible */
           }
@@ -654,7 +703,8 @@ const GalagaGame = () => {
 
     const aimedBullet = (s: GameState, x: number, y: number, speed: number, spread = 0, big = false): Bullet => {
       const ang = Math.atan2(PLAYER_Y - y, s.playerX - x) + spread;
-      return { x, y, vx: Math.cos(ang) * speed, vy: Math.sin(ang) * speed, big };
+      const v = speed * DIFFICULTY[s.diff].bullet;
+      return { x, y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, big };
     };
 
     const updateBoss = (s: GameState) => {
@@ -673,7 +723,7 @@ const GalagaGame = () => {
         const offset = b.timer === 25 ? 0.08 : 0;
         for (let i = 0; i < n; i++) {
           const ang = Math.PI / 2 + (i / (n - 1) - 0.5) * 1.9 + offset;
-          const sp = 3 + b.tier * 0.3;
+          const sp = (3 + b.tier * 0.3) * DIFFICULTY[s.diff].bullet;
           s.enemyBullets.push({ x: b.x, y: b.y + 30, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, big: true });
         }
       } else if (b.attack === 'aimed' && b.timer > 20 && b.timer % 10 === 0) {
@@ -772,8 +822,9 @@ const GalagaGame = () => {
       s.formationOffset += (0.35 + Math.min(s.level * 0.03, 0.4)) * s.formationDir;
       if (Math.abs(s.formationOffset) > sway) s.formationDir *= -1;
 
-      const diveChance = 0.004 + s.level * 0.0015;
-      const fireChance = 0.004 + s.level * 0.0012;
+      const d = DIFFICULTY[s.diff];
+      const diveChance = (0.004 + s.level * 0.0015) * d.dive;
+      const fireChance = (0.004 + s.level * 0.0012) * d.fire;
       const divingCount = s.enemies.filter((e) => e.state === 'diving' && !e.summoned).length;
       const diveSpeed = 1 + Math.min(s.level * 0.15, 1.5);
 
@@ -793,9 +844,9 @@ const GalagaGame = () => {
         } else if (e.state === 'formation') {
           e.x = e.homeX + s.formationOffset;
           e.y = e.homeY + Math.sin(s.time * 0.03 + e.homeX) * 2;
-          if (divingCount < 2 + Math.floor(s.level / 2) && Math.random() < diveChance / 6) startDive(s, e);
+          if (divingCount < Math.round((2 + Math.floor(s.level / 2)) * d.dive) && Math.random() < diveChance / 6) startDive(s, e);
           if (Math.random() < fireChance / 10) {
-            s.enemyBullets.push({ x: e.x, y: e.y + 10, vx: 0, vy: 3 + s.level * 0.2 });
+            s.enemyBullets.push({ x: e.x, y: e.y + 10, vx: 0, vy: (3 + s.level * 0.2) * DIFFICULTY[s.diff].bullet });
           }
           // El francotirador dispara ráfagas de tres apuntadas al jugador
           if (e.kind === 'sniper' && Math.random() < fireChance / 4) {
@@ -1117,6 +1168,10 @@ const GalagaGame = () => {
   const touchBtn =
     'select-none touch-none flex items-center justify-center border border-paper/40 active:bg-violet active:text-ink active:scale-95 transition-all text-paper';
 
+  const difficultyLabels: Record<Difficulty, string> = es
+    ? { easy: 'Fácil', normal: 'Normal', hard: 'Difícil', extreme: 'Muy difícil' }
+    : { easy: 'Easy', normal: 'Normal', hard: 'Hard', extreme: 'Very hard' };
+
   const powerUps: { kind: DropKind; label: string }[] = [
     { kind: 'double', label: es ? 'Doble disparo' : 'Double shot' },
     { kind: 'spread', label: es ? 'Disparo triple' : 'Spread gun' },
@@ -1199,7 +1254,7 @@ const GalagaGame = () => {
                   <p className="font-display text-2xl text-paper tracking-normal">{String(hud.score).padStart(6, '0')}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-paper/50">{t('arcade.best')}</p>
+                  <p className="text-paper/50">{t('arcade.best')} · {difficultyLabels[difficulty]}</p>
                   <p className="font-display text-2xl text-violet tracking-normal">{String(Math.max(best, hud.score)).padStart(6, '0')}</p>
                 </div>
                 <div className="text-right">
@@ -1215,30 +1270,53 @@ const GalagaGame = () => {
                   height={H}
                   className="block w-full h-auto aspect-[3/4]"
                   onPointerDown={() => {
-                    if (statusRef.current !== 'playing') start();
+                    if (statusRef.current === 'paused') start();
                   }}
                 />
 
-                {status !== 'playing' && (
+                {status === 'paused' && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-ink/60 pointer-events-none">
-                    {status === 'idle' && (
-                      <p className="font-display uppercase text-6xl leading-[0.9] mb-6">
+                    <p className="font-display uppercase text-5xl mb-6">{t('arcade.paused')}</p>
+                    <p className="tag text-paper animate-pulse">{es ? 'Toca o presiona P para seguir' : 'Tap or press P to continue'}</p>
+                  </div>
+                )}
+
+                {(status === 'idle' || status === 'over') && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-5 bg-ink/70">
+                    {status === 'idle' ? (
+                      <p className="font-display uppercase text-5xl sm:text-6xl leading-[0.9] mb-6">
                         {t('arcade.title').split(' ')[0]}
                         <span className="block font-serif italic normal-case text-violet">{t('arcade.title').split(' ').slice(1).join(' ')}</span>
                       </p>
-                    )}
-                    {status === 'over' && (
+                    ) : (
                       <>
-                        <p className="font-display uppercase text-5xl mb-2"><span className="hl">{t('arcade.gameover')}</span></p>
-                        <p className="font-serif italic text-3xl mb-6">{hud.score} pts</p>
+                        <p className="font-display uppercase text-5xl mb-1"><span className="hl">{t('arcade.gameover')}</span></p>
+                        <p className="font-serif italic text-3xl mb-5">{hud.score} pts</p>
                       </>
                     )}
-                    {status === 'paused' && (
-                      <p className="font-display uppercase text-5xl mb-6">{t('arcade.paused')}</p>
-                    )}
-                    <p className="tag text-paper animate-pulse">
-                      {status === 'over' ? t('arcade.retry') : t('arcade.start')}
+
+                    <p className="tag text-paper/70 mb-3">{es ? 'Elige la dificultad' : 'Choose difficulty'}</p>
+                    <div className="grid grid-cols-2 gap-2 w-full max-w-[18rem]">
+                      {DIFFICULTIES.map((d, i) => (
+                        <button
+                          key={d}
+                          onClick={() => start(d)}
+                          onMouseEnter={() => selectDifficulty(d)}
+                          className={`py-3 px-2 border-2 font-display uppercase text-xl leading-none transition-all ${
+                            difficulty === d
+                              ? 'bg-violet border-violet text-ink shadow-[4px_4px_0_#f4f1ec]'
+                              : 'border-paper/40 text-paper hover:border-violet'
+                          }`}
+                        >
+                          <span className="block tag !text-[0.55rem] opacity-60 mb-1">0{i + 1}</span>
+                          {difficultyLabels[d]}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="tag text-paper/60 mt-4 animate-pulse">
+                      {es ? 'Toca una dificultad o presiona ESPACIO' : 'Tap a difficulty or press SPACE'}
                     </p>
+                    <p className="text-xs text-paper/50 mt-2">{es ? '5 vidas para empezar' : 'You start with 5 lives'}</p>
                   </div>
                 )}
               </div>
