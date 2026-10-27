@@ -140,6 +140,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Arcade
     'nav.arcade': 'Arcade',
+    'arcade.boss': 'Mini jefe',
     'arcade.move': 'Moverte',
     'arcade.shoot': 'Disparar',
     'arcade.pausekey': 'Pausar',
@@ -309,6 +310,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Arcade
     'nav.arcade': 'Arcade',
+    'arcade.boss': 'Mini boss',
     'arcade.move': 'Move',
     'arcade.shoot': 'Shoot',
     'arcade.pausekey': 'Pause',
