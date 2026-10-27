@@ -1,4 +1,4 @@
-import { ExternalLink, GraduationCap, Award } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, GraduationCap, Award } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -88,134 +88,87 @@ const Education = () => {
     },
   ];
 
-  const categoryDot: Record<string, string> = {
-    DevOps: 'bg-azure-400',
-    Business: 'bg-white',
-    Data: 'bg-azure-300',
-    Programming: 'bg-orchid-300',
-    Databases: 'bg-orchid-500',
-    Language: 'bg-white',
-  };
-
   return (
-    <section id="education" className="py-24 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
-        <SectionTitle
-          kicker={t('kicker.education')}
-          title={t('education.title')}
-          subtitle={t('education.subtitle')}
-        />
+    <section id="education" className="py-24 scroll-mt-10">
+      <SectionTitle number="05." title={t('education.bigtitle')} subtitle={t('education.subtitle')} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-          {/* ── Educación ─────────────────────────────── */}
-          <Reveal>
-            <div className="glass-card p-7 h-full">
-              <p className="label-wide flex items-center gap-2 text-azure-300 mb-8">
-                <GraduationCap size={14} />
-                {t('education.subtitle1')}
-              </p>
-
-              <div className="relative pl-7">
-                <span className="absolute left-[6px] top-2 bottom-2 w-px bg-gradient-to-b from-orchid-400 via-white/40 to-azure-400" />
-
-                <div className="space-y-9">
-                  {educations.map((edu, i) => (
-                    <div key={i} className="relative">
-                      <span className="absolute -left-7 top-1.5 w-3.5 h-3.5 rotate-45 bg-orchid-400 shadow-[0_0_14px_#a960ff]" />
-
-                      <div className="flex items-start justify-between gap-2">
-                        <p className="font-serif text-lg font-bold tracking-wide text-white leading-snug">
-                          {edu.institution}
-                        </p>
-                        {edu.link && (
-                          <a
-                            href={edu.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={t('education.viewcert')}
-                            className="shrink-0 text-orchid-200 hover:text-azure-300 transition-colors duration-200 mt-1"
-                          >
-                            <ExternalLink size={15} />
-                          </a>
-                        )}
-                      </div>
-
-                      <p className="text-orchid-200 italic mt-1">{t(edu.degreeKey)}</p>
-                      <p className="label-wide text-azure-300/80 mt-2">{t(edu.periodKey)}</p>
-
-                      {edu.delegates && edu.delegates.length > 0 && (
-                        <div className="mt-4">
-                          <p className="label-wide text-white/60 mb-2">
-                            {language === 'es' ? 'Representante académico' : 'Academic representative'}
-                          </p>
-                          <ul className="space-y-1.5">
-                            {edu.delegates.map((course, j) => (
-                              <li key={j} className="flex items-start gap-2 text-sm text-orchid-50/70 font-light">
-                                <span className="mt-1.5 w-1 h-1 rounded-full bg-azure-300 shrink-0" />
-                                {course}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        {/* Educación */}
+        <div>
+          <h3 className="flex items-center gap-3 font-wide uppercase text-lg mb-8">
+            <GraduationCap size={18} className="text-violet" />
+            {t('education.subtitle1')}
+          </h3>
+          <div className="space-y-12">
+            {educations.map((edu, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <div className="relative pl-6 border-l-2 border-violet">
+                  <p className="tag text-paper/60 mb-2">{t(edu.periodKey)}</p>
+                  <p className="font-display uppercase text-3xl sm:text-4xl leading-none">{edu.institution}</p>
+                  <p className="font-serif italic text-2xl text-violet-soft mt-2">{t(edu.degreeKey)}</p>
+                  {edu.link && (
+                    <a href={edu.link} target="_blank" rel="noopener noreferrer" className="link-arrow mt-4">
+                      {t('education.viewcert')} <ExternalLink size={13} />
+                    </a>
+                  )}
+                  {edu.delegates && edu.delegates.length > 0 && (
+                    <div className="mt-5">
+                      <p className="font-hand text-lg text-cobalt mb-2">
+                        {language === 'es' ? 'Representante académico de…' : 'Academic representative of…'}
+                      </p>
+                      <ul className="space-y-1">
+                        {edu.delegates.map((course, j) => (
+                          <li key={j} className="text-sm text-paper/65 flex gap-2">
+                            <span className="text-violet">✦</span>
+                            {course}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  ))}
+                  )}
                 </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* ── Certificaciones ───────────────────────── */}
-          <Reveal delay={120}>
-            <div className="glass-card p-7 h-full">
-              <p className="label-wide flex items-center gap-2 text-azure-300 mb-8">
-                <Award size={14} />
-                {t('education.subtitle2')}
-              </p>
-
-              <div className="space-y-3">
-                {certifications.map((cert, i) => (
-                  <a
-                    key={i}
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={t('education.viewcert')}
-                    className="flex items-center justify-between gap-3 px-4 py-3.5 rounded-xl bg-orchid-900/20 border border-orchid-400/15 hover:border-azure-400/50 hover:bg-orchid-600/15 hover:translate-x-1 transition-all duration-300 group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className={`w-2 h-2 rotate-45 shrink-0 ${categoryDot[cert.category] ?? 'bg-white'}`} />
-                      <div className="min-w-0">
-                        <p className="text-white truncate leading-snug">
-                          {t(cert.titleKey)}
-                        </p>
-                        <p className="text-xs text-orchid-100/60 mt-1 tracking-wide">
-                          {t(cert.issuerKey)} · {t(cert.dateKey)}
-                        </p>
-                      </div>
-                    </div>
-                    <ExternalLink size={14} className="shrink-0 text-orchid-300 group-hover:text-azure-300 transition-colors" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </div>
 
-        {/* ── Ver todos ─────────────────────────────── */}
-        <Reveal className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5">
-          <p className="text-orchid-100/60 italic">{t('education.note')}</p>
-          <a
-            href="https://drive.google.com/drive/folders/1rdfTpHMpEJJAMXlq31EaugK2AkUwROxQ?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ghost"
-          >
-            <ExternalLink size={14} />
-            {t('education.viewall')}
-          </a>
-        </Reveal>
+        {/* Certificaciones */}
+        <div>
+          <h3 className="flex items-center gap-3 font-wide uppercase text-lg mb-8">
+            <Award size={18} className="text-violet" />
+            {t('education.subtitle2')}
+          </h3>
+          <div className="border-t border-paper/20">
+            {certifications.map((cert, i) => (
+              <Reveal key={i} delay={i * 60}>
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-5 py-5 border-b border-paper/20 hover:bg-violet hover:text-ink hover:px-4 transition-all duration-300"
+                >
+                  <span className="font-display text-2xl text-violet group-hover:text-ink w-8">{String(i + 1).padStart(2, '0')}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-serif text-xl sm:text-2xl leading-tight">{t(cert.titleKey)}</p>
+                    <p className="tag opacity-60 mt-1">{t(cert.issuerKey)} · {t(cert.dateKey)}</p>
+                  </div>
+                  <ArrowUpRight size={20} className="shrink-0 transition-transform group-hover:rotate-45" />
+                </a>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <p className="text-paper/55 text-sm">{t('education.note')}</p>
+            <a
+              href="https://drive.google.com/drive/folders/1rdfTpHMpEJJAMXlq31EaugK2AkUwROxQ?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-line"
+            >
+              {t('education.viewall')} <ArrowUpRight size={14} />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Send } from 'lucide-react';
-import CodeBlock from './CodeBlox';
+import { useState } from 'react';
+import { ArrowUpRight, Github, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import SectionTitle from './SectionTitle';
 import Reveal from './Reveal';
+import Scribble from './Scribble';
 import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
@@ -15,31 +15,6 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
-  const [codeExample, setCodeExample] = useState('');
-
-  // Actualizar el código de ejemplo cuando cambian los datos del formulario
-  useEffect(() => {
-    const updatedCode = `const contact = {
-  name: "Michael Carmelino Dueñas",
-  email: "carmelino0213@gmail.com",
-  social: {
-    github: "https://github.com/stxfxno",
-    linkedin: "https://www.linkedin.com/in/michael-carmelino-dueñas"
-  },
-  
-  // Método para enviar un mensaje
-  sendMessage: async function(message) {
-    const response = await emailjs.send(
-      ${formData.name ? `"${formData.name}"` : 'name'},
-      ${formData.email ? `"${formData.email}"` : 'email'},
-      ${formData.message ? `"${formData.message}"` : 'message'},
-    );
-    return response;
-  }
-};`;
-    
-    setCodeExample(updatedCode);
-  }, [formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -95,119 +70,64 @@ const Contact = () => {
       });
   };
 
+  const inputClass = 'w-full bg-transparent border-0 border-b border-paper/40 px-0 py-3 text-xl text-paper placeholder-paper/30 focus:outline-none focus:ring-0 focus:border-violet transition-colors';
+
   return (
-    <section id="contact" className="py-24 scroll-mt-20">
-      <div className="max-w-6xl mx-auto">
-        <SectionTitle kicker={t('kicker.contact')} title={t('contact.title')} />
+    <section id="contact" className="py-24 scroll-mt-10">
+      <SectionTitle number="07." title={t('contact.bigtitle')} subtitle={t('contact.lead')} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <Reveal className="lg:col-span-2">
-            <CodeBlock code={codeExample} fileName="contact.js" />
-          </Reveal>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+        <Reveal className="lg:col-span-5">
+          <p className="tag text-paper/50 mb-3">E-mail</p>
+          <a href="mailto:carmelino0213@gmail.com" className="relative inline-block font-display text-[8.5vw] sm:text-5xl lg:text-[2.6rem] xl:text-5xl leading-none hover:text-violet transition-colors break-all">
+            carmelino0213<br />@gmail.com
+          </a>
+          <Scribble shape="underline" className="w-full max-w-sm h-5 mt-3" strokeWidth={3} />
 
-          <Reveal delay={120} className="lg:col-span-3">
-            <div className="glass-card p-7 sm:p-9 h-full">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-wider text-white mb-8 flex items-center gap-3">
-                <Send size={22} className="text-azure-300" />
-                {t('contact.subtitle')}
-              </h3>
+          <div className="mt-12 space-y-4">
+            <a href="https://www.linkedin.com/in/michael-carmelino-due%C3%B1as-a5117a264/" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border-b border-paper/20 pb-4 hover:text-violet transition-colors">
+              <span className="flex items-center gap-4 font-display uppercase text-3xl"><Linkedin size={22} /> LinkedIn</span>
+              <ArrowUpRight className="group-hover:rotate-45 transition-transform" />
+            </a>
+            <a href="https://github.com/stxfxno" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border-b border-paper/20 pb-4 hover:text-violet transition-colors">
+              <span className="flex items-center gap-4 font-display uppercase text-3xl"><Github size={22} /> GitHub</span>
+              <ArrowUpRight className="group-hover:rotate-45 transition-transform" />
+            </a>
+          </div>
+        </Reveal>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="label-wide block text-orchid-100/80 mb-2">
-                      {t('contact.name')} <span className="text-orchid-300">*</span>
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 pl-10 rounded-xl bg-void/60 border border-orchid-400/25 text-white placeholder-orchid-100/30 focus:outline-none focus:border-azure-400 focus:ring-2 focus:ring-azure-400/30 transition-all"
-                        placeholder={t('contact.your.name')}
-                      />
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-orchid-300 font-mono">&gt;</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="label-wide block text-orchid-100/80 mb-2">
-                      {t('contact.email')} <span className="text-orchid-300">*</span>
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 pl-10 rounded-xl bg-void/60 border border-orchid-400/25 text-white placeholder-orchid-100/30 focus:outline-none focus:border-azure-400 focus:ring-2 focus:ring-azure-400/30 transition-all"
-                        placeholder={t('contact.your.email')}
-                      />
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-orchid-300 font-mono">@</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="label-wide block text-orchid-100/80 mb-2">
-                    {t('contact.message')} <span className="text-orchid-300">*</span>
-                  </label>
-                  <div className="relative">
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 pl-10 rounded-xl bg-void/60 border border-orchid-400/25 text-white placeholder-orchid-100/30 focus:outline-none focus:border-azure-400 focus:ring-2 focus:ring-azure-400/30 transition-all"
-                      placeholder={t('contact.your.message')}
-                    ></textarea>
-                    <span className="absolute left-4 top-3 text-orchid-300 font-mono">&gt;</span>
-                  </div>
-                  <p className="mt-2 text-xs text-orchid-100/40 font-mono">* message.length &gt; 0</p>
-                </div>
-
-                {submitStatus && (
-                  <div className={`p-4 rounded-xl border ${
-                    submitStatus.success
-                      ? 'bg-azure-400/10 text-azure-300 border-azure-400/40'
-                      : 'bg-orchid-700/20 text-orchid-100 border-orchid-300/50'
-                  }`}>
-                    <p className="text-sm">{submitStatus.message}</p>
-                  </div>
-                )}
-
-                <div className="flex flex-wrap items-center gap-4">
-                  <button type="submit" disabled={isSubmitting} className="btn-glow disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        {t('contact.sending')}
-                      </>
-                    ) : (
-                      <>
-                        <Send size={15} />
-                        {t('contact.send')}
-                      </>
-                    )}
-                  </button>
-                  <span className="font-script text-2xl text-orchid-200">
-                    {t('contact.note')}
-                  </span>
-                </div>
-              </form>
+        <Reveal delay={120} className="lg:col-span-7">
+          <form onSubmit={handleSubmit} className="relative border border-paper/25 p-6 sm:p-10 space-y-10">
+            <span className="absolute -top-3 left-8 tag bg-ink px-3 text-violet">{t('contact.subtitle')}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <label className="block">
+                <span className="tag text-paper/60">01 — {t('contact.name')} *</span>
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required className={inputClass} placeholder={t('contact.your.name')} />
+              </label>
+              <label className="block">
+                <span className="tag text-paper/60">02 — {t('contact.email')} *</span>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required className={inputClass} placeholder={t('contact.your.email')} />
+              </label>
             </div>
-          </Reveal>
-        </div>
+            <label className="block">
+              <span className="tag text-paper/60">03 — {t('contact.message')} *</span>
+              <textarea name="message" value={formData.message} onChange={handleChange} required rows={4} className={`${inputClass} resize-none`} placeholder={t('contact.your.message')} />
+            </label>
+
+            {submitStatus && (
+              <p className={`tag px-3 py-2 ${submitStatus.success ? 'bg-violet text-ink' : 'border border-paper text-paper'}`}>
+                {submitStatus.message}
+              </p>
+            )}
+
+            <div className="flex flex-wrap items-center gap-6">
+              <button type="submit" disabled={isSubmitting} className="btn-ink disabled:opacity-50 disabled:cursor-not-allowed">
+                {isSubmitting ? t('contact.sending') : t('contact.send')} <ArrowUpRight size={14} />
+              </button>
+              <span className="font-hand text-xl text-cobalt -rotate-3">{t('contact.note')}</span>
+            </div>
+          </form>
+        </Reveal>
       </div>
     </section>
   );

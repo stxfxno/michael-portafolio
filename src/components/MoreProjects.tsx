@@ -1,10 +1,9 @@
-import { Code, ExternalLink, Github, Calendar, Terminal, AlertCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionTitle from './SectionTitle';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Reveal from './Reveal';
-import CosmicBackground from './CosmicBackground';
 import { useLanguage } from '../context/LanguageContext';
 
 const MoreProjects = () => {
@@ -18,7 +17,6 @@ const MoreProjects = () => {
       period: "2026 (marzo)",
       technologies: ["React", "TypeScript", "Tailwind"],
       image: "/images/wkonegocios_web.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://wko-negocios-landing.vercel.app/"
@@ -30,7 +28,6 @@ const MoreProjects = () => {
       period: "2025 (febrero)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
       image: "/images/chat_app_platform.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       inactive: true,
       links: {
         live: "https://chat-platform-stefdev.netlify.app/login",
@@ -43,7 +40,6 @@ const MoreProjects = () => {
       period: "2025 (marzo)",
       technologies: ["React", "Typescript", "Tailwind"],
       image: "/images/grupo6.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://metodo-frances-grupo6.netlify.app/login",
         github: "https://github.com/stxfxno/grupo-6-finanzas"
@@ -56,7 +52,6 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mi novia"],
       inactive: true,
       image: "/images/una_distancia_corta.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://unadistanciacorta.netlify.app/",
         github: "https://github.com/stxfxno/una-distancia-corta"
@@ -68,7 +63,6 @@ const MoreProjects = () => {
       period: "2024 (agosto-septiembre)",
       technologies: ["React", "Tailwind", "Typescript", "Vite"],
       image: "/images/matricula_upc.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://matricula-upc-stefdev.netlify.app/",
@@ -81,7 +75,6 @@ const MoreProjects = () => {
       period: "2025 (abril)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
       image: "/images/aqua_conecta.webp", // Usa una imagen existente como fallback
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
         github: "https://github.com/stxfxno/Listify"
@@ -105,7 +98,6 @@ const MoreProjects = () => {
       period: "2024 (febrero)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
       image: "/images/listify.webp", // Usa una imagen existente como fallback
-      icon: <Terminal className="text-azure-300 mr-3 shrink-0" size={20} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
       }
@@ -116,7 +108,6 @@ const MoreProjects = () => {
       period: "2024 (octubre-noviembre)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
       image: "/images/tiu_fake_v1.webp", // Usa una imagen existente como fallback
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
       }
@@ -127,7 +118,6 @@ const MoreProjects = () => {
       period: "2024 (julio)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
       image: "/images/generador_horarios.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
@@ -140,7 +130,6 @@ const MoreProjects = () => {
       period: "2026 (March)",
       technologies: ["React", "TypeScript", "Tailwind"],
       image: "/images/wkonegocios_web.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://wko-negocios-landing.vercel.app/"
@@ -152,7 +141,6 @@ const MoreProjects = () => {
       period: "2025 (February)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
       image: "/images/chat_app_platform.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       inactive: true,
       links: {
         live: "https://chat-platform-stefdev.netlify.app/login",
@@ -165,7 +153,6 @@ const MoreProjects = () => {
       period: "2025 (March)",
       technologies: ["React", "Typescript", "Tailwind"],
       image: "/images/grupo6.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://metodo-frances-grupo6.netlify.app/login",
         github: "https://github.com/stxfxno/grupo-6-finanzas"
@@ -178,7 +165,6 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "My girlfriend"],
       inactive: true,
       image: "/images/una_distancia_corta.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://unadistanciacorta.netlify.app/",
         github: "https://github.com/stxfxno/una-distancia-corta"
@@ -190,7 +176,6 @@ const MoreProjects = () => {
       period: "2024 (August-September)",
       technologies: ["React", "Tailwind", "Typescript", "Vite"],
       image: "/images/matricula_upc.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://matricula-upc-stefdev.netlify.app/",
@@ -203,7 +188,6 @@ const MoreProjects = () => {
       period: "2025 (April)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
       image: "/images/aqua_conecta.webp", // Usa una imagen existente como fallback
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
         github: "https://github.com/stxfxno/Listify"
@@ -216,7 +200,6 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Figma"],
       primaryLanguage: "JavaScript",
       image: "/images/manage_wise.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://manage-wise.netlify.app/",
         github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
@@ -228,7 +211,6 @@ const MoreProjects = () => {
       period: "2024 (February)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
       image: "/images/listify.webp",
-      icon: <Terminal className="text-azure-300 mr-3 shrink-0" size={20} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
       }
@@ -239,7 +221,6 @@ const MoreProjects = () => {
       period: "2024 (October-November)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
       image: "/images/tiu_fake_v1.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
       }
@@ -250,7 +231,6 @@ const MoreProjects = () => {
       period: "2024 (July)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
       image: "/images/generador_horarios.webp",
-      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
@@ -259,97 +239,80 @@ const MoreProjects = () => {
   ];
 
   return (
-    <div className="relative bg-void text-white min-h-screen overflow-x-clip">
-      <CosmicBackground />
-      <div className="relative z-10">
-        <Navbar />
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="flex items-center justify-end mb-6">
-              <Link to="/" className="label-wide flex items-center text-orchid-100 hover:text-azure-300 transition-colors">
-                <span className="mr-2">←</span>
-                {t('back.to.home')}
-              </Link>
-            </div>
+    <div className="relative bg-ink text-paper min-h-screen overflow-x-clip">
+      <div className="grain" aria-hidden="true" />
+      <Navbar />
+      <section className="pt-32 pb-16">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <Link to="/" className="link-arrow mb-12">
+            ← {t('back.to.home')}
+          </Link>
 
+          <div className="mt-10">
             <SectionTitle
-              title={t('moreprojects.title')}
+              number="+"
+              title={language === 'es' ? 'Otros|pro|yectos' : 'More|pro|jects'}
               subtitle={t('moreprojects.description')}
             />
+          </div>
 
-            <div className="space-y-10">
-              {additionalProjects.map((project, index) => (
-                <Reveal key={index}>
-                  <div className="glass-card group overflow-hidden">
-                    <div className="flex flex-col md:flex-row">
-                      <div className="relative md:w-2/5 overflow-hidden md:rounded-l-[1.25rem] rounded-t-[1.25rem] md:rounded-tr-none">
-                        <img
-                          src={project.image}
-                          alt={`Captura de ${project.title}`}
-                          loading="lazy"
-                          className="w-full h-72 md:h-full md:min-h-[20rem] object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent" />
-                        <div className="absolute left-4 bottom-4 px-3 py-1.5 rounded-full bg-void/70 border border-orchid-400/30 flex items-center gap-2 text-orchid-100">
-                          <Calendar size={13} />
-                          <span className="label-wide">{project.period}</span>
-                        </div>
-                      </div>
+          <div className="border-b border-paper/20">
+            {additionalProjects.map((project, index) => (
+              <Reveal key={index}>
+                <article className="group grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-12 border-t border-paper/20">
+                  <div className="lg:col-span-5 relative">
+                    <div className="aspect-[16/10] overflow-hidden border border-paper/15">
+                      <img
+                        src={project.image}
+                        alt={`Captura de ${project.title}`}
+                        loading="lazy"
+                        className="photo w-full h-full object-cover group-hover:scale-105"
+                      />
+                    </div>
+                    <span className="absolute -top-4 left-3 tag bg-paper text-ink px-2 py-1">{project.period}</span>
+                  </div>
 
-                      <div className="p-7 md:w-3/5">
-                        <div className="flex items-start justify-between mb-4 gap-3">
-                          <div className="flex items-center">
-                            {project.icon}
-                            <h3 className="font-serif text-2xl font-bold tracking-wider text-white">{project.title}</h3>
-                          </div>
-                          {project.inactive && (
-                            <span className="label-wide inline-flex items-center gap-1.5 shrink-0 px-3 py-1 rounded-full bg-white/5 text-white/70 border border-white/20">
-                              <AlertCircle size={12} />
-                              {language === 'es' ? 'Inactivo · Costos de producción' : 'Inactive · Production costs'}
-                            </span>
-                          )}
-                        </div>
+                  <div className="lg:col-span-7">
+                    <div className="flex flex-wrap items-start gap-4 mb-4">
+                      <span className="font-display text-5xl leading-none outline-violet group-hover:text-violet transition-colors">
+                        {String(index + 1).padStart(2, '0')}.
+                      </span>
+                      <h3 className="flex-1 font-display uppercase text-4xl leading-[0.95]">{project.title}</h3>
+                      {project.inactive && (
+                        <span className="tag border border-paper/40 px-2 py-1">
+                          {language === 'es' ? 'Inactivo · Costos de producción' : 'Inactive · Production costs'}
+                        </span>
+                      )}
+                    </div>
 
-                        <p className="text-orchid-50/70 font-light leading-relaxed mb-5 whitespace-pre-line">{project.description}</p>
+                    <p className="text-paper/70 leading-relaxed mb-5 whitespace-pre-line">{project.description}</p>
+                    <p className="tag text-paper/50 mb-6">{project.technologies.join('  /  ')}</p>
 
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.technologies.map((tech, techIndex) => (
-                            <span key={techIndex} className="chip">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        <div className="flex flex-wrap gap-3">
-                          {project.links.live && (
-                            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="btn-glow !px-5 !py-2.5">
-                              <ExternalLink size={14} />
-                              {project.viewnow ? t('projects.viewnow') : t('projects.demo')}
-                            </a>
-                          )}
-                          {project.links.github && (
-                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="btn-ghost !px-5 !py-2.5">
-                              <Github size={14} />
-                              {t('projects.repository')}
-                            </a>
-                          )}
-                          {project.links.resources && (
-                            <a href={project.links.resources} target="_blank" rel="noopener noreferrer" className="btn-ghost !px-5 !py-2.5">
-                              <ExternalLink size={14} />
-                              {t('projects.resources')}
-                            </a>
-                          )}
-                        </div>
-                      </div>
+                    <div className="flex flex-wrap gap-6">
+                      {project.links.live && (
+                        <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                          {project.viewnow ? t('projects.viewnow') : t('projects.demo')} <ArrowUpRight size={14} />
+                        </a>
+                      )}
+                      {project.links.github && (
+                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                          {t('projects.repository')} <ArrowUpRight size={14} />
+                        </a>
+                      )}
+                      {project.links.resources && (
+                        <a href={project.links.resources} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                          {t('projects.resources')} <ArrowUpRight size={14} />
+                        </a>
+                      )}
                     </div>
                   </div>
-                </Reveal>
-              ))}
-            </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
-        </section>
-        <Footer />
-      </div>
+        </div>
+      </section>
+      <Footer />
     </div>
   );
 };

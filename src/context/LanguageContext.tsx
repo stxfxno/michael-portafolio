@@ -140,7 +140,9 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Arcade
     'nav.arcade': 'Arcade',
-    'arcade.kicker': 'Zona de descanso',
+    'arcade.move': 'Moverte',
+    'arcade.shoot': 'Disparar',
+    'arcade.pausekey': 'Pausar',
     'arcade.title': 'Galaxia Púrpura',
     'arcade.subtitle': 'Un pequeño homenaje a Galaga. Defiende la galaxia de los bugs invasores.',
     'arcade.start': 'Presiona ESPACIO o toca para jugar',
@@ -155,14 +157,22 @@ const translations: Record<Language, Record<string, string>> = {
     'arcade.retry': 'Jugar de nuevo',
     'arcade.play': 'Jugar',
 
-    // Kickers
-    'kicker.projects': 'Obras seleccionadas',
-    'kicker.skills': 'El arsenal',
-    'kicker.experience': 'La trayectoria',
-    'kicker.education': 'Formación',
-    'kicker.contact': 'Hablemos',
-    'hero.scroll': 'Desliza',
-    'hero.greeting': 'Bienvenido a mi universo',
+
+    // Títulos editoriales
+    'projects.bigtitle': 'Pro|yec|tos',
+    'projects.note': 'hechos con cariño',
+    'projects.more.text': '¿Quieres ver más?',
+    'projects.private': 'Proyecto privado · cliente',
+    'skills.bigtitle': 'Habi|lida|des',
+    'skills.subtitle': 'Las herramientas con las que construyo, diseño y despliego.',
+    'skills.note': 'mi caja de herramientas',
+    'experience.bigtitle': 'Expe|rien|cia',
+    'experience.note': 'en el camino',
+    'education.bigtitle': 'Edu|ca|ción',
+    'arcade.bigtitle': 'Ar|ca|de',
+    'arcade.note': '¡juégalo!',
+    'contact.bigtitle': 'Hable|mos',
+    'contact.lead': '¿Tienes un proyecto, una idea o una oportunidad? Escríbeme.',
 
     // Common
     'back.to.home': 'Volver al inicio',
@@ -299,7 +309,9 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Arcade
     'nav.arcade': 'Arcade',
-    'arcade.kicker': 'Break zone',
+    'arcade.move': 'Move',
+    'arcade.shoot': 'Shoot',
+    'arcade.pausekey': 'Pause',
     'arcade.title': 'Purple Galaxy',
     'arcade.subtitle': 'A tiny tribute to Galaga. Defend the galaxy from invading bugs.',
     'arcade.start': 'Press SPACE or tap to play',
@@ -314,14 +326,22 @@ const translations: Record<Language, Record<string, string>> = {
     'arcade.retry': 'Play again',
     'arcade.play': 'Play',
 
-    // Kickers
-    'kicker.projects': 'Selected works',
-    'kicker.skills': 'The arsenal',
-    'kicker.experience': 'The journey',
-    'kicker.education': 'Background',
-    'kicker.contact': "Let's talk",
-    'hero.scroll': 'Scroll',
-    'hero.greeting': 'Welcome to my universe',
+
+    // Editorial titles
+    'projects.bigtitle': 'Pro|jects',
+    'projects.note': 'made with care',
+    'projects.more.text': 'Want to see more?',
+    'projects.private': 'Private project · client',
+    'skills.bigtitle': 'Tool|kit',
+    'skills.subtitle': 'The tools I use to build, design and ship.',
+    'skills.note': 'my toolbox',
+    'experience.bigtitle': 'Expe|rien|ce',
+    'experience.note': 'on the road',
+    'education.bigtitle': 'Edu|ca|tion',
+    'arcade.bigtitle': 'Ar|ca|de',
+    'arcade.note': 'play it!',
+    'contact.bigtitle': "Let's|talk",
+    'contact.lead': 'Got a project, an idea or an opportunity? Write to me.',
 
     // Common
     'back.to.home': 'Back to Home',

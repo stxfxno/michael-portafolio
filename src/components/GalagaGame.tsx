@@ -75,9 +75,9 @@ interface GameState {
 }
 
 const COLORS: Record<EnemyKind, { main: string; accent: string; points: number; divePoints: number }> = {
-  boss: { main: '#a960ff', accent: '#ffffff', points: 150, divePoints: 400 },
-  butterfly: { main: '#38bdf8', accent: '#c38dff', points: 80, divePoints: 160 },
-  bee: { main: '#ffffff', accent: '#9333ea', points: 50, divePoints: 100 },
+  boss: { main: '#9b4dff', accent: '#f4f1ec', points: 150, divePoints: 400 },
+  butterfly: { main: '#3d5afe', accent: '#c9a3ff', points: 80, divePoints: 160 },
+  bee: { main: '#f4f1ec', accent: '#9b4dff', points: 50, divePoints: 100 },
 };
 
 // Curva de Bézier cuadrática muestreada como lista de puntos
@@ -98,7 +98,7 @@ const createStars = (): Star[] =>
     x: Math.random() * W,
     y: Math.random() * H,
     speed: Math.random() * 2 + 0.4,
-    color: ['#ffffff', '#c38dff', '#38bdf8', '#7a1fd1'][Math.floor(Math.random() * 4)],
+    color: ['#f4f1ec', '#8a8a8a', '#f4f1ec', '#9b4dff'][Math.floor(Math.random() * 4)],
   }));
 
 const createWave = (level: number): Enemy[] => {
@@ -163,10 +163,10 @@ const drawPlayer = (ctx: CanvasRenderingContext2D, x: number, y: number, blink: 
   if (blink) return;
   ctx.save();
   ctx.translate(x, y);
-  ctx.shadowColor = '#a960ff';
-  ctx.shadowBlur = 18;
+  ctx.shadowColor = '#9b4dff';
+  ctx.shadowBlur = 10;
   // Llama del motor
-  ctx.fillStyle = Math.random() > 0.5 ? '#38bdf8' : '#c38dff';
+  ctx.fillStyle = Math.random() > 0.5 ? '#3d5afe' : '#9b4dff';
   ctx.beginPath();
   ctx.moveTo(-6, 16);
   ctx.lineTo(0, 26 + Math.random() * 8);
@@ -174,8 +174,8 @@ const drawPlayer = (ctx: CanvasRenderingContext2D, x: number, y: number, blink: 
   ctx.fill();
   // Fuselaje
   const grad = ctx.createLinearGradient(0, -20, 0, 18);
-  grad.addColorStop(0, '#ffffff');
-  grad.addColorStop(1, '#9333ea');
+  grad.addColorStop(0, '#f4f1ec');
+  grad.addColorStop(1, '#9b4dff');
   ctx.fillStyle = grad;
   ctx.beginPath();
   ctx.moveTo(0, -22);
@@ -191,7 +191,7 @@ const drawPlayer = (ctx: CanvasRenderingContext2D, x: number, y: number, blink: 
   ctx.closePath();
   ctx.fill();
   // Cabina
-  ctx.fillStyle = '#38bdf8';
+  ctx.fillStyle = '#0a0a0a';
   ctx.beginPath();
   ctx.ellipse(0, -2, 3, 7, 0, 0, Math.PI * 2);
   ctx.fill();
@@ -205,8 +205,8 @@ const drawEnemy = (ctx: CanvasRenderingContext2D, e: Enemy, time: number) => {
   ctx.translate(e.x, e.y);
   if (e.state === 'diving') ctx.rotate(Math.sin(time * 0.1) * 0.4);
   ctx.shadowColor = c.main;
-  ctx.shadowBlur = 14;
-  ctx.fillStyle = e.kind === 'boss' && e.hp === 1 ? '#38bdf8' : c.main;
+  ctx.shadowBlur = 8;
+  ctx.fillStyle = e.kind === 'boss' && e.hp === 1 ? '#3d5afe' : c.main;
 
   if (e.kind === 'boss') {
     ctx.beginPath();
@@ -238,7 +238,7 @@ const drawEnemy = (ctx: CanvasRenderingContext2D, e: Enemy, time: number) => {
     ctx.ellipse(-10, -2, 6, 3 + Math.abs(wing) * 0.6, 0.3, 0, Math.PI * 2);
     ctx.ellipse(10, -2, 6, 3 + Math.abs(wing) * 0.6, -0.3, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = '#05020b';
+    ctx.fillStyle = '#0a0a0a';
     ctx.fillRect(-5, 1, 10, 2);
   }
   ctx.restore();
@@ -433,7 +433,7 @@ const GalagaGame = () => {
               s.score += e.state === 'diving' ? c.divePoints : c.points;
               explode(s, e.x, e.y, c.main);
             } else {
-              explode(s, e.x, e.y, '#38bdf8', 6);
+              explode(s, e.x, e.y, '#3d5afe', 6);
             }
             break;
           }
@@ -446,7 +446,7 @@ const GalagaGame = () => {
         const hitByBullet = s.enemyBullets.some((b) => Math.abs(b.x - s.playerX) < 14 && Math.abs(b.y - PLAYER_Y) < 16);
         const rammed = s.enemies.find((e) => Math.abs(e.x - s.playerX) < 22 && Math.abs(e.y - PLAYER_Y) < 20);
         if (hitByBullet || rammed) {
-          explode(s, s.playerX, PLAYER_Y, '#a960ff', 40);
+          explode(s, s.playerX, PLAYER_Y, '#9b4dff', 40);
           if (rammed) {
             rammed.hp = 0;
             explode(s, rammed.x, rammed.y, COLORS[rammed.kind].main);
@@ -490,10 +490,7 @@ const GalagaGame = () => {
 
     const render = (s: GameState) => {
       // Fondo
-      const bg = ctx.createLinearGradient(0, 0, 0, H);
-      bg.addColorStop(0, '#0c0618');
-      bg.addColorStop(1, '#05020b');
-      ctx.fillStyle = bg;
+      ctx.fillStyle = '#0a0a0a';
       ctx.fillRect(0, 0, W, H);
 
       const moving = statusRef.current !== 'paused';
@@ -519,12 +516,12 @@ const GalagaGame = () => {
       }
 
       // Balas
-      ctx.shadowBlur = 12;
-      ctx.shadowColor = '#38bdf8';
-      ctx.fillStyle = '#e0f2fe';
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = '#9b4dff';
+      ctx.fillStyle = '#f4f1ec';
       s.bullets.forEach((b) => ctx.fillRect(b.x - 1.5, b.y - 8, 3, 14));
-      ctx.shadowColor = '#a960ff';
-      ctx.fillStyle = '#d9b8ff';
+      ctx.shadowColor = '#3d5afe';
+      ctx.fillStyle = '#c9a3ff';
       s.enemyBullets.forEach((b) => {
         ctx.beginPath();
         ctx.arc(b.x, b.y, 3.5, 0, Math.PI * 2);
@@ -545,11 +542,11 @@ const GalagaGame = () => {
 
       if (s.waveBanner > 0 && statusRef.current === 'playing') {
         ctx.globalAlpha = Math.min(1, s.waveBanner / 40);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '16px "Press Start 2P", monospace';
+        ctx.fillStyle = '#f4f1ec';
+        ctx.font = '44px Anton, Impact, sans-serif';
         ctx.textAlign = 'center';
-        ctx.shadowColor = '#a960ff';
-        ctx.shadowBlur = 16;
+        ctx.shadowColor = '#9b4dff';
+        ctx.shadowBlur = 0;
         ctx.fillText(`${t('arcade.wave').toUpperCase()} ${s.level}`, W / 2, H / 2 + 40);
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
@@ -580,101 +577,131 @@ const GalagaGame = () => {
   };
 
   const touchBtn =
-    'select-none touch-none flex items-center justify-center rounded-2xl border border-orchid-400/40 bg-orchid-500/15 active:bg-orchid-500/40 active:scale-95 transition-all text-white';
+    'select-none touch-none flex items-center justify-center border border-paper/40 active:bg-violet active:text-ink active:scale-95 transition-all text-paper';
 
   return (
-    <section id="arcade" className="py-24 scroll-mt-20">
-      <SectionTitle kicker={t('arcade.kicker')} title={t('arcade.title')} subtitle={t('arcade.subtitle')} />
+    <section id="arcade" className="py-24 scroll-mt-10">
+      <SectionTitle number="06." title={t('arcade.bigtitle')} subtitle={t('arcade.subtitle')} note={t('arcade.note')} />
 
       <Reveal>
-        <div className="relative mx-auto max-w-[430px]">
-          {/* Halo exterior */}
-          <div className="absolute -inset-6 bg-gradient-to-br from-orchid-600/40 via-transparent to-azure-500/30 blur-3xl rounded-[3rem]" />
-
-          <div
-            ref={wrapperRef}
-            tabIndex={0}
-            aria-label={t('arcade.title')}
-            className="relative rounded-[2rem] p-4 sm:p-5 bg-gradient-to-b from-nebula to-void border border-orchid-400/40 shadow-[0_0_80px_-20px_rgba(147,51,234,0.9)] outline-none focus-visible:ring-2 focus-visible:ring-azure-400"
-          >
-            {/* HUD */}
-            <div className="flex justify-between items-end mb-3 px-1 font-pixel text-[0.55rem] sm:text-[0.6rem] leading-relaxed">
-              <div>
-                <p className="text-orchid-300">{t('arcade.score').toUpperCase()}</p>
-                <p className="text-white text-xs sm:text-sm">{String(hud.score).padStart(6, '0')}</p>
-              </div>
-              <div className="text-center">
-                <p className="text-azure-300">{t('arcade.best').toUpperCase()}</p>
-                <p className="text-white text-xs sm:text-sm">{String(Math.max(best, hud.score)).padStart(6, '0')}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-orchid-300">{t('arcade.level').toUpperCase()} {hud.level}</p>
-                <p className="text-white text-xs sm:text-sm tracking-widest">{'▲'.repeat(Math.max(hud.lives, 0)) || '—'}</p>
-              </div>
-            </div>
-
-            <div className="relative rounded-xl overflow-hidden border border-orchid-400/20">
-              <canvas
-                ref={canvasRef}
-                width={W}
-                height={H}
-                className="block w-full h-auto aspect-[3/4]"
-                onPointerDown={() => {
-                  if (statusRef.current !== 'playing') start();
-                }}
-              />
-
-              {/* Pantallas superpuestas */}
-              {status !== 'playing' && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-void/50 backdrop-blur-[2px] pointer-events-none">
-                  {status === 'idle' && (
-                    <>
-                      <p className="font-display text-4xl sm:text-5xl font-black text-gradient tracking-[0.1em] mb-2">{t('arcade.title').split(' ')[0]}</p>
-                      <p className="font-script text-4xl sm:text-5xl text-white mb-8">{t('arcade.title').split(' ').slice(1).join(' ')}</p>
-                    </>
-                  )}
-                  {status === 'over' && (
-                    <>
-                      <p className="font-pixel text-lg sm:text-xl text-orchid-200 mb-4">{t('arcade.gameover').toUpperCase()}</p>
-                      <p className="font-pixel text-xs text-white mb-8">{hud.score} pts</p>
-                    </>
-                  )}
-                  {status === 'paused' && (
-                    <p className="font-pixel text-lg text-azure-300 mb-8">{t('arcade.paused').toUpperCase()}</p>
-                  )}
-                  <p className="font-pixel text-[0.55rem] sm:text-[0.65rem] text-white animate-pulse leading-loose">
-                    {status === 'over' ? t('arcade.retry') : t('arcade.start')}
-                  </p>
-                  <p className="hidden sm:block mt-6 text-xs text-orchid-100/60 tracking-wider">{t('arcade.controls')}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Ficha del juego */}
+          <div className="lg:col-span-4 order-2 lg:order-1">
+            <p className="font-display uppercase text-6xl leading-[0.9]">
+              {t('arcade.title').split(' ')[0]}
+              <span className="block font-serif italic normal-case text-violet">{t('arcade.title').split(' ').slice(1).join(' ')}</span>
+            </p>
+            <div className="mt-8 border-t border-paper/20">
+              {[
+                ['←  →', t('arcade.move')],
+                ['SPACE', t('arcade.shoot')],
+                ['P', t('arcade.pausekey')],
+              ].map(([k, v]) => (
+                <div key={k} className="flex items-center justify-between py-3 border-b border-paper/20">
+                  <span className="tag bg-paper text-ink px-2 py-0.5">{k}</span>
+                  <span className="text-sm text-paper/60 text-right">{v}</span>
                 </div>
-              )}
+              ))}
             </div>
+            <div className="mt-8 grid grid-cols-3 gap-2 text-center">
+              {[
+                { label: 'Bee', pts: 50, color: 'bg-paper' },
+                { label: 'Butterfly', pts: 80, color: 'bg-cobalt' },
+                { label: 'Boss', pts: 150, color: 'bg-violet' },
+              ].map((e) => (
+                <div key={e.label} className="border border-paper/20 p-3">
+                  <span className={`inline-block w-4 h-4 rotate-45 ${e.color}`} />
+                  <p className="tag mt-2">{e.label}</p>
+                  <p className="font-display text-2xl">{e.pts}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            {/* Controles táctiles / botones */}
-            <div className="mt-4 grid grid-cols-4 gap-3">
-              <button aria-label="Left" className={`${touchBtn} h-14`} onPointerDown={hold('left', true)} onPointerUp={hold('left', false)} onPointerLeave={hold('left', false)} onPointerCancel={hold('left', false)}>
-                <ChevronLeft size={26} />
-              </button>
-              <button aria-label="Right" className={`${touchBtn} h-14`} onPointerDown={hold('right', true)} onPointerUp={hold('right', false)} onPointerLeave={hold('right', false)} onPointerCancel={hold('right', false)}>
-                <ChevronRight size={26} />
-              </button>
-              <button
-                aria-label={status === 'playing' ? t('arcade.paused') : t('arcade.play')}
-                className={`${touchBtn} h-14 border-white/30 bg-white/5`}
-                onClick={() => (status === 'playing' || status === 'paused' ? togglePause() : start())}
-              >
-                {status === 'playing' ? <Pause size={22} /> : <Play size={22} />}
-              </button>
-              <button
-                aria-label="Fire"
-                className={`${touchBtn} h-14 border-azure-400/50 bg-azure-400/15 active:bg-azure-400/40`}
-                onPointerDown={hold('fire', true)}
-                onPointerUp={hold('fire', false)}
-                onPointerLeave={hold('fire', false)}
-                onPointerCancel={hold('fire', false)}
-              >
-                <Crosshair size={24} />
-              </button>
+          <div className="lg:col-span-8 order-1 lg:order-2 relative">
+            <div className="absolute -top-4 right-6 w-32 h-5 stripes z-10" />
+            <div
+              ref={wrapperRef}
+              tabIndex={0}
+              aria-label={t('arcade.title')}
+              className="relative mx-auto max-w-[440px] border border-paper/40 bg-ink p-4 outline-none focus-visible:ring-2 focus-visible:ring-violet shadow-[10px_10px_0_#9b4dff]"
+            >
+              {/* HUD */}
+              <div className="grid grid-cols-3 mb-3 font-mono text-[0.65rem] uppercase tracking-widest">
+                <div>
+                  <p className="text-paper/50">{t('arcade.score')}</p>
+                  <p className="font-display text-2xl text-paper tracking-normal">{String(hud.score).padStart(6, '0')}</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-paper/50">{t('arcade.best')}</p>
+                  <p className="font-display text-2xl text-violet tracking-normal">{String(Math.max(best, hud.score)).padStart(6, '0')}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-paper/50">{t('arcade.level')} {hud.level}</p>
+                  <p className="font-display text-2xl text-paper tracking-normal">{'▲'.repeat(Math.max(hud.lives, 0)) || '—'}</p>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden border border-paper/20">
+                <canvas
+                  ref={canvasRef}
+                  width={W}
+                  height={H}
+                  className="block w-full h-auto aspect-[3/4]"
+                  onPointerDown={() => {
+                    if (statusRef.current !== 'playing') start();
+                  }}
+                />
+
+                {status !== 'playing' && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-ink/60 pointer-events-none">
+                    {status === 'idle' && (
+                      <p className="font-display uppercase text-6xl leading-[0.9] mb-6">
+                        {t('arcade.title').split(' ')[0]}
+                        <span className="block font-serif italic normal-case text-violet">{t('arcade.title').split(' ').slice(1).join(' ')}</span>
+                      </p>
+                    )}
+                    {status === 'over' && (
+                      <>
+                        <p className="font-display uppercase text-5xl mb-2"><span className="hl">{t('arcade.gameover')}</span></p>
+                        <p className="font-serif italic text-3xl mb-6">{hud.score} pts</p>
+                      </>
+                    )}
+                    {status === 'paused' && (
+                      <p className="font-display uppercase text-5xl mb-6">{t('arcade.paused')}</p>
+                    )}
+                    <p className="tag text-paper animate-pulse">
+                      {status === 'over' ? t('arcade.retry') : t('arcade.start')}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-4 grid grid-cols-4 gap-2">
+                <button aria-label="Left" className={`${touchBtn} h-14`} onPointerDown={hold('left', true)} onPointerUp={hold('left', false)} onPointerLeave={hold('left', false)} onPointerCancel={hold('left', false)}>
+                  <ChevronLeft size={26} />
+                </button>
+                <button aria-label="Right" className={`${touchBtn} h-14`} onPointerDown={hold('right', true)} onPointerUp={hold('right', false)} onPointerLeave={hold('right', false)} onPointerCancel={hold('right', false)}>
+                  <ChevronRight size={26} />
+                </button>
+                <button
+                  aria-label={status === 'playing' ? t('arcade.paused') : t('arcade.play')}
+                  className={`${touchBtn} h-14`}
+                  onClick={() => (status === 'playing' || status === 'paused' ? togglePause() : start())}
+                >
+                  {status === 'playing' ? <Pause size={22} /> : <Play size={22} />}
+                </button>
+                <button
+                  aria-label="Fire"
+                  className={`${touchBtn} h-14 bg-violet text-ink border-violet`}
+                  onPointerDown={hold('fire', true)}
+                  onPointerUp={hold('fire', false)}
+                  onPointerLeave={hold('fire', false)}
+                  onPointerCancel={hold('fire', false)}
+                >
+                  <Crosshair size={24} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

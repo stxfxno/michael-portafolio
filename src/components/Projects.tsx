@@ -1,4 +1,4 @@
-import { Code, ExternalLink, Github, Terminal, Calendar, Monitor, Cpu, FileCode } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -19,108 +19,70 @@ interface Project {
   };
 }
 
-const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
   const { t } = useLanguage();
-
-  // Get icon based on technologies
-  const getProjectIcon = () => {
-    if (project.technologies.includes('Android Studio') || project.technologies.includes('Kotlin')) {
-      return <Monitor size={18} className="text-azure-300" />;
-    } else if (project.technologies.includes('React') || project.technologies.includes('Angular')) {
-      return <Code size={18} className="text-orchid-300" />;
-    } else if (project.technologies.includes('Python')) {
-      return <Terminal size={18} className="text-azure-300" />;
-    } else if (project.technologies.includes('Java')) {
-      return <Cpu size={18} className="text-orchid-300" />;
-    } else {
-      return <FileCode size={18} className="text-white" />;
-    }
-  };
+  const flip = index % 2 === 1;
 
   return (
-    <div className="glass-card group h-full overflow-hidden flex flex-col">
-      <div className="relative h-56 overflow-hidden rounded-t-[1.25rem]">
-        <img
-          src={project.image}
-          alt={`Captura de ${project.title}`}
-          loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-orchid-600/30 to-azure-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
-        <span className="absolute top-3 right-5 font-display text-5xl font-black text-white/15 group-hover:text-white/40 transition-colors duration-500">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <div className="absolute bottom-3 left-5 flex items-center gap-2 text-orchid-100">
-          <Calendar size={13} />
-          <span className="label-wide">{project.period}</span>
+    <article className="group grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-12 border-t border-paper/20 items-center">
+      {/* Imagen */}
+      <div className={`lg:col-span-6 relative ${flip ? 'lg:order-2' : ''}`}>
+        <div className="relative aspect-[16/10] overflow-hidden border border-paper/15">
+          <img
+            src={project.image}
+            alt={`Captura de ${project.title}`}
+            loading="lazy"
+            className="photo w-full h-full object-cover group-hover:scale-105"
+          />
         </div>
+        <div className={`absolute -bottom-3 ${flip ? '-left-3' : '-right-3'} w-1/2 h-5 bg-violet origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+        <span className={`absolute -top-5 ${flip ? 'right-3' : 'left-3'} tag bg-paper text-ink px-2 py-1`}>{project.period}</span>
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="p-2 rounded-xl bg-orchid-500/15 border border-orchid-400/25">{getProjectIcon()}</span>
-          <h3 className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white group-hover:text-orchid-100 transition-colors">{project.title}</h3>
+      {/* Texto */}
+      <div className={`lg:col-span-6 ${flip ? 'lg:order-1' : ''}`}>
+        <div className="flex items-start gap-5 mb-4">
+          <span className="font-display text-6xl sm:text-7xl leading-none outline-violet group-hover:text-violet transition-colors duration-500">
+            {String(index + 1).padStart(2, '0')}.
+          </span>
+          <h3 className="font-display uppercase text-4xl sm:text-5xl leading-[0.95] pt-1">
+            <span className="group-hover:hl">{project.title}</span>
+          </h3>
         </div>
 
-        <p className="text-orchid-50/70 font-light leading-relaxed mb-5">{project.description}</p>
+        <p className="text-paper/70 leading-relaxed mb-5 max-w-xl">{project.description}</p>
 
-        <div className="flex flex-wrap gap-2 mb-5 mt-auto">
-          {project.technologies.map((tech) => (
-            <span key={tech} className="chip">
-              {tech}
-            </span>
-          ))}
-        </div>
+        <p className="tag text-paper/50 mb-6">
+          {project.technologies.join('  /  ')}
+        </p>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-6">
           {project.links.live && (
-            <a
-              href={project.links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-wide inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orchid-600 to-azure-600 text-white hover:shadow-[0_0_25px_-5px_#a960ff] transition-all"
-            >
-              <ExternalLink size={13} />
-              {project.viewnow ? t('projects.viewnow') : t('projects.demo')}
+            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="link-arrow">
+              {project.viewnow ? t('projects.viewnow') : t('projects.demo')} <ArrowUpRight size={14} />
             </a>
           )}
           {project.links.github && (
-            <a
-              href={project.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-wide inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orchid-400/40 text-orchid-100 hover:border-azure-400 hover:text-azure-300 transition-all"
-            >
-              <Github size={13} />
-              {t('projects.repository')}
+            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="link-arrow">
+              {t('projects.repository')} <ArrowUpRight size={14} />
             </a>
           )}
           {project.links.figma && (
-            <a
-              href={project.links.figma}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-wide inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orchid-400/40 text-orchid-100 hover:border-azure-400 hover:text-azure-300 transition-all"
-            >
-              <Code size={13} />
-              {t('projects.figma')}
+            <a href={project.links.figma} target="_blank" rel="noopener noreferrer" className="link-arrow">
+              {t('projects.figma')} <ArrowUpRight size={14} />
             </a>
           )}
           {project.links.resources && (
-            <a
-              href={project.links.resources}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-wide inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orchid-400/40 text-orchid-100 hover:border-azure-400 hover:text-azure-300 transition-all"
-            >
-              <ExternalLink size={13} />
-              {t('projects.resources')}
+            <a href={project.links.resources} target="_blank" rel="noopener noreferrer" className="link-arrow">
+              {t('projects.resources')} <ArrowUpRight size={14} />
             </a>
+          )}
+          {!project.links.live && !project.links.github && !project.links.resources && !project.links.figma && (
+            <span className="font-hand text-cobalt text-lg">{t('projects.private')}</span>
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -247,33 +209,34 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-24 scroll-mt-20">
-      <div className="max-w-6xl mx-auto">
-        <SectionTitle
-          kicker={t('kicker.projects')}
-          title={t('projects.title')}
-          subtitle={t('projects.description')}
-        />
+    <section id="projects" className="py-24 scroll-mt-10">
+      <SectionTitle
+        number="02."
+        title={t('projects.bigtitle')}
+        subtitle={t('projects.description')}
+        note={t('projects.note')}
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <Reveal key={project.title} delay={(index % 2) * 120} className="h-full">
-              <ProjectCard project={project} index={index} />
-            </Reveal>
-          ))}
-        </div>
+      <div>
+        {projects.map((project, index) => (
+          <Reveal key={project.title}>
+            <ProjectRow project={project} index={index} />
+          </Reveal>
+        ))}
+      </div>
 
-        <Reveal className="text-center mt-16 flex flex-col sm:flex-row justify-center gap-4">
-          <a href="https://github.com/stxfxno" target="_blank" rel="noopener noreferrer" className="btn-ghost">
-            <Github size={16} />
+      <Reveal className="mt-10 pt-10 border-t border-paper/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+        <p className="font-serif italic text-3xl">{t('projects.more.text')}</p>
+        <div className="flex flex-wrap gap-4">
+          <a href="https://github.com/stxfxno" target="_blank" rel="noopener noreferrer" className="btn-line">
+            <Github size={14} />
             {t('projects.see.github')}
           </a>
-          <a href="/more-projects" className="btn-glow">
-            <Code size={16} />
-            {t('projects.see.more')}
+          <a href="/more-projects" className="btn-ink">
+            {t('projects.see.more')} <ArrowUpRight size={14} />
           </a>
-        </Reveal>
-      </div>
+        </div>
+      </Reveal>
     </section>
   );
 };
