@@ -2,7 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Crosshair, Pause, Play } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import Reveal from './Reveal';
+import Leaderboard from './Leaderboard';
 import { useLanguage } from '../context/LanguageContext';
+import { scoresEnabled, submitScore } from '../lib/galaxyScores';
 
 // ── Configuración del juego ─────────────────────────────────
 const W = 480;
@@ -516,6 +518,18 @@ const GalagaGame = () => {
   const [best, setBest] = useState(() => readBest(diffRef.current));
   const bestRef = useRef(best);
 
+  // Guardar el puntaje en el top al terminar
+  const [playerName, setPlayerName] = useState(() => {
+    try {
+      return localStorage.getItem('galaga-name') || '';
+    } catch {
+      return '';
+    }
+  });
+  const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [boardDiff, setBoardDiff] = useState<Difficulty>(difficulty);
+  const [refreshKey, setRefreshKey] = useState(0);
+
   const selectDifficulty = useCallback((d: Difficulty) => {
     diffRef.current = d;
     setDifficulty(d);
@@ -540,6 +554,7 @@ const GalagaGame = () => {
       if (d) selectDifficulty(d);
       stateRef.current = newGame(diffRef.current);
       setHud({ score: 0, lives: START_LIVES, level: 1 });
+      setSaveState('idle');
     }
     changeStatus('playing');
     wrapperRef.current?.focus({ preventScroll: true });
@@ -550,11 +565,37 @@ const GalagaGame = () => {
     else if (statusRef.current === 'paused') changeStatus('playing');
   }, [changeStatus]);
 
+  // Al perder, la tabla muestra la dificultad que se acaba de jugar
+  useEffect(() => {
+    if (status === 'over') setBoardDiff(stateRef.current.diff);
+  }, [status]);
+
+  const saveScore = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = playerName.trim();
+    if (!name || saveState === 'saving' || saveState === 'saved') return;
+    setSaveState('saving');
+    try {
+      localStorage.setItem('galaga-name', name);
+    } catch {
+      /* almacenamiento no disponible */
+    }
+    try {
+      await submitScore({ name, score: hud.score, difficulty: stateRef.current.diff, level: hud.level });
+      setSaveState('saved');
+      setRefreshKey((k) => k + 1);
+    } catch {
+      setSaveState('error');
+    }
+  };
+
   // Teclado: solo cuando el juego tiene el foco, para no bloquear el scroll de la página
   useEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
     const down = (e: KeyboardEvent) => {
+      // No interferir mientras se escribe el nombre
+      if ((e.target as HTMLElement).tagName === 'INPUT') return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'a', 'd', 'A', 'D'].includes(e.key)) e.preventDefault();
       // Fuera de partida: flechas o 1-4 para elegir dificultad
       if (statusRef.current === 'idle' || statusRef.current === 'over') {
@@ -572,6 +613,7 @@ const GalagaGame = () => {
       if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') togglePause();
     };
     const up = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement).tagName === 'INPUT') return;
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysRef.current.left = false;
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysRef.current.right = false;
       if (e.key === ' ') keysRef.current.fire = false;
@@ -1290,8 +1332,34 @@ const GalagaGame = () => {
                       </p>
                     ) : (
                       <>
-                        <p className="font-display uppercase text-5xl mb-1"><span className="hl">{t('arcade.gameover')}</span></p>
-                        <p className="font-serif italic text-3xl mb-5">{hud.score} pts</p>
+                        <p className="font-display uppercase text-4xl sm:text-5xl mb-1"><span className="hl">{t('arcade.gameover')}</span></p>
+                        <p className="font-serif italic text-3xl mb-3">{hud.score} pts</p>
+                        {scoresEnabled && hud.score > 0 && (
+                          saveState === 'saved' ? (
+                            <p className="font-hand text-xl text-violet mb-4">{es ? '¡Guardado en el top! ↓' : 'Saved to the top! ↓'}</p>
+                          ) : (
+                            <form onSubmit={saveScore} className="flex w-full max-w-[18rem] mb-4">
+                              <input
+                                value={playerName}
+                                onChange={(e) => setPlayerName(e.target.value.slice(0, 16))}
+                                maxLength={16}
+                                placeholder={es ? 'Tu nombre' : 'Your name'}
+                                aria-label={es ? 'Tu nombre' : 'Your name'}
+                                className="flex-1 min-w-0 bg-transparent border-2 border-paper/60 border-r-0 px-3 py-2 font-display uppercase text-lg text-paper placeholder-paper/30 focus:outline-none focus:border-violet"
+                              />
+                              <button
+                                type="submit"
+                                disabled={!playerName.trim() || saveState === 'saving'}
+                                className="tag px-3 bg-paper text-ink hover:bg-violet disabled:opacity-40 transition-colors"
+                              >
+                                {saveState === 'saving' ? '…' : es ? 'Guardar' : 'Save'}
+                              </button>
+                            </form>
+                          )
+                        )}
+                        {saveState === 'error' && (
+                          <p className="text-xs text-paper/70 -mt-2 mb-3">{es ? 'No se pudo guardar, intenta de nuevo.' : 'Could not save, try again.'}</p>
+                        )}
                       </>
                     )}
 
@@ -1316,7 +1384,9 @@ const GalagaGame = () => {
                     <p className="tag text-paper/60 mt-4 animate-pulse">
                       {es ? 'Toca una dificultad o presiona ESPACIO' : 'Tap a difficulty or press SPACE'}
                     </p>
-                    <p className="text-xs text-paper/50 mt-2">{es ? '5 vidas para empezar' : 'You start with 5 lives'}</p>
+                    {status === 'idle' && (
+                      <p className="text-xs text-paper/50 mt-2">{es ? '5 vidas para empezar' : 'You start with 5 lives'}</p>
+                    )}
                   </div>
                 )}
               </div>
@@ -1349,6 +1419,13 @@ const GalagaGame = () => {
             </div>
           </div>
         </div>
+
+        <Leaderboard
+          difficulty={boardDiff}
+          onDifficultyChange={setBoardDiff}
+          refreshKey={refreshKey}
+          highlightName={saveState === 'saved' ? playerName.trim() : undefined}
+        />
       </Reveal>
     </section>
   );

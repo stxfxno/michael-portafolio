@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 user@gmail.com
 123456
+
+# Variables de entorno locales
+.env
