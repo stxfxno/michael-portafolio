@@ -1,46 +1,14 @@
 import { Code, ExternalLink, Github, Calendar, Terminal, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionTitle from './SectionTitle';
-import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Reveal from './Reveal';
+import CosmicBackground from './CosmicBackground';
 import { useLanguage } from '../context/LanguageContext';
 
 const MoreProjects = () => {
-  const [darkMode, setDarkMode] = useState(true);
   const { t, language } = useLanguage();
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // Actualizar la clase en el documento para mantener consistencia
-    if (darkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    }
-  };
-
-  // Efecto para sincronizar el modo oscuro con el cuerpo del documento al cargar
-  useEffect(() => {
-    // Intentar obtener el modo oscuro guardado en localStorage si existe
-    const savedDarkMode = localStorage.getItem('darkMode');
-    
-    if (savedDarkMode !== null) {
-      const isDark = savedDarkMode === 'true';
-      setDarkMode(isDark);
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } else {
-      // Si no hay preferencia guardada, verificar la clase actual
-      const isDark = document.documentElement.classList.contains('dark');
-      setDarkMode(isDark);
-    }
-  }, []);
 
   // Proyectos con contenido condicional según el idioma
   const additionalProjects = language === 'es' ? [
@@ -50,7 +18,7 @@ const MoreProjects = () => {
       period: "2026 (marzo)",
       technologies: ["React", "TypeScript", "Tailwind"],
       image: "/images/wkonegocios_web.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://wko-negocios-landing.vercel.app/"
@@ -62,7 +30,7 @@ const MoreProjects = () => {
       period: "2025 (febrero)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
       image: "/images/chat_app_platform.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       inactive: true,
       links: {
         live: "https://chat-platform-stefdev.netlify.app/login",
@@ -75,7 +43,7 @@ const MoreProjects = () => {
       period: "2025 (marzo)",
       technologies: ["React", "Typescript", "Tailwind"],
       image: "/images/grupo6.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://metodo-frances-grupo6.netlify.app/login",
         github: "https://github.com/stxfxno/grupo-6-finanzas"
@@ -88,7 +56,7 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Mi novia"],
       inactive: true,
       image: "/images/una_distancia_corta.webp",
-      icon: <Code className="text-purple-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://unadistanciacorta.netlify.app/",
         github: "https://github.com/stxfxno/una-distancia-corta"
@@ -100,7 +68,7 @@ const MoreProjects = () => {
       period: "2024 (agosto-septiembre)",
       technologies: ["React", "Tailwind", "Typescript", "Vite"],
       image: "/images/matricula_upc.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://matricula-upc-stefdev.netlify.app/",
@@ -113,7 +81,7 @@ const MoreProjects = () => {
       period: "2025 (abril)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
       image: "/images/aqua_conecta.webp", // Usa una imagen existente como fallback
-      icon: <Code className="text-yellow-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
         github: "https://github.com/stxfxno/Listify"
@@ -137,7 +105,7 @@ const MoreProjects = () => {
       period: "2024 (febrero)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
       image: "/images/listify.webp", // Usa una imagen existente como fallback
-      icon: <Terminal className="text-yellow-500 mr-2" size={18} />,
+      icon: <Terminal className="text-azure-300 mr-3 shrink-0" size={20} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
       }
@@ -148,7 +116,7 @@ const MoreProjects = () => {
       period: "2024 (octubre-noviembre)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
       image: "/images/tiu_fake_v1.webp", // Usa una imagen existente como fallback
-      icon: <Code className="text-green-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
       }
@@ -159,7 +127,7 @@ const MoreProjects = () => {
       period: "2024 (julio)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
       image: "/images/generador_horarios.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
@@ -172,7 +140,7 @@ const MoreProjects = () => {
       period: "2026 (March)",
       technologies: ["React", "TypeScript", "Tailwind"],
       image: "/images/wkonegocios_web.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://wko-negocios-landing.vercel.app/"
@@ -184,7 +152,7 @@ const MoreProjects = () => {
       period: "2025 (February)",
       technologies: ["React", "NestJS", "Supabase", "TypeScript", "WebSockets"],
       image: "/images/chat_app_platform.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       inactive: true,
       links: {
         live: "https://chat-platform-stefdev.netlify.app/login",
@@ -197,7 +165,7 @@ const MoreProjects = () => {
       period: "2025 (March)",
       technologies: ["React", "Typescript", "Tailwind"],
       image: "/images/grupo6.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://metodo-frances-grupo6.netlify.app/login",
         github: "https://github.com/stxfxno/grupo-6-finanzas"
@@ -210,7 +178,7 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "My girlfriend"],
       inactive: true,
       image: "/images/una_distancia_corta.webp",
-      icon: <Code className="text-purple-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://unadistanciacorta.netlify.app/",
         github: "https://github.com/stxfxno/una-distancia-corta"
@@ -222,7 +190,7 @@ const MoreProjects = () => {
       period: "2024 (August-September)",
       technologies: ["React", "Tailwind", "Typescript", "Vite"],
       image: "/images/matricula_upc.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://matricula-upc-stefdev.netlify.app/",
@@ -235,7 +203,7 @@ const MoreProjects = () => {
       period: "2025 (April)",
       technologies: ["HTML", "CSS", "JS", "Figma"],
       image: "/images/aqua_conecta.webp", // Usa una imagen existente como fallback
-      icon: <Code className="text-yellow-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live:"https://aquaconecta.netlify.app/",
         github: "https://github.com/stxfxno/Listify"
@@ -248,7 +216,7 @@ const MoreProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Figma"],
       primaryLanguage: "JavaScript",
       image: "/images/manage_wise.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         live: "https://manage-wise.netlify.app/",
         github: "https://github.com/DisenoDeExperimentos-4436-Grupo3/landing-page"
@@ -260,7 +228,7 @@ const MoreProjects = () => {
       period: "2024 (February)",
       technologies: ["Python", "YouTube API", "FFmpeg", "Requests"],
       image: "/images/listify.webp",
-      icon: <Terminal className="text-yellow-500 mr-2" size={18} />,
+      icon: <Terminal className="text-azure-300 mr-3 shrink-0" size={20} />,
       links: {
         github: "https://github.com/stxfxno/Listify"
       }
@@ -271,7 +239,7 @@ const MoreProjects = () => {
       period: "2024 (October-November)",
       technologies: ["Android Studio", "Kotlin", "XML", "ZXing"],
       image: "/images/tiu_fake_v1.webp",
-      icon: <Code className="text-green-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       links: {
         resources: "https://drive.google.com/drive/folders/17J6zYYErU9Eb1igGqsxbPsz09T2Pio_R?usp=sharing"
       }
@@ -282,7 +250,7 @@ const MoreProjects = () => {
       period: "2024 (July)",
       technologies: ["HTML", "CSS", "JavaScript", "Canvas API"],
       image: "/images/generador_horarios.webp",
-      icon: <Code className="text-blue-500 mr-2" size={18} />,
+      icon: <Code className="text-orchid-300 mr-3 shrink-0" size={20} />,
       viewnow: true,
       links: {
         live: "https://stefware-upc-horarios.netlify.app/"
@@ -291,16 +259,14 @@ const MoreProjects = () => {
   ];
 
   return (
-    <div className={darkMode ? 'dark' : ''}>
-      <div className="bg-light-bg dark:bg-gray-900 text-light-text dark:text-white min-h-screen">
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    <div className="relative bg-void text-white min-h-screen overflow-x-clip">
+      <CosmicBackground />
+      <div className="relative z-10">
+        <Navbar />
         <section className="py-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex items-center justify-end mb-2">
-              <Link
-                to="/"
-                className="flex items-center text-light-text-secondary dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
-              >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="flex items-center justify-end mb-6">
+              <Link to="/" className="label-wide flex items-center text-orchid-100 hover:text-azure-300 transition-colors">
                 <span className="mr-2">←</span>
                 {t('back.to.home')}
               </Link>
@@ -310,93 +276,74 @@ const MoreProjects = () => {
               title={t('moreprojects.title')}
               subtitle={t('moreprojects.description')}
             />
-            
-            <div className="space-y-8">
+
+            <div className="space-y-10">
               {additionalProjects.map((project, index) => (
-                <div
-                  key={index}
-                  className="bg-light-card dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-light-border dark:border-gray-700"
-                >
-                  <div className="flex flex-col md:flex-row">
-                    {/* Imagen a la izquierda - ahora más grande (2/5 del ancho) */}
-                    <div className="relative md:w-2/5">
-                      <img
-                        src={project.image}
-                        alt={`Captura de ${project.title}`}
-                        className="w-full h-72 md:h-80 object-cover object-center"
-                      />
-                      <div className="absolute left-4 bottom-4 bg-black/50 text-white px-3 py-1 rounded-full flex items-center text-sm">
-                        <Calendar size={14} className="mr-2" />
-                        {project.period}
-                      </div>
-                    </div>
-
-                    {/* Contenido a la derecha */}
-                    <div className="p-6 md:w-3/5">
-                      <div className="flex items-start justify-between mb-3 gap-3">
-                        <div className="flex items-center">
-                          {project.icon}
-                          <h3 className="text-xl font-semibold text-light-text dark:text-white">{project.title}</h3>
+                <Reveal key={index}>
+                  <div className="glass-card group overflow-hidden">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="relative md:w-2/5 overflow-hidden md:rounded-l-[1.25rem] rounded-t-[1.25rem] md:rounded-tr-none">
+                        <img
+                          src={project.image}
+                          alt={`Captura de ${project.title}`}
+                          loading="lazy"
+                          className="w-full h-72 md:h-full md:min-h-[20rem] object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent" />
+                        <div className="absolute left-4 bottom-4 px-3 py-1.5 rounded-full bg-void/70 border border-orchid-400/30 flex items-center gap-2 text-orchid-100">
+                          <Calendar size={13} />
+                          <span className="label-wide">{project.period}</span>
                         </div>
-                        {project.inactive && (
-                          <span className="inline-flex items-center gap-1.5 shrink-0 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-700">
-                            <AlertCircle size={12} />
-                            {language === 'es' ? 'Inactivo · Costos de producción' : 'Inactive · Production costs'}
-                          </span>
-                        )}
                       </div>
 
-                      <p className="text-light-text-secondary dark:text-gray-300 mb-4 whitespace-pre-line">{project.description}</p>
+                      <div className="p-7 md:w-3/5">
+                        <div className="flex items-start justify-between mb-4 gap-3">
+                          <div className="flex items-center">
+                            {project.icon}
+                            <h3 className="font-serif text-2xl font-bold tracking-wider text-white">{project.title}</h3>
+                          </div>
+                          {project.inactive && (
+                            <span className="label-wide inline-flex items-center gap-1.5 shrink-0 px-3 py-1 rounded-full bg-white/5 text-white/70 border border-white/20">
+                              <AlertCircle size={12} />
+                              {language === 'es' ? 'Inactivo · Costos de producción' : 'Inactive · Production costs'}
+                            </span>
+                          )}
+                        </div>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-3 py-1 bg-gray-50 dark:bg-gray-700 text-light-text-secondary dark:text-gray-200 rounded-full text-xs border border-gray-200 dark:border-gray-600"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-3 mt-6">
-                        {project.links.live && (
-                          <a
-                            href={project.links.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors shadow-sm"
-                          >
-                            <ExternalLink size={16} />
-                            {project.viewnow ? t('projects.viewnow') : t('projects.demo')}
-                          </a>
-                        )}
-                        {project.links.github && (
-                          <a
-                            href={project.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-gray-700 dark:bg-gray-700 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors shadow-sm"
-                          >
-                            <Github size={16} />
-                            {t('projects.repository')}
-                          </a>
-                        )}
-                        {project.links.resources && (
-                          <a
-                            href={project.links.resources}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors shadow-sm"
-                          >
-                            <ExternalLink size={16} />
-                            {t('projects.resources')}
-                          </a>
-                        )}
+                        <p className="text-orchid-50/70 font-light leading-relaxed mb-5 whitespace-pre-line">{project.description}</p>
+
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.technologies.map((tech, techIndex) => (
+                            <span key={techIndex} className="chip">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                          {project.links.live && (
+                            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="btn-glow !px-5 !py-2.5">
+                              <ExternalLink size={14} />
+                              {project.viewnow ? t('projects.viewnow') : t('projects.demo')}
+                            </a>
+                          )}
+                          {project.links.github && (
+                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="btn-ghost !px-5 !py-2.5">
+                              <Github size={14} />
+                              {t('projects.repository')}
+                            </a>
+                          )}
+                          {project.links.resources && (
+                            <a href={project.links.resources} target="_blank" rel="noopener noreferrer" className="btn-ghost !px-5 !py-2.5">
+                              <ExternalLink size={14} />
+                              {t('projects.resources')}
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>

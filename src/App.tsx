@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
@@ -9,52 +8,23 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MoreProjects from './components/MoreProjects';
+import GalagaGame from './components/GalagaGame';
+import CosmicBackground from './components/CosmicBackground';
 import { LanguageProvider } from './context/LanguageContext';
 
 const HomePage = () => {
-  const [darkMode, setDarkMode] = useState(true);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // Actualizar la clase en el documento para mantener consistencia
-    if (darkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    }
-  };
-  
-  // Inicializar el tema al cargar la página
-  useState(() => {
-    // Intentar leer la preferencia guardada
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode !== null) {
-      setDarkMode(savedDarkMode === 'true');
-      if (savedDarkMode === 'true') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } else {
-      // Si no hay preferencia guardada, usar el tema predeterminado (dark: true)
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    }
-  });
-
   return (
-    <div className={darkMode ? 'dark' : ''}>
-      <div className={`bg-light-bg dark:bg-gray-900 text-light-text dark:text-white min-h-screen${!darkMode ? ' light-bg-wrapper' : ''}`}>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        {/* Contenedor principal con margen más pequeño en móvil */}
+    <div className="relative bg-void text-white min-h-screen overflow-x-clip">
+      <CosmicBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Hero />
           <Projects />
           <Skills />
           <Experience />
           <Education />
+          <GalagaGame />
           <Contact />
         </div>
         <Footer />
@@ -63,7 +33,6 @@ const HomePage = () => {
   );
 };
 
-// La ruta MoreProjects ahora hereda el tema oscuro del componente MoreProjects
 const App = () => {
   return (
     <LanguageProvider>

@@ -138,6 +138,32 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.tech': 'Tecnologías Utilizadas',
     'footer.rights': 'Todos los derechos reservados.',
     
+    // Arcade
+    'nav.arcade': 'Arcade',
+    'arcade.kicker': 'Zona de descanso',
+    'arcade.title': 'Galaxia Púrpura',
+    'arcade.subtitle': 'Un pequeño homenaje a Galaga. Defiende la galaxia de los bugs invasores.',
+    'arcade.start': 'Presiona ESPACIO o toca para jugar',
+    'arcade.controls': '← → para moverte · ESPACIO para disparar · P para pausar',
+    'arcade.gameover': 'Fin del juego',
+    'arcade.paused': 'Pausa',
+    'arcade.score': 'Puntos',
+    'arcade.best': 'Récord',
+    'arcade.level': 'Nivel',
+    'arcade.lives': 'Vidas',
+    'arcade.wave': 'Oleada',
+    'arcade.retry': 'Jugar de nuevo',
+    'arcade.play': 'Jugar',
+
+    // Kickers
+    'kicker.projects': 'Obras seleccionadas',
+    'kicker.skills': 'El arsenal',
+    'kicker.experience': 'La trayectoria',
+    'kicker.education': 'Formación',
+    'kicker.contact': 'Hablemos',
+    'hero.scroll': 'Desliza',
+    'hero.greeting': 'Bienvenido a mi universo',
+
     // Common
     'back.to.home': 'Volver al inicio',
   },
@@ -271,6 +297,32 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.made': 'Made with',
     'footer.and': 'and',
     
+    // Arcade
+    'nav.arcade': 'Arcade',
+    'arcade.kicker': 'Break zone',
+    'arcade.title': 'Purple Galaxy',
+    'arcade.subtitle': 'A tiny tribute to Galaga. Defend the galaxy from invading bugs.',
+    'arcade.start': 'Press SPACE or tap to play',
+    'arcade.controls': '← → to move · SPACE to shoot · P to pause',
+    'arcade.gameover': 'Game over',
+    'arcade.paused': 'Paused',
+    'arcade.score': 'Score',
+    'arcade.best': 'Best',
+    'arcade.level': 'Level',
+    'arcade.lives': 'Lives',
+    'arcade.wave': 'Wave',
+    'arcade.retry': 'Play again',
+    'arcade.play': 'Play',
+
+    // Kickers
+    'kicker.projects': 'Selected works',
+    'kicker.skills': 'The arsenal',
+    'kicker.experience': 'The journey',
+    'kicker.education': 'Background',
+    'kicker.contact': "Let's talk",
+    'hero.scroll': 'Scroll',
+    'hero.greeting': 'Welcome to my universe',
+
     // Common
     'back.to.home': 'Back to Home',
   }

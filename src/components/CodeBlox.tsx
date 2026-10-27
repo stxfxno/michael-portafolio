@@ -34,7 +34,7 @@ const CodeBlock = ({
     
     if (keywords.includes(nextWord) && index === line.indexOf(nextWord)) {
       return (
-        <span key={index} className="text-purple-600 dark:text-purple-400">
+        <span key={index} className="text-orchid-300">
           {nextWord}
         </span>
       );
@@ -42,17 +42,17 @@ const CodeBlock = ({
     
     // Paréntesis, corchetes y llaves
     if (/[{}()[\]]/.test(char)) {
-      return <span key={index} className="text-yellow-600 dark:text-yellow-400">{char}</span>;
+      return <span key={index} className="text-white">{char}</span>;
     }
     
     // Comillas para strings
     if (/["'`]/.test(char)) {
-      return <span key={index} className="text-green-600 dark:text-green-400">{char}</span>;
+      return <span key={index} className="text-azure-300">{char}</span>;
     }
     
     // Operadores y puntuación
     if (/[:.;,=+\-*/<>]/.test(char)) {
-      return <span key={index} className="text-gray-600 dark:text-gray-400">{char}</span>;
+      return <span key={index} className="text-orchid-100/50">{char}</span>;
     }
     
     // Detección de strings completos
@@ -61,34 +61,34 @@ const CodeBlock = ({
       (line.indexOf("'", index) > index && line.lastIndexOf("'", index - 1) !== -1) ||
       (line.indexOf('`', index) > index && line.lastIndexOf('`', index - 1) !== -1)
     ) {
-      return <span key={index} className="text-green-600 dark:text-green-400">{char}</span>;
+      return <span key={index} className="text-azure-300">{char}</span>;
     }
     
     // Default
-    return <span key={index} className="text-gray-800 dark:text-gray-200">{char}</span>;
+    return <span key={index} className="text-orchid-50/90">{char}</span>;
   };
   
   return (
-    <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
+    <div className="rounded-2xl overflow-hidden border border-orchid-400/30 shadow-[0_30px_80px_-30px_rgba(147,51,234,0.8)] backdrop-blur-xl">
       {/* File header */}
-      <div className="bg-gray-100 dark:bg-gray-800 px-4 py-2 flex justify-between items-center">
+      <div className="bg-gradient-to-r from-orchid-900/80 to-azure-600/20 border-b border-orchid-400/20 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-          <span className="text-gray-700 dark:text-gray-300 text-sm font-medium ml-2">{fileName}</span>
+          <div className="w-3 h-3 rounded-full bg-orchid-400 mr-2"></div>
+          <div className="w-3 h-3 rounded-full bg-white/80 mr-2"></div>
+          <div className="w-3 h-3 rounded-full bg-azure-400 mr-2"></div>
+          <span className="text-orchid-100/80 text-sm ml-2 font-mono">{fileName}</span>
         </div>
         <button
           onClick={handleCopy}
-          className="text-xs bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-2 py-1 rounded transition-colors duration-200 text-gray-700 dark:text-gray-300"
+          className="text-xs px-3 py-1 rounded-full border border-orchid-400/40 text-orchid-100 hover:bg-orchid-500/20 transition-colors duration-200"
         >
           {isCopied ? 'Copiado!' : 'Copiar'}
         </button>
       </div>
       
       {/* Code content */}
-      <div className="bg-white dark:bg-gray-900 overflow-x-auto">
-        <pre className="p-4 text-sm font-mono text-gray-800 dark:text-gray-200">
+      <div className="bg-void/85 overflow-x-auto">
+        <pre className="p-4 text-sm font-mono text-orchid-50">
           <code className="table w-full">
             {lines.map((line, lineIndex) => {
               // Procesamiento de la línea para resaltado de sintaxis
@@ -110,7 +110,7 @@ const CodeBlock = ({
                       (i === 0 || /\s|[{([]/.test(line[i-1])) && 
                       (i + keyword.length === line.length || /\s|[}),:;=]/.test(line[i + keyword.length]))) {
                     processedLine.push(
-                      <span key={`${lineIndex}-${i}`} className="text-purple-600 dark:text-purple-400">
+                      <span key={`${lineIndex}-${i}`} className="text-orchid-300">
                         {keyword}
                       </span>
                     );
@@ -141,7 +141,7 @@ const CodeBlock = ({
                   
                   if (endQuotePos !== -1) {
                     processedLine.push(
-                      <span key={`${lineIndex}-${i}`} className="text-green-600 dark:text-green-400">
+                      <span key={`${lineIndex}-${i}`} className="text-azure-300">
                         {line.substring(i, endQuotePos + 1)}
                       </span>
                     );
@@ -153,7 +153,7 @@ const CodeBlock = ({
                 // Procesar corchetes, llaves, paréntesis
                 if (/[{}()[\]]/.test(line[i])) {
                   processedLine.push(
-                    <span key={`${lineIndex}-${i}`} className="text-yellow-600 dark:text-yellow-400">
+                    <span key={`${lineIndex}-${i}`} className="text-white">
                       {line[i]}
                     </span>
                   );
@@ -163,7 +163,7 @@ const CodeBlock = ({
                 // Procesar puntuación y operadores
                 if (/[:.;,=+\-*/<>]/.test(line[i])) {
                   processedLine.push(
-                    <span key={`${lineIndex}-${i}`} className="text-gray-600 dark:text-gray-400">
+                    <span key={`${lineIndex}-${i}`} className="text-orchid-100/50">
                       {line[i]}
                     </span>
                   );
@@ -172,7 +172,7 @@ const CodeBlock = ({
                 
                 // Todo lo demás (identificadores, números, etc.)
                 processedLine.push(
-                  <span key={`${lineIndex}-${i}`} className="text-gray-800 dark:text-gray-200">
+                  <span key={`${lineIndex}-${i}`} className="text-orchid-50/90">
                     {line[i]}
                   </span>
                 );
@@ -181,7 +181,7 @@ const CodeBlock = ({
               return (
                 <div key={lineIndex} className="table-row">
                   {showLineNumbers && (
-                    <span className="table-cell text-right pr-4 select-none text-gray-400 dark:text-gray-600 w-10">
+                    <span className="table-cell text-right pr-4 select-none text-orchid-100/25 w-10 whitespace-nowrap">
                       {lineIndex + 1}
                     </span>
                   )}

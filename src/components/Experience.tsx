@@ -1,5 +1,6 @@
 import { Briefcase, ExternalLink, Code, GraduationCap, MapPin } from 'lucide-react';
 import SectionTitle from './SectionTitle';
+import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ExperienceItem {
@@ -15,24 +16,21 @@ interface ExperienceItem {
 const typeConfig = {
   fulltime: {
     label: { es: 'Tiempo Completo', en: 'Full Time' },
-    className: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700',
-    icon: <Briefcase size={14} />,
-    accent: 'border-blue-500',
-    dot: 'bg-blue-500',
+    className: 'bg-azure-400/10 text-azure-300 border border-azure-400/40',
+    icon: <Briefcase size={13} />,
+    dot: 'bg-azure-400 shadow-[0_0_10px_#38bdf8]',
   },
   freelance: {
     label: { es: 'Freelance', en: 'Freelance' },
-    className: 'bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-700',
-    icon: <Code size={14} />,
-    accent: 'border-purple-500',
-    dot: 'bg-purple-500',
+    className: 'bg-orchid-500/15 text-orchid-200 border border-orchid-400/40',
+    icon: <Code size={13} />,
+    dot: 'bg-orchid-400 shadow-[0_0_10px_#a960ff]',
   },
   teaching: {
     label: { es: 'Docencia', en: 'Teaching' },
-    className: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-700',
-    icon: <GraduationCap size={14} />,
-    accent: 'border-amber-500',
-    dot: 'bg-amber-500',
+    className: 'bg-white/10 text-white border border-white/30',
+    icon: <GraduationCap size={13} />,
+    dot: 'bg-white shadow-[0_0_10px_#fff]',
   },
 };
 
@@ -41,75 +39,56 @@ const ExperienceCard = ({ experience }: { experience: ExperienceItem }) => {
   const config = typeConfig[experience.type];
 
   return (
-    <div className={`bg-light-card dark:bg-gray-800 rounded-xl border border-light-border dark:border-gray-700 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200`}>
-      {/* Accent bar top */}
-      <div className={`h-1 w-full ${config.dot}`} />
-
-      <div className="p-5">
-        {/* Header row */}
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-base font-bold text-light-text dark:text-white leading-tight">
-              {t(experience.titleKey)}
-            </h3>
-            <p className="text-sm text-light-text-secondary dark:text-gray-400 mt-0.5 flex items-center gap-1">
-              <MapPin size={12} className="shrink-0" />
-              {t(experience.companyKey)}
-            </p>
-          </div>
-
-          <div className="flex flex-col items-end gap-1.5 shrink-0">
-            {/* Active badge */}
-            {experience.current ? (
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                {language === 'es' ? 'Activo' : 'Active'}
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600">
-                <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
-                {language === 'es' ? 'Finalizado' : 'Ended'}
-              </span>
-            )}
-            {/* Type badge */}
-            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${config.className}`}>
-              {config.icon}
-              {config.label[language]}
-            </span>
-          </div>
-        </div>
-
-        {/* Period */}
-        <p className="text-xs text-light-text-secondary dark:text-gray-500 font-mono mb-3">
-          {t(experience.periodKey)}
-        </p>
-
-        {/* Divider */}
-        <div className="border-t border-light-border dark:border-gray-700 mb-3" />
-
-        {/* Description */}
-        <ul className="space-y-1.5">
-          {experience.descriptionKeys.map((key, index) => (
-            <li key={index} className="flex gap-2 text-sm text-light-text-secondary dark:text-gray-300">
-              <span className={`mt-1.5 w-1.5 h-1.5 rounded-full ${config.dot} shrink-0`} />
-              <span>{t(key)}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Link */}
-        {experience.link && (
-          <a
-            href={experience.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 mt-3 text-xs text-blue-600 dark:text-blue-400 hover:underline"
-          >
-            <ExternalLink size={12} />
-            {t('experience.resources')}
-          </a>
+    <div className="glass-card group p-7 h-full">
+      <div className="flex flex-wrap items-center gap-2 mb-5">
+        {experience.current ? (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full label-wide bg-azure-400/15 text-azure-300 border border-azure-400/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-azure-300 animate-pulse" />
+            {language === 'es' ? 'Activo' : 'Active'}
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full label-wide bg-white/5 text-white/60 border border-white/15">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
+            {language === 'es' ? 'Finalizado' : 'Ended'}
+          </span>
         )}
+        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full label-wide ${config.className}`}>
+          {config.icon}
+          {config.label[language]}
+        </span>
       </div>
+
+      <h3 className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white leading-snug group-hover:text-gradient">
+        {t(experience.titleKey)}
+      </h3>
+      <p className="text-orchid-100/80 mt-2 flex items-center gap-1.5 italic">
+        <MapPin size={14} className="shrink-0 text-orchid-300" />
+        {t(experience.companyKey)}
+      </p>
+      <p className="label-wide text-azure-300/90 mt-3">{t(experience.periodKey)}</p>
+
+      <div className="ornament my-5 opacity-60" />
+
+      <ul className="space-y-2.5">
+        {experience.descriptionKeys.map((key, index) => (
+          <li key={index} className="flex gap-3 text-orchid-50/75 font-light leading-relaxed">
+            <span className={`mt-2.5 w-1.5 h-1.5 rotate-45 ${config.dot} shrink-0`} />
+            <span>{t(key)}</span>
+          </li>
+        ))}
+      </ul>
+
+      {experience.link && (
+        <a
+          href={experience.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="label-wide inline-flex items-center gap-2 mt-5 text-azure-300 hover:text-white transition-colors"
+        >
+          <ExternalLink size={12} />
+          {t('experience.resources')}
+        </a>
+      )}
     </div>
   );
 };
@@ -154,16 +133,19 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-16 scroll-mt-20">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="py-24 scroll-mt-20">
+      <div className="max-w-5xl mx-auto">
         <SectionTitle
+          kicker={t('kicker.experience')}
           title={t('experience.title')}
           subtitle={t('experience.subtitle')}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {experiences.map((exp, index) => (
-            <ExperienceCard key={index} experience={exp} />
+            <Reveal key={index} delay={(index % 2) * 120} className="h-full">
+              <ExperienceCard experience={exp} />
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { ExternalLink, GraduationCap, Award } from 'lucide-react';
 import SectionTitle from './SectionTitle';
+import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 interface EducationItem {
@@ -88,135 +89,133 @@ const Education = () => {
   ];
 
   const categoryDot: Record<string, string> = {
-    DevOps: 'bg-red-400',
-    Business: 'bg-indigo-400',
-    Data: 'bg-green-400',
-    Programming: 'bg-blue-400',
-    Databases: 'bg-purple-400',
-    Language: 'bg-yellow-400',
+    DevOps: 'bg-azure-400',
+    Business: 'bg-white',
+    Data: 'bg-azure-300',
+    Programming: 'bg-orchid-300',
+    Databases: 'bg-orchid-500',
+    Language: 'bg-white',
   };
 
   return (
-    <section id="education" className="py-16 scroll-mt-20">
-      <div className="max-w-4xl mx-auto">
+    <section id="education" className="py-24 scroll-mt-20">
+      <div className="max-w-5xl mx-auto">
         <SectionTitle
+          kicker={t('kicker.education')}
           title={t('education.title')}
           subtitle={t('education.subtitle')}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* ── Educación ─────────────────────────────── */}
-          <div>
-            <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-500 dark:text-gray-500 mb-6">
-              <GraduationCap size={13} />
-              {t('education.subtitle1')}
-            </p>
+          <Reveal>
+            <div className="glass-card p-7 h-full">
+              <p className="label-wide flex items-center gap-2 text-azure-300 mb-8">
+                <GraduationCap size={14} />
+                {t('education.subtitle1')}
+              </p>
 
-            <div className="relative pl-5">
-              <span className="absolute left-[5px] top-2 bottom-2 w-px bg-gray-700/60" />
+              <div className="relative pl-7">
+                <span className="absolute left-[6px] top-2 bottom-2 w-px bg-gradient-to-b from-orchid-400 via-white/40 to-azure-400" />
 
-              <div className="space-y-7">
-                {educations.map((edu, i) => (
-                  <div key={i} className="relative">
-                    <span className="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-blue-500/10" />
+                <div className="space-y-9">
+                  {educations.map((edu, i) => (
+                    <div key={i} className="relative">
+                      <span className="absolute -left-7 top-1.5 w-3.5 h-3.5 rotate-45 bg-orchid-400 shadow-[0_0_14px_#a960ff]" />
 
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-semibold text-light-text dark:text-white leading-snug">
-                        {edu.institution}
-                      </p>
-                      {edu.link && (
-                        <a
-                          href={edu.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={t('education.viewcert')}
-                          className="shrink-0 text-gray-600 hover:text-blue-400 transition-colors duration-200 cursor-pointer mt-0.5"
-                        >
-                          <ExternalLink size={13} />
-                        </a>
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="font-serif text-lg font-bold tracking-wide text-white leading-snug">
+                          {edu.institution}
+                        </p>
+                        {edu.link && (
+                          <a
+                            href={edu.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={t('education.viewcert')}
+                            className="shrink-0 text-orchid-200 hover:text-azure-300 transition-colors duration-200 mt-1"
+                          >
+                            <ExternalLink size={15} />
+                          </a>
+                        )}
+                      </div>
+
+                      <p className="text-orchid-200 italic mt-1">{t(edu.degreeKey)}</p>
+                      <p className="label-wide text-azure-300/80 mt-2">{t(edu.periodKey)}</p>
+
+                      {edu.delegates && edu.delegates.length > 0 && (
+                        <div className="mt-4">
+                          <p className="label-wide text-white/60 mb-2">
+                            {language === 'es' ? 'Representante académico' : 'Academic representative'}
+                          </p>
+                          <ul className="space-y-1.5">
+                            {edu.delegates.map((course, j) => (
+                              <li key={j} className="flex items-start gap-2 text-sm text-orchid-50/70 font-light">
+                                <span className="mt-1.5 w-1 h-1 rounded-full bg-azure-300 shrink-0" />
+                                {course}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       )}
                     </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
 
-                    <p className="text-sm text-blue-400 mt-0.5">{t(edu.degreeKey)}</p>
-                    <p className="text-xs text-gray-500 font-mono mt-1">{t(edu.periodKey)}</p>
+          {/* ── Certificaciones ───────────────────────── */}
+          <Reveal delay={120}>
+            <div className="glass-card p-7 h-full">
+              <p className="label-wide flex items-center gap-2 text-azure-300 mb-8">
+                <Award size={14} />
+                {t('education.subtitle2')}
+              </p>
 
-                    {edu.delegates && edu.delegates.length > 0 && (
-                      <div className="mt-2.5">
-                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-1.5">
-                          {language === 'es' ? 'Representante académico' : 'Academic representative'}
+              <div className="space-y-3">
+                {certifications.map((cert, i) => (
+                  <a
+                    key={i}
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t('education.viewcert')}
+                    className="flex items-center justify-between gap-3 px-4 py-3.5 rounded-xl bg-orchid-900/20 border border-orchid-400/15 hover:border-azure-400/50 hover:bg-orchid-600/15 hover:translate-x-1 transition-all duration-300 group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className={`w-2 h-2 rotate-45 shrink-0 ${categoryDot[cert.category] ?? 'bg-white'}`} />
+                      <div className="min-w-0">
+                        <p className="text-white truncate leading-snug">
+                          {t(cert.titleKey)}
                         </p>
-                        <ul className="space-y-1">
-                          {edu.delegates.map((course, j) => (
-                            <li key={j} className="flex items-start gap-1.5 text-xs text-gray-500">
-                              <span className="mt-1.5 w-1 h-1 rounded-full bg-gray-600 shrink-0" />
-                              {course}
-                            </li>
-                          ))}
-                        </ul>
+                        <p className="text-xs text-orchid-100/60 mt-1 tracking-wide">
+                          {t(cert.issuerKey)} · {t(cert.dateKey)}
+                        </p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                    <ExternalLink size={14} className="shrink-0 text-orchid-300 group-hover:text-azure-300 transition-colors" />
+                  </a>
                 ))}
               </div>
             </div>
-          </div>
-
-          {/* ── Certificaciones ───────────────────────── */}
-          <div>
-            <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-500 dark:text-gray-500 mb-6">
-              <Award size={13} />
-              {t('education.subtitle2')}
-            </p>
-
-            <div className="space-y-2">
-              {certifications.map((cert, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-gray-800/40 border border-gray-700/40 hover:border-gray-600/60 hover:bg-gray-800/60 transition-all duration-200 group"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${categoryDot[cert.category] ?? 'bg-gray-500'}`} />
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium text-light-text dark:text-gray-100 truncate leading-snug">
-                        {t(cert.titleKey)}
-                      </p>
-                      <p className="text-xs text-gray-500 mt-0.5">
-                        {t(cert.issuerKey)} · {t(cert.dateKey)}
-                      </p>
-                    </div>
-                  </div>
-
-                  {cert.link && (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={t('education.viewcert')}
-                      className="shrink-0 text-gray-600 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
-                    >
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* ── Ver todos ─────────────────────────────── */}
-        <div className="mt-10 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">{t('education.note')}</p>
+        <Reveal className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+          <p className="text-orchid-100/60 italic">{t('education.note')}</p>
           <a
             href="https://drive.google.com/drive/folders/1rdfTpHMpEJJAMXlq31EaugK2AkUwROxQ?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 text-sm text-gray-300 hover:border-blue-500 hover:text-blue-400 transition-all duration-200 group cursor-pointer"
+            className="btn-ghost"
           >
             <ExternalLink size={14} />
             {t('education.viewall')}
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
