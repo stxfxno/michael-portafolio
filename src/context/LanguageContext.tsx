@@ -15,7 +15,7 @@ const translations: Record<Language, Record<string, string>> = {
     'software.engineer': 'Ingeniero de Software',
     'hero.intro': 'Estudiante de 5to año de Ingeniería de Software, me gusta aprender sobre nuevas tecnologías y adaptarme a ellas.',
     'hero.projects': '8+ Proyectos',
-    'hero.fullstack': 'Desarrollo Full-Stack',
+    'hero.fullstack': 'Ingeniería de Software',
     'hero.contact': 'Contacto',
     
     // Navbar
@@ -59,9 +59,9 @@ const translations: Record<Language, Record<string, string>> = {
     'experience.job1.period': 'Feb 2025 - Jun 2026',
     'experience.job1.desc1': 'Desarrollé y mantuve la plataforma web de Sprinta AI utilizando React, TypeScript y Supabase, implementando nuevas funcionalidades del agente de ventas por WhatsApp.',
     'experience.job1.desc2': 'Colaboré en la optimización del CRM integrado y mejoras de rendimiento de la aplicación.',
-    'experience.job4.title': 'Desarrollador Full Stack',
+    'experience.job4.title': 'Ingeniero de Software',
     'experience.job4.company': 'Eemerson SAC',
-    'experience.job4.period': 'Octubre 2025 - Febrero 2026',
+    'experience.job4.period': 'Octubre 2025 - Octubre 2026',
     'experience.job4.desc1': 'Desarrollé PayBox (Next.js 14 + Supabase): gestión de pagos a conductores con exportación a Excel, flota GPS vía Navitel y portal móvil-first para conductores con OCR automático.',
     'experience.job4.desc2': 'Integré la API de SUNAT vía OAuth para descarga de GRE y guías de remisión electrónicas, y la API de Odoo ERP para sincronización automática de alertas de vencimientos documentarios.',
     'experience.job4.desc3': 'Administré directamente la plataforma Odoo ERP del cliente e implementé cron jobs para automatización de alertas y sincronización periódica de datos.',
@@ -182,7 +182,7 @@ const translations: Record<Language, Record<string, string>> = {
     'software.engineer': 'Software Engineer',
     'hero.intro': '5th year Software Engineering student. I enjoy learning about new technologies and adapting to them.',
     'hero.projects': '8+ Projects',
-    'hero.fullstack': 'Full-Stack Development',
+    'hero.fullstack': 'Software Engineering',
     'hero.contact': 'Contact',
     
     // Navbar
@@ -226,9 +226,9 @@ const translations: Record<Language, Record<string, string>> = {
     'experience.job1.period': 'Feb 2025 - Jun 2026',
     'experience.job1.desc1': 'Developed and maintained the Sprinta AI web platform using React, TypeScript, and Supabase, implementing new features for the WhatsApp AI sales agent.',
     'experience.job1.desc2': 'Collaborated on CRM optimization and overall application performance improvements.',
-    'experience.job4.title': 'Full Stack Developer',
+    'experience.job4.title': 'Software Engineer',
     'experience.job4.company': 'Eemerson SAC',
-    'experience.job4.period': 'October 2025 - February 2026',
+    'experience.job4.period': 'October 2025 - October 2026',
     'experience.job4.desc1': 'Built PayBox (Next.js 14 + Supabase): driver payment management with Excel export, GPS fleet tracking via Navitel, and a mobile-first driver portal with automatic OCR.',
     'experience.job4.desc2': 'Integrated the SUNAT API via OAuth for downloading GRE and electronic remittance guides, and the Odoo ERP API for automatic sync of document expiry alerts.',
     'experience.job4.desc3': 'Directly managed the client\'s Odoo ERP platform and implemented cron jobs for alert automation and periodic data synchronization.',

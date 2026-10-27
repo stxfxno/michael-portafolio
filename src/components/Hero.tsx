@@ -39,15 +39,15 @@ const Hero = () => {
                 Dueñas<span className="text-violet">.</span>
               </p>
               <p className="font-wide text-[0.95rem] sm:text-2xl uppercase mt-3">
-                <span className="hl">{es ? 'Desarrollador Full Stack' : 'Full Stack Developer'}</span>
+                <span className="hl">{es ? 'Ingeniero de Software' : 'Software Engineer'}</span>
               </p>
               <Scribble shape="underline" className="w-72 h-5 mt-2" strokeWidth={3} delay={900} />
             </div>
 
             <p className="max-w-md text-lg text-paper/75 leading-relaxed mb-10 fade-up" style={{ animationDelay: '0.65s' }}>
               {es
-                ? 'Estudiante de 5to año de Ingeniería de Software. Diseño y construyo productos digitales con carácter: limpios, rápidos y con un toque personal.'
-                : '5th year Software Engineering student. I design and build digital products with character: clean, fast and with a personal touch.'}
+                ? 'Ingeniero de software de la UPC. Diseño y construyo productos digitales con carácter: limpios, rápidos y con un toque personal.'
+                : 'Software engineer from UPC. I design and build digital products with character: clean, fast and with a personal touch.'}
             </p>
 
             <div className="flex flex-wrap gap-4 fade-up" style={{ animationDelay: '0.8s' }}>
@@ -70,11 +70,26 @@ const Hero = () => {
                 className="w-full h-full object-cover object-[45%_60%] brightness-125 contrast-110 transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="group absolute left-0 top-[8%] w-[36%] h-[22%] overflow-hidden border-4 border-ink shadow-2xl -rotate-3 z-10">
-              <img src="/images/sprinta.png" alt="Sprinta AI" className="photo w-full h-full object-cover group-hover:scale-105" />
-            </div>
-            <div className="group absolute left-[4%] bottom-[10%] w-[36%] h-[22%] overflow-hidden border-4 border-ink rotate-2 z-10">
-              <img src="/images/eemersonsac_web.webp" alt="Eemerson SAC" className="photo w-full h-full object-cover group-hover:scale-105" />
+            {/* Sticker morado con el número de proyectos */}
+            <a
+              href="#projects"
+              className="absolute left-0 top-[12%] w-[34%] aspect-square bg-violet text-ink p-3 sm:p-4 flex flex-col justify-between -rotate-6 shadow-2xl z-10 hover:rotate-0 transition-transform duration-500"
+            >
+              <span className="tag">N° 01</span>
+              <span className="font-display text-6xl sm:text-7xl leading-none">+15</span>
+              <span className="tag leading-tight">{es ? 'Proyectos entregados' : 'Projects shipped'}</span>
+            </a>
+            {/* Ticket / credencial */}
+            <div className="absolute left-[2%] bottom-[12%] w-[40%] bg-paper text-ink p-3 sm:p-4 rotate-3 shadow-2xl z-10">
+              <div className="flex justify-between tag mb-2">
+                <span>{es ? 'Credencial' : 'Pass'}</span>
+                <span>2022—</span>
+              </div>
+              <p className="font-display uppercase text-xl sm:text-2xl leading-none">
+                {es ? 'Ing. de Software' : 'Software Eng.'}
+              </p>
+              <p className="font-serif italic text-lg leading-tight">UPC · Lima</p>
+              <div className="mt-3 h-6 bg-[repeating-linear-gradient(90deg,#0a0a0a_0_2px,transparent_2px_4px,#0a0a0a_4px_7px,transparent_7px_9px)]" />
             </div>
             {/* Cinta morada / resaltador */}
             <div className="absolute right-[-3%] bottom-[12%] w-[58%] h-8 bg-violet/85 mix-blend-screen -rotate-6 z-20" />

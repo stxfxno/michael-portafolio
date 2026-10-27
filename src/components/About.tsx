@@ -90,9 +90,9 @@ const About = () => {
                 </div>
                 <p className="font-serif text-2xl sm:text-3xl leading-snug text-paper/90 mb-4">
                   {es ? (
-                    <>Soy <span className="italic text-violet">Michael</span>, estudiante de Ingeniería de Software en la UPC y desarrollador full stack.</>
+                    <>Soy <span className="italic text-violet">Michael</span>, ingeniero de software de la UPC.</>
                   ) : (
-                    <>I'm <span className="italic text-violet">Michael</span>, a Software Engineering student at UPC and a full stack developer.</>
+                    <>I'm <span className="italic text-violet">Michael</span>, a software engineer from UPC.</>
                   )}
                 </p>
                 <p className="text-paper/65 leading-relaxed mb-10 max-w-2xl">

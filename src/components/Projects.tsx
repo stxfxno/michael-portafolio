@@ -1,4 +1,5 @@
-import { ArrowUpRight, Github } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import ProjectArchive from './ProjectArchive';
 import SectionTitle from './SectionTitle';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -225,18 +226,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <Reveal className="mt-10 pt-10 border-t border-paper/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
-        <p className="font-serif italic text-3xl">{t('projects.more.text')}</p>
-        <div className="flex flex-wrap gap-4">
-          <a href="https://github.com/stxfxno" target="_blank" rel="noopener noreferrer" className="btn-line">
-            <Github size={14} />
-            {t('projects.see.github')}
-          </a>
-          <a href="/more-projects" className="btn-ink">
-            {t('projects.see.more')} <ArrowUpRight size={14} />
-          </a>
-        </div>
-      </Reveal>
+      <ProjectArchive />
     </section>
   );
 };

@@ -2,19 +2,15 @@ import Reveal from './Reveal';
 import Scribble from './Scribble';
 import { useLanguage } from '../context/LanguageContext';
 
-const strip = [
-  '/images/gestion_documental.webp',
-  '/images/eemersonsac_plataforma.webp',
-  '/images/renaceris_plataforma.webp',
-  '/images/wkonegocios_web.webp',
-  '/images/aqua_conecta.webp',
-  '/images/manage_wise.webp',
-];
-
 // Índice de contenidos inspirado en la diapositiva "INDEX"
 const IndexSection = () => {
   const { language } = useLanguage();
   const es = language === 'es';
+
+  const manifesto = es
+    ? ['Código limpio', 'diseño con intención', 'Productos reales', 'hecho en Lima', 'Ingeniería de software']
+    : ['Clean code', 'design with intent', 'Real products', 'made in Lima', 'Software engineering'];
+  const tags = ['Web', 'Mobile', 'APIs', 'UI / UX', 'Cloud', 'ERP'];
 
   const items = es
     ? [
@@ -36,15 +32,27 @@ const IndexSection = () => {
 
   return (
     <section className="relative py-10">
-      {/* Tira de fotos */}
-      <div className="relative h-56 sm:h-72 flex overflow-hidden border-y border-paper/15">
-        <div className="absolute left-0 top-0 w-28 h-5 stripes z-10" />
-        {strip.map((src, i) => (
-          <div key={src} className={`group relative flex-1 min-w-[38%] sm:min-w-0 overflow-hidden ${i % 2 ? 'mt-6' : ''}`}>
-            <img src={src} alt="" loading="lazy" className="photo w-full h-full object-cover group-hover:scale-110" />
+      {/* Cintas cruzadas con el manifiesto */}
+      <div className="relative h-52 sm:h-64 overflow-hidden">
+        <div className="absolute inset-x-[-5%] top-[22%] bg-paper text-ink py-3 rotate-[-4deg] z-10">
+          <div className="flex w-max animate-marquee">
+            {[...manifesto, ...manifesto].map((m, i) => (
+              <span key={i} className={`px-6 whitespace-nowrap text-4xl sm:text-5xl ${i % 2 ? 'font-serif italic' : 'font-display uppercase'}`}>
+                {m} <span className="text-violet-deep">✦</span>
+              </span>
+            ))}
           </div>
-        ))}
-        <Scribble shape="squiggle" className="absolute right-[12%] bottom-4 w-40 h-20 z-10" strokeWidth={4} />
+        </div>
+        <div className="absolute inset-x-[-5%] top-[48%] bg-violet text-ink py-2 rotate-[3deg]">
+          <div className="flex w-max animate-marquee-reverse">
+            {[...tags, ...tags, ...tags, ...tags].map((m, i) => (
+              <span key={i} className="px-5 whitespace-nowrap tag text-sm">
+                {m} ●
+              </span>
+            ))}
+          </div>
+        </div>
+        <Scribble shape="squiggle" className="absolute right-[10%] bottom-2 w-40 h-16 z-20" strokeWidth={4} color="#3d5afe" />
       </div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-12">
