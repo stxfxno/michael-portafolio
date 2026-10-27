@@ -62,20 +62,25 @@ const Hero = () => {
 
           {/* Collage de fotos */}
           <div className="lg:col-span-5 relative h-[420px] sm:h-[520px] lg:h-[620px] fade-up" style={{ animationDelay: '0.4s' }}>
-            <div className="group absolute right-0 top-4 w-[72%] h-[64%] overflow-hidden border border-paper/20 rotate-2">
+            {/* Imagen principal */}
+            <div className="group absolute right-0 top-0 w-[80%] h-[94%] overflow-hidden border border-paper/20 rotate-1">
+              <img
+                src="/images/hero.webp"
+                alt={es ? 'Michael programando de noche frente a la ciudad' : 'Michael coding at night in front of the city'}
+                className="w-full h-full object-cover object-[45%_60%] brightness-125 contrast-110 transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="group absolute left-0 top-[8%] w-[36%] h-[22%] overflow-hidden border-4 border-ink shadow-2xl -rotate-3 z-10">
               <img src="/images/sprinta.png" alt="Sprinta AI" className="photo w-full h-full object-cover group-hover:scale-105" />
             </div>
-            <div className="group absolute left-0 top-[34%] w-[52%] h-[38%] overflow-hidden border-4 border-ink shadow-2xl -rotate-3 z-10">
+            <div className="group absolute left-[4%] bottom-[10%] w-[36%] h-[22%] overflow-hidden border-4 border-ink rotate-2 z-10">
               <img src="/images/eemersonsac_web.webp" alt="Eemerson SAC" className="photo w-full h-full object-cover group-hover:scale-105" />
             </div>
-            <div className="group absolute right-[8%] bottom-0 w-[46%] h-[30%] overflow-hidden border-4 border-ink rotate-1 z-10">
-              <img src="/images/renaceris_web.png" alt="Renaceris" className="photo w-full h-full object-cover group-hover:scale-105" />
-            </div>
             {/* Cinta morada / resaltador */}
-            <div className="absolute left-[14%] top-[58%] w-[70%] h-9 bg-violet/85 mix-blend-screen -rotate-6 z-20" />
-            <div className="absolute right-0 bottom-[34%] w-24 h-4 bg-cobalt z-20" />
-            <Scribble shape="zigzag" className="absolute -right-4 top-[22%] w-28 h-44 z-20" strokeWidth={5} delay={600} />
-            <Scribble shape="circle" className="absolute left-[2%] top-[30%] w-[58%] h-[46%] z-20" strokeWidth={3} color="#f4f1ec" delay={1100} />
+            <div className="absolute right-[-3%] bottom-[12%] w-[58%] h-8 bg-violet/85 mix-blend-screen -rotate-6 z-20" />
+            <div className="absolute right-0 bottom-[2%] w-28 h-4 bg-cobalt z-20" />
+            <Scribble shape="zigzag" className="absolute -right-6 top-[6%] w-28 h-44 z-20" strokeWidth={5} delay={600} />
+            <Scribble shape="circle" className="absolute left-[46%] top-[58%] w-[46%] h-[26%] z-20" strokeWidth={3} color="#f4f1ec" delay={1100} />
             <span className="absolute left-2 top-2 font-hand text-2xl text-paper rotate-[-6deg] z-20">
               {es ? '¡hola!' : 'hello!'}
             </span>
